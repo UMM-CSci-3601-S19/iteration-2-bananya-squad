@@ -5,6 +5,9 @@
          [routerLinkActiveOptions]="{exact: true}">
         <mat-icon id="homeNav">home</mat-icon>
         Home</a>
+      <a id="navProfile" mat-list-item [routerLink]="['/profile']" (click)="layout.close()" routerLinkActive="nav-active">
+        <mat-icon id="profileNav">account_circle</mat-icon>
+        Rides</a>
       <a id="navRides" mat-list-item [routerLink]="['/rides']" (click)="layout.close()" routerLinkActive="nav-active">
         <mat-icon id="carNav">directions_car</mat-icon>
         Rides</a>

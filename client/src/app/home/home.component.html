@@ -1,11 +1,12 @@
 <div layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
-    <mat-card>
+      <mat-card>
       <mat-card-title id="hello-world">{{ this.text }}</mat-card-title>
       <mat-card-subtitle>Welcome to MoRide, the Morris community car-pooling application</mat-card-subtitle>
       <mat-divider></mat-divider>
-      <mat-card-content>
-        Please select the menu
+      <mat-card-content id="buttons">
+        <button id="signUp" mat-stroked-button (click) = "openRegisterDialog()" color = "accent">Sign Up</button>
+        <button id="signIn" mat-stroked-button (click) = "openLoginDialog()" color = "accent">Login</button>
       </mat-card-content>
     </mat-card>
   </div>
