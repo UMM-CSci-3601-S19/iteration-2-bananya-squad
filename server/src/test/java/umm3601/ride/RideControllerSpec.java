@@ -131,7 +131,7 @@ public class RideControllerSpec {
     String beforeResult = rideController.getRides(emptyMap);
     BsonArray beforeDocs = parseJsonArray(beforeResult);
     assertEquals("Should have 4 riders before adding a new one", 4, beforeDocs.size());
-    String jsonResult = rideController.addNewRide("Good Driver", "Far, Far Away", "The RFC", false, true,"Noon Tomorrow", "We're never coming back.");
+    String jsonResult = rideController.addNewRide("Good Driver", "Far, Far Away", "The RFC", false, true,"10-25-2020", "6:30pm","We're never coming back.");
     assertNotNull("Add ride result should not be null", jsonResult);
     String afterResult = rideController.getRides(emptyMap);
     BsonArray afterDocs = parseJsonArray(afterResult);
