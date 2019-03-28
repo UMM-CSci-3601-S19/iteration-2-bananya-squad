@@ -22,7 +22,8 @@ describe('Ride component', () => {
           destination: 'Hogwarts',
           origin: '4 Privet Drive',
           roundTrip: true,
-          departureTime: 'midnight',
+          departureDate: '05-16-2007',
+          departureTime: '6:00pm',
           notes: 'I will be arriving in a flying motorcycle'
         },
         {
@@ -30,7 +31,8 @@ describe('Ride component', () => {
           destination: 'Narnia',
           origin: 'Wardrobe',
           roundTrip: true,
-          departureTime: 'During Hide and Seek',
+          departureDate: '07-13-2020',
+          departureTime: '5:00pm',
           notes: 'Dress for cold'
         },
         {
@@ -38,7 +40,8 @@ describe('Ride component', () => {
           destination: 'Morris',
           origin: 'The Outside',
           roundTrip: false,
-          departureTime: 'August',
+          departureDate: '08-02-2019',
+          departureTime: '7:00pm',
           notes: 'There is no escaping Morris'
         }
       ].find(ride => ride.destination === rideDestination))
@@ -65,7 +68,8 @@ describe('Ride component', () => {
     expect(rideComponent.ride.driver).toBe('Hagrid');
     expect(rideComponent.ride.origin).toBe('4 Privet Drive');
     expect(rideComponent.ride.roundTrip).toBe(true);
-    expect(rideComponent.ride.departureTime).toBe('midnight');
+    expect(rideComponent.ride.departureDate).toBe('05-16-2007');
+    expect(rideComponent.ride.departureTime).toBe('6:00pm');
     expect(rideComponent.ride.notes).toBe('I will be arriving in a flying motorcycle');
   });
 

@@ -29,6 +29,7 @@ describe('Ride list', () => {
           destination: 'Minneapolis',
           origin: 'Morris',
           roundTrip: false,
+          departureDate: '10-18-2019',
           departureTime: '5:00pm',
           notes: 'I like do drive with loud music.'
         },
@@ -37,6 +38,7 @@ describe('Ride list', () => {
           destination: 'St. Cloud',
           origin: 'Morris',
           roundTrip: true,
+          departureDate: '06-08-2019',
           departureTime: '6:00pm',
           notes: 'I like to drive with pets.'
         },
@@ -45,6 +47,7 @@ describe('Ride list', () => {
           destination: 'Big Lake',
           origin: 'Minneapolis',
           roundTrip: true,
+          departureDate: '05-26-2031',
           departureTime: '7:00pm',
           notes: 'I am down to play some music.'
         },
@@ -53,6 +56,7 @@ describe('Ride list', () => {
           destination: 'California',
           origin: 'Morris',
           roundTrip: false,
+          departureDate: '11-30-2017',
           departureTime: '3:00pm',
           notes: 'I am fine with driving large groups of people.'
         },
@@ -61,6 +65,7 @@ describe('Ride list', () => {
           destination: 'Becker',
           origin: 'Morris',
           roundTrip: true,
+          departureDate: '01-31-2018',
           departureTime: '5:00pm',
           notes: 'I hate dogs and I am scared to ride with them.'
         },
@@ -69,6 +74,7 @@ describe('Ride list', () => {
           destination: 'Becker',
           origin: 'Morris',
           roundTrip: true,
+          departureDate: '07-25-2021',
           departureTime: '7:00pm',
           notes: 'I hate dogs and I am scared to ride with them.'
         }
@@ -224,6 +230,7 @@ describe('Adding a ride',()=> {
     destination: 'Becker',
     origin: 'Morris',
     roundTrip: true,
+    departureDate: '11-30-2019',
     departureTime: '5:00pm',
     notes: 'I do not like the smell of smoke.'
   };
@@ -296,6 +303,7 @@ describe('Editing a ride',()=> {
     origin: 'Morris',
     roundTrip: true,
     driving: true,
+    departureDate: '11-30-2019',
     departureTime: '5:00pm',
     notes: 'I do not like the smell of smoke.'
   };
@@ -354,7 +362,7 @@ describe('Editing a ride',()=> {
 
   it('calls RideListService.editRide', () => {
     expect(calledRide).toBeNull();
-    rideList.openEditDialog(currentRide._id, currentRide.driver, currentRide.destination, currentRide.origin, currentRide.roundTrip, currentRide.driving,currentRide.departureTime, currentRide.notes);
+    rideList.openEditDialog(currentRide._id, currentRide.driver, currentRide.destination, currentRide.origin, currentRide.roundTrip, currentRide.driving,currentRide.departureDate, currentRide.departureTime, currentRide.notes);
     expect(calledRide).toEqual(currentRide);
   });
 });
@@ -367,6 +375,7 @@ describe('Deleting a ride',()=> {
     destination: 'Becker',
     origin: 'Morris',
     roundTrip: true,
+    departureDate: '10-16-2124',
     departureTime: '5:00pm',
     notes: 'I do not like the smell of smoke.'
   };

@@ -12,7 +12,8 @@ describe( 'Ride list service: ', () => {
       destination: 'Hogwarts',
       origin: '4 Privet Drive',
       roundTrip: true,
-      departureTime: 'midnight',
+      departureDate: '05-16-2007',
+      departureTime: '6:00pm',
       notes: 'I will be arriving in a flying motorcycle'
     },
     {
@@ -20,7 +21,8 @@ describe( 'Ride list service: ', () => {
       destination: 'Narnia',
       origin: 'Wardrobe',
       roundTrip: true,
-      departureTime: 'During Hide and Seek',
+      departureDate: '07-13-2020',
+      departureTime: '5:00pm',
       notes: 'Dress for cold'
     },
     {
@@ -28,7 +30,8 @@ describe( 'Ride list service: ', () => {
       destination: 'Morris',
       origin: 'The Outside',
       roundTrip: false,
-      departureTime: 'August',
+      departureDate: '08-02-2019',
+      departureTime: '7:00pm',
       notes: 'There is no escaping Morris'
     }
   ];
@@ -90,7 +93,8 @@ describe( 'Ride list service: ', () => {
       destination: 'St. Cloud',
       origin: 'Becker',
       roundTrip: false,
-      departureTime: 'August',
+      departureDate: '10-16-2124',
+      departureTime: '5:00pm',
       notes: 'There is no escaping Morris'
     };
 
@@ -126,7 +130,8 @@ describe( 'Ride list service: ', () => {
       destination: 'Morris',
       origin: 'Home',
       roundTrip: false,
-      departureTime: 'Year Round',
+      departureDate: '10-16-2124',
+      departureTime: '5:00pm',
       notes: 'There is no escaping Morris'
     };
 
