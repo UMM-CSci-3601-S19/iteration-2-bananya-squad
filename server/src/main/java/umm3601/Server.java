@@ -15,6 +15,7 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 import java.io.InputStream;
 
+
 public class Server {
 
   private static final int serverPort = 4567;
