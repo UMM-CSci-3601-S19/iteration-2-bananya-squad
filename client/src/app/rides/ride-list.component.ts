@@ -62,6 +62,7 @@ export class RideListComponent implements OnInit {
   openSearchDialog(): void {
     const dialogRef = this.dialog.open(SearchRideComponent,{
       width: '500px',
+      data: null
     });
     dialogRef.afterClosed().subscribe(newRide => {
       if (newRide != null) {

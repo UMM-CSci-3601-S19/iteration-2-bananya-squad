@@ -22,6 +22,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import {CustomModule} from './custom.module';
+import {SearchRideComponent} from "./rides/search-ride.component";
 
 
 
@@ -43,6 +44,7 @@ import {CustomModule} from './custom.module';
     EditRideComponent,
     DeleteRideComponent,
     UserListComponent,
+    SearchRideComponent
   ],
   providers: [
     RideListService,
@@ -52,7 +54,8 @@ import {CustomModule} from './custom.module';
   entryComponents: [
     AddRideComponent,
     EditRideComponent,
-    DeleteRideComponent
+    DeleteRideComponent,
+    SearchRideComponent
   ],
   bootstrap: [AppComponent]
 })
