@@ -121,6 +121,10 @@ export class RideListComponent implements OnInit {
   public filterRides(searchDestination: string): Ride[] {
 
     this.filteredRides = this.rides;
+    var today = new Date();
+    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
 
     if (searchDestination != null) {
       searchDestination = searchDestination.toLocaleLowerCase();
