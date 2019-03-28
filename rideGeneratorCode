@@ -1,17 +1,16 @@
 Code for Generating random rides:
 
 [
+  '{{repeat(100)}}',
   {
-    'repeat(100)': {
-      driver: '{{firstName()}} {{surname()}}',
-      riders: "{{random('5c817c356e1e7c3c544638fd', '5c817c35f51d7f2cf6a6ec44', '5c817c358f1702ea7c5f4ee3', '5c817c35004535b2c6789e1a')}}",
-       destination: "{{random('Willies', 'Alexandria', 'Duluth', 'Maplegrove', 'Family Dollar', 'St.Paul')}}",
-      origin:'{{street()}}',
-      roundTrip: '{{bool()}}',
-      departureTime: '{{date(new Date(2017, 0, 1), new Date(2024, 0, 1))}}',
-      driving: '{{bool()}}',
-      notes: "{{random('Im driving and I like to eat at the same time', 'I love to crank the volume up to 11', 'I like to drive with no air conditioning', 'No room in the trunk of my car', 'No pet allowed', 'I will pay for lunch for anyone who is riding with me and I am a cool guy')}}",
-    },
+    driver: '{{firstName()}} {{surname()}}',
+    destination: "{{random('Willies', 'Alexandria', 'Duluth', 'Maplegrove', 'Family Dollar', 'St.Paul')}}",
+    origin:'{{street()}}',
+    roundTrip: '{{bool()}}',
+    departureDate: '{{date(new Date(2019, 4, 1), new Date(2037, 4, 20),"MM-dd-YYYY")}}',
+    departureTime: '{{date(new Date(2019, 4, 1), new Date(2037, 4, 20),"h:mma")}}',
+    driving: '{{bool()}}',
+    notes: "{{random('I am driving and I like to eat at the same time', 'I love to crank the volume up to 11', 'I like to drive with no air conditioning', 'No room in the trunk of my car', 'No pet allowed', 'I will pay for lunch for anyone who is riding with me and I am a cool guy', 'I drive Sonic fast', 'My car is messy', 'I am always listening to death metal', 'I have tint on my windows', '...', 'Side mirrors are broken', 'Get ready to have fun', 'I am usually sad', 'Contact me for meeting place', 'I am always happy, always', 'I am flexible on the time', 'It is free if you pay for McDonalds', 'No screaming in my car', 'I like to talk while driving',)}}"
   }
 ]
 

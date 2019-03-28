@@ -85,8 +85,8 @@ public class RideRequestHandler {
     String origin = newRide.getString("origin");
     Boolean roundTrip = newRide.getBoolean("roundTrip");
     Boolean driving = newRide.getBoolean("driving");
-    String departureDate= parseDate(newRide.getString("departureDate"));
-    String departureTime = parseTime(newRide.getString("departureTime"));
+    String departureDate= newRide.getString("departureDate");
+    String departureTime = newRide.getString("departureTime");
     String notes = newRide.getString("notes");
 
 
@@ -126,7 +126,7 @@ public class RideRequestHandler {
 
 
 
-  public String getMonth(int month) {
+ /* public String getMonth(int month) {
     return new DateFormatSymbols().getMonths()[month-1];
   }
 
@@ -176,6 +176,8 @@ public class RideRequestHandler {
     } else {
       return "";
     }
-  }
+  }*/
+
+
 }
 
