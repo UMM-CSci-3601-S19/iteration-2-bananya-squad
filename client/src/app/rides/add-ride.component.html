@@ -12,6 +12,16 @@
           </mat-error>
         </mat-error>
       </mat-form-field>
+      <mat-form-field>
+        <input type="time" matInput #input id="timePicker" placeholder="Departure Time" [(ngModel)]="data.ride.departureTime" formControlName="departureTime"
+               required>
+        <mat-error *ngFor="let validation of add_ride_validation_messages.departureTime">
+          <mat-error class="error-message" id="time-error"
+                     *ngIf="addRideForm.get('departureTime').hasError(validation.type) && (addRideForm.get('departureTime').dirty || addRideForm.get('departureTime').touched)">
+            {{validation.message}}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
       <mat-form-field flex>
         <input matInput #input id="driverField" placeholder="Name" [(ngModel)]="data.ride.driver" formControlName="driver"
                required>
@@ -37,12 +47,12 @@
                required [maxLength]="0">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <!--<mat-error *ngFor="let validation of add_ride_validation_messages.departureTime">-->
-          <!--<mat-error class="error-message" id="departureTime-error"-->
-                     <!--*ngIf="addRideForm.get('departureTime').hasError(validation.type) && (addRideForm.get('departureTime').dirty || addRideForm.get('departureTime').touched)">-->
-            <!--{{validation.message}}-->
-          <!--</mat-error>-->
-        <!--</mat-error>-->
+        <mat-error *ngFor="let validation of add_ride_validation_messages.departureDate">
+          <mat-error class="error-message" id="departureTime-error"
+                     *ngIf="addRideForm.get('departureDate').hasError(validation.type) && (addRideForm.get('departureDate').dirty || addRideForm.get('departureDate').touched)">
+            {{validation.message}}
+          </mat-error>
+        </mat-error>
       </mat-form-field>
       <mat-form-field flex>
         <input matInput #input id="notesField" placeholder="Notes" [(ngModel)]="data.ride.notes" formControlName="notes"
