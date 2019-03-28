@@ -6,6 +6,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 import spark.utils.IOUtils;
+import umm3601.profile.ProfileController;
+import umm3601.profile.ProfileRequestHandler;
 import umm3601.ride.RideController;
 import umm3601.ride.RideRequestHandler;
 
@@ -15,22 +17,23 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 import java.io.InputStream;
 
-
 public class Server {
 
   private static final int serverPort = 4567;
 
-  private static final String rideDatabaseName = "dev";
+  private static final String databaseName = "dev";
 
   public static void main(String[] args) {
 
     MongoClient mongoClient = new MongoClient();
-    MongoDatabase rideDatabase = mongoClient.getDatabase(rideDatabaseName);
+    MongoDatabase Database = mongoClient.getDatabase(databaseName);
 
-    RideController rideController = new RideController(rideDatabase);
+    RideController rideController = new RideController(Database);
+    ProfileController profileController = new ProfileController(Database);
 
 
     RideRequestHandler rideRequestHandler = new RideRequestHandler(rideController);
+    ProfileRequestHandler profileRequestHandler = new ProfileRequestHandler(profileController);
 
     //Configure Spark
     port(serverPort);
@@ -74,6 +77,9 @@ public class Server {
     post("api/rides/new", rideRequestHandler::addNewRide);
     post("api/rides/update", rideRequestHandler::updateRide);
     post("api/rides/remove", rideRequestHandler::deleteRide);
+
+    get("api/profile", profileRequestHandler::getProfile);
+
 
     // An example of throwing an unhandled exception so you can see how the
     // Java Spark debugger displays errors like this.
