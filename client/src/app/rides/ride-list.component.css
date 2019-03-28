@@ -13,8 +13,8 @@
   border-radius: 300px;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: white;
-  color: darkgreen;
+  background-color: #D5861C;
+  color: white;
 }
 
 
@@ -46,5 +46,6 @@
 }
 
 .arrow{
-  color: #4caf50;
+  color: #D5861C;
+
 }
