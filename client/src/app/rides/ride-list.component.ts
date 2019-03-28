@@ -6,6 +6,7 @@ import {AddRideComponent} from "./add-ride.component";
 import {EditRideComponent} from "./edit-ride.component";
 import {MatDialog} from "@angular/material";
 import {DeleteRideComponent} from "./delete-ride.component";
+import {SearchRideComponent} from "./search-ride.component";
 
 
 @Component({
@@ -40,6 +41,29 @@ export class RideListComponent implements OnInit {
       data: {ride: newRide}
     });
 
+    dialogRef.afterClosed().subscribe(newRide => {
+      if (newRide != null) {
+
+        this.rideListService.addNewRide(newRide).subscribe(
+          result => {
+            this.highlightedDestination = result;
+            this.refreshRides();
+          },
+          err => {
+            // This should probably be turned into some sort of meaningful response.
+            console.log('There was an error adding the ride.');
+            console.log('The newRide or dialogResult was ' + JSON.stringify(newRide));
+            console.log('The error was ' + JSON.stringify(err));
+          });
+      }
+    });
+  }
+
+  openSearchDialog(): void {
+    const dialogRef = this.dialog.open(SearchRideComponent,{
+      width: '500px',
+      data: null
+    });
     dialogRef.afterClosed().subscribe(newRide => {
       if (newRide != null) {
 
@@ -121,6 +145,10 @@ export class RideListComponent implements OnInit {
   public filterRides(searchDestination: string): Ride[] {
 
     this.filteredRides = this.rides;
+    var today = new Date();
+    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
 
     if (searchDestination != null) {
       searchDestination = searchDestination.toLocaleLowerCase();
