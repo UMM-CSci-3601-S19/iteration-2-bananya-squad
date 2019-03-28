@@ -4,6 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
+import {ProfileComponent} from "./profile/profile.component";
 import {Routing} from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 import {RideComponent} from "./rides/ride.component";
