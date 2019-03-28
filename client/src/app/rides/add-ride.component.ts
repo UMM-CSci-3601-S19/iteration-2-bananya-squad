@@ -36,10 +36,11 @@ export class AddRideComponent implements OnInit {
       {type: 'maxlength', message: 'Origin cannot be more than 100 characters long'},
       {type: 'pattern', message: 'Origin must contain only numbers, letters, dashes, underscores, and dots'}
     ],
+    'departureDate': [
+      {type: 'required', message: 'Departure Date is required'},
+    ],
     'departureTime': [
       {type: 'required', message: 'Departure Time is required'},
-      {type: 'minlength', message: 'Departure Time must be at least 2 characters long'},
-      {type: 'maxlength', message: 'Departure Time cannot be more than 100 characters long'},
     ],
     'notes': [
       {type: 'required', message: 'Notes is required'},
@@ -70,9 +71,10 @@ export class AddRideComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[ a-zA-Z0-9.]+$')
       ])),
+      departureDate: new FormControl('departureDate', Validators.compose([
+        Validators.required
+        ])),
       departureTime: new FormControl('departureTime', Validators.compose([
-        Validators.minLength(2),
-        Validators.maxLength(100),
         Validators.required
       ])),
       notes: new FormControl('notes', Validators.compose([
