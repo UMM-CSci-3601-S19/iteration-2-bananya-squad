@@ -1,8 +1,3 @@
-<div>
-  <button id="addNewRide" mat-raised-button (click)="openDialog()"> <mat-icon id="plus">add</mat-icon> Add New Ride</button>
-</div>
-
-
 <div layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
     <mat-card>
@@ -47,5 +42,13 @@
       </mat-card-content>
     </mat-card>
   </div>
+  <button mat-fab id="searchRide" class="mat-fab-bottom-right" matTooltip="Search Ride" matTooltipPosition="left"
+          (click)="openSearchDialog()">
+    <mat-icon class="md-24" aria-label="New Ride">search</mat-icon>
+  </button>
+  <button mat-fab id="addRide" class="mat-fab-bottom-right" matTooltip="New Ride" matTooltipPosition="left"
+          (click)="openDialog()">
+    <mat-icon class="md-24" aria-label="New Ride">add</mat-icon>
+  </button>
 </div>
 

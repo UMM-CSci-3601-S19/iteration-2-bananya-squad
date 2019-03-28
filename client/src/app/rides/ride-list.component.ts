@@ -6,6 +6,7 @@ import {AddRideComponent} from "./add-ride.component";
 import {EditRideComponent} from "./edit-ride.component";
 import {MatDialog} from "@angular/material";
 import {DeleteRideComponent} from "./delete-ride.component";
+import {SearchRideComponent} from "./search-ride.component";
 
 
 @Component({
@@ -40,6 +41,28 @@ export class RideListComponent implements OnInit {
       data: {ride: newRide}
     });
 
+    dialogRef.afterClosed().subscribe(newRide => {
+      if (newRide != null) {
+
+        this.rideListService.addNewRide(newRide).subscribe(
+          result => {
+            this.highlightedDestination = result;
+            this.refreshRides();
+          },
+          err => {
+            // This should probably be turned into some sort of meaningful response.
+            console.log('There was an error adding the ride.');
+            console.log('The newRide or dialogResult was ' + JSON.stringify(newRide));
+            console.log('The error was ' + JSON.stringify(err));
+          });
+      }
+    });
+  }
+
+  openSearchDialog(): void {
+    const dialogRef = this.dialog.open(SearchRideComponent,{
+      width: '500px',
+    });
     dialogRef.afterClosed().subscribe(newRide => {
       if (newRide != null) {
 

@@ -49,3 +49,24 @@
   color: #DE9A14;
 
 }
+
+#addRide{
+  background-color: #DE9A14;
+  color: white;
+}
+
+.fab{
+  position: fixed;
+  right: 10px;
+}
+
+#searchRide{
+  background-color: #DE9A14;
+  color: white;
+  margin-bottom: 75px;
+}
+
+.mat-fab-bottom-right{
+  position: fixed;
+  margin-right: 10px;
+}
