@@ -6,7 +6,12 @@ import {CovalentLayoutModule, CovalentStepsModule, CovalentCommonModule /*, any 
 import {
   MatListModule, MatButtonModule, MatCardModule, MatIconModule,
   MatInputModule, MatMenuModule, MatSidenavModule, MatToolbarModule,
-  MatExpansionModule, MatTooltipModule, MatDialogModule,
+  MatExpansionModule, MatTooltipModule, MatDialogModule, MAT_DATE_LOCALE
+} from '@angular/material';
+
+import{
+  MatDatepickerModule,
+  MatNativeDateModule,
 } from '@angular/material';
 
 import {FlexLayoutModule,} from '@angular/flex-layout';
@@ -36,6 +41,8 @@ const MATERIAL_MODULES: any[] = [
   MatExpansionModule,
   MatTooltipModule,
   MatDialogModule,
+  MatNativeDateModule,
+  MatDatepickerModule
 ];
 
 const COVALENT_MODULES: any[] = [
@@ -58,6 +65,9 @@ const COVALENT_MODULES: any[] = [
     MATERIAL_MODULES,
     COVALENT_MODULES,
     FLEX_LAYOUT_MODULES,
+  ],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'en-US'}
   ]
 })
 
