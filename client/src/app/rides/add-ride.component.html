@@ -34,7 +34,7 @@
       </mat-form-field>
       <mat-form-field flex>
         <input id="departureTimeField" matInput [matDatepicker]="picker" placeholder="Departure Time" [(ngModel)]="data.ride.departureTime" formControlName="departureTime"
-               required>
+               required [maxLength]="0">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <!--<mat-error *ngFor="let validation of add_ride_validation_messages.departureTime">-->
