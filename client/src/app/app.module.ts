@@ -14,6 +14,7 @@ import {AddRideComponent} from "./rides/add-ride.component";
 import {EditRideComponent} from "./rides/edit-ride.component";
 import {DeleteRideComponent} from "./rides/delete-ride.component";
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import {CustomModule} from './custom.module';
 
@@ -26,6 +27,7 @@ import {CustomModule} from './custom.module';
     Routing,
     CustomModule,
     MatCheckboxModule,
+    MatDatepickerModule
   ],
   declarations: [
     AppComponent,
