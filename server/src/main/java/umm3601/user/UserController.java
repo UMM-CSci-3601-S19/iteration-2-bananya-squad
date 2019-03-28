@@ -1,4 +1,4 @@
-package umm3601.profile;
+package umm3601.user;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -9,15 +9,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public class ProfileController {
+public class UserController {
 
-  private final MongoCollection<Document> profileCollection;
+  private final MongoCollection<Document> userCollection;
 
-  public ProfileController(MongoDatabase database) {
-    profileCollection = database.getCollection("Users");
+  public UserController(MongoDatabase database) {
+    userCollection = database.getCollection("Users");
   }
 
-  String getProfile(Map<String, String[]> queryParams) {
+  String getUsers(Map<String, String[]> queryParams) {
 
     Document filterDoc = new Document();
 
@@ -29,9 +29,9 @@ public class ProfileController {
       filterDoc = filterDoc.append("name", contentRegQuery);
     }
 
-    FindIterable<Document> matchingProfile = profileCollection.find(filterDoc);
+    FindIterable<Document> matchingUser = userCollection.find(filterDoc);
 
-    return serializeIterable(matchingProfile);
+    return serializeIterable(matchingUser);
   }
 
   private String serializeIterable(Iterable<Document> documents) {

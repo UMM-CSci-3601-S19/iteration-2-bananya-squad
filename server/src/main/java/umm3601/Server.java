@@ -6,8 +6,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 import spark.utils.IOUtils;
-import umm3601.profile.ProfileController;
-import umm3601.profile.ProfileRequestHandler;
+import umm3601.user.UserController;
+import umm3601.user.UserRequestHandler;
 import umm3601.ride.RideController;
 import umm3601.ride.RideRequestHandler;
 
@@ -29,11 +29,11 @@ public class Server {
     MongoDatabase Database = mongoClient.getDatabase(databaseName);
 
     RideController rideController = new RideController(Database);
-    ProfileController profileController = new ProfileController(Database);
+    UserController userController = new UserController(Database);
 
 
     RideRequestHandler rideRequestHandler = new RideRequestHandler(rideController);
-    ProfileRequestHandler profileRequestHandler = new ProfileRequestHandler(profileController);
+    UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
 
     //Configure Spark
     port(serverPort);
@@ -78,7 +78,7 @@ public class Server {
     post("api/rides/update", rideRequestHandler::updateRide);
     post("api/rides/remove", rideRequestHandler::deleteRide);
 
-    get("api/profile", profileRequestHandler::getProfile);
+    get("api/user", userRequestHandler::getUsers);
 
 
     // An example of throwing an unhandled exception so you can see how the
