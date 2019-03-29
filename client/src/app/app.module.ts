@@ -24,6 +24,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {CustomModule} from './custom.module';
 import {SearchRideComponent} from "./rides/search-ride.component";
 
+import {AppService} from "./app.service"
+
 
 
 @NgModule({
@@ -49,6 +51,7 @@ import {SearchRideComponent} from "./rides/search-ride.component";
   providers: [
     RideListService,
     UserListService,
+    AppService,
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [
