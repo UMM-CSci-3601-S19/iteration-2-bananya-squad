@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {AppService} from "./app.service";
@@ -11,8 +11,10 @@ declare var gapi: any;
   styleUrls: ['./app.component.css'],
   providers: [AppService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
   googleAuth;
+  public currentPath;
 
   constructor(private http: HttpClient, public appService: AppService) {
   }

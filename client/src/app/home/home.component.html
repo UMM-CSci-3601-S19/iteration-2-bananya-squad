@@ -6,12 +6,16 @@
       <mat-divider></mat-divider>
       <mat-card-content id="buttons">
         <div *ngIf="!appService.isSignedIn()" class="g-signin2" (click)="signIn()"></div>
-        <script>
+        <div *ngIf="appService.isSignedIn()" class="username">
+          {{username}}
+        </div>
+
+        <!--<script>
           $('#signinButton').click(function() {
             // signInCallback defined in step 6.
             auth2.grantOfflineAccess().then(signInCallback);
           });
-        </script>
+        </script>-->
       </mat-card-content>
     </mat-card>
   </div>

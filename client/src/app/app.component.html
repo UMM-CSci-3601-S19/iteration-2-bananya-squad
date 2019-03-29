@@ -1,6 +1,6 @@
 <td-layout #layout>
   <td-navigation-drawer flex sidenavTitle="">
-    <mat-nav-list>
+    <mat-nav-list *ngIf="appService.isSignedIn()" >
       <a id="navHome" mat-list-item [routerLink]="['/']" (click)="layout.close()" routerLinkActive="nav-active"
          [routerLinkActiveOptions]="{exact: true}">
         <mat-icon id="homeNav">home</mat-icon>
