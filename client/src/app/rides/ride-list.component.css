@@ -13,8 +13,8 @@
   border-radius: 300px;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: white;
-  color: darkgreen;
+  background-color: #DE9A14;
+  color: white;
 }
 
 
@@ -46,5 +46,27 @@
 }
 
 .arrow{
-  color: #4caf50;
+  color: #DE9A14;
+
+}
+
+#addRide{
+  background-color: #DE9A14;
+  color: white;
+}
+
+.fab{
+  position: fixed;
+  right: 10px;
+}
+
+#searchRide{
+  background-color: #DE9A14;
+  color: white;
+  margin-bottom: 75px;
+}
+
+.mat-fab-bottom-right{
+  position: fixed;
+  margin-right: 10px;
 }

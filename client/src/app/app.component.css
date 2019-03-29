@@ -1,6 +1,9 @@
+#profileNav{
+  color: goldenrod;
+}
 
 #homeNav{
-  color:green;
+  color:Maroon;
 }
 
 
@@ -9,14 +12,17 @@
 }
 
 #navHome:hover {
-  background-color: salmon;
+  background-color: #a39fb1;
   color: white;
 }
 
-
+#navProfile:hover{
+  background-color: #a39fb1;
+  color: white;
+}
 
 #navRides:hover {
-  background-color: salmon;
+  background-color: #a39fb1;
   color: white;
 }
 
