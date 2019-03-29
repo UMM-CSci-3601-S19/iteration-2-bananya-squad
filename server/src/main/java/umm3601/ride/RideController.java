@@ -50,6 +50,48 @@ public class RideController {
       contentRegQuery.append("$options", "i");
       filterDoc = filterDoc.append("driver", contentRegQuery);
     }
+    if (queryParams.containsKey("destination")) {
+      String targetContent = (queryParams.get("destination")[0]);
+      Document contentRegQuery = new Document();
+      contentRegQuery.append("$regex", targetContent);
+      contentRegQuery.append("$options", "i");
+      filterDoc = filterDoc.append("destination", contentRegQuery);
+    }
+    if (queryParams.containsKey("origin")) {
+      String targetContent = (queryParams.get("origin")[0]);
+      Document contentRegQuery = new Document();
+      contentRegQuery.append("$regex", targetContent);
+      contentRegQuery.append("$options", "i");
+      filterDoc = filterDoc.append("origin", contentRegQuery);
+    }
+    if (queryParams.containsKey("roundTrip")) {
+      String targetContent = (queryParams.get("roundTrip")[0]);
+      Document contentRegQuery = new Document();
+      contentRegQuery.append("$regex", targetContent);
+      contentRegQuery.append("$options", "i");
+      filterDoc = filterDoc.append("roundTrip", contentRegQuery);
+    }
+    if (queryParams.containsKey("departureDate")) {
+      String targetContent = (queryParams.get("departureDate")[0]);
+      Document contentRegQuery = new Document();
+      contentRegQuery.append("$regex", targetContent);
+      contentRegQuery.append("$options", "i");
+      filterDoc = filterDoc.append("departureDate", contentRegQuery);
+    }
+    if (queryParams.containsKey("departureTime")) {
+      String targetContent = (queryParams.get("departureTime")[0]);
+      Document contentRegQuery = new Document();
+      contentRegQuery.append("$regex", targetContent);
+      contentRegQuery.append("$options", "i");
+      filterDoc = filterDoc.append("departureTime", contentRegQuery);
+    }
+    if (queryParams.containsKey("driving")) {
+      String targetContent = (queryParams.get("driving")[0]);
+      Document contentRegQuery = new Document();
+      contentRegQuery.append("$regex", targetContent);
+      contentRegQuery.append("$options", "i");
+      filterDoc = filterDoc.append("driving", contentRegQuery);
+    }
 
     //FindIterable comes from mongo, Document comes from Gson
     FindIterable<Document> matchingRides = rideCollection.find(filterDoc);

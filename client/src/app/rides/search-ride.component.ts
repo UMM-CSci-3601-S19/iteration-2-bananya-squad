@@ -23,7 +23,7 @@ export class SearchRideComponent implements OnInit {
       {type: 'maxlength', message: 'Destination cannot be more than 100 characters long'},
       {type: 'pattern', message: 'Destination must contain only numbers, letters, dashes, underscores, and dots'}
     ]
-  }
+  };
 
   createForms() {
     this.searchRideForm = this.fb.group({
