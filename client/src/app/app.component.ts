@@ -14,7 +14,6 @@ declare var gapi: any;
 export class AppComponent implements OnInit {
 
   googleAuth;
-  public currentPath;
 
   constructor(private http: HttpClient, public appService: AppService) {
   }
