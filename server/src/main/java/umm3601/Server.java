@@ -108,7 +108,8 @@ public class Server {
           GoogleTokenResponse tokenResponse =
             new GoogleAuthorizationCodeTokenRequest(
               new NetHttpTransport(),
-              JacksonFactory.getDefaultInstance(), "https://oauth2.googleapis.com/token",
+              JacksonFactory.getDefaultInstance(),
+              "https://oauth2.googleapis.com/token",
               clientSecrets.getDetails().getClientId(),
 
               // Replace clientSecret with the localhost one if testing
@@ -134,6 +135,12 @@ public class Server {
           String locale = (String) payload.get("locale");
           String familyName = (String) payload.get("family_name");
           String givenName = (String) payload.get("given_name");
+
+          // Debugging Code
+          System.out.println(userId);
+          System.out.println(email);
+          System.out.println(name);
+          System.out.println(locale);
 
           return "";
 

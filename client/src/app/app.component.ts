@@ -31,6 +31,19 @@ export class AppComponent implements OnInit {
     });
   }
 
+  signOut() {
+    this.handleClientLoad();
+
+    this.googleAuth = gapi.auth2.getAuthInstance();
+
+    this.googleAuth.then(() => {
+      this.googleAuth.signOut();
+      localStorage.setItem('isSignedIn', 'false');
+      localStorage.setItem("userID", "");
+      window.location.reload();
+    })
+  }
+
   // This sends the auth code of our user to the server and stores the fields in local storage when we get data back
   // from gapi
   sendAuthCode(code: string): void {

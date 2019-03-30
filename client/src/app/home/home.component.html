@@ -5,17 +5,13 @@
       <mat-card-subtitle>Welcome to MoRide, the Morris community car-pooling application</mat-card-subtitle>
       <mat-divider></mat-divider>
       <mat-card-content id="buttons">
-        <div *ngIf="!appService.isSignedIn()" class="g-signin2" (click)="appComponent.signIn()"></div>
+        <div id="signIn" *ngIf="!appService.isSignedIn()" class="g-signin2" (click)="appComponent.signIn()"></div>
         <div *ngIf="appService.isSignedIn()" class="username">
           {{username}}
         </div>
-
-        <!--<script>
-          $('#signinButton').click(function() {
-            // signInCallback defined in step 6.
-            auth2.grantOfflineAccess().then(signInCallback);
-          });
-        </script>-->
+        <div id="signOut" *ngIf="appService.isSignedIn()" (click)="appComponent.signOut()">
+          <mat-icon>exit_to_app</mat-icon>
+          Sign Out</div>
       </mat-card-content>
     </mat-card>
   </div>
