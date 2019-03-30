@@ -1,21 +1,29 @@
 package umm3601;
 
+
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 import spark.utils.IOUtils;
-import umm3601.user.UserController;
-import umm3601.user.UserRequestHandler;
 import umm3601.ride.RideController;
 import umm3601.ride.RideRequestHandler;
+import umm3601.user.UserController;
+import umm3601.user.UserRequestHandler;
+
+import java.io.FileReader;
+import java.io.InputStream;
+
+import com.google.api.client.googleapis.auth.oauth2.*;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
 
 
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
+import org.json.*;
 
-import java.io.InputStream;
 
 public class Server {
 
@@ -79,6 +87,69 @@ public class Server {
     post("api/rides/remove", rideRequestHandler::deleteRide);
 
     get("api/user", userRequestHandler::getUsers);
+
+
+
+    post("api/login", (req, res) -> {
+
+        JSONObject obj = new JSONObject(req.body());
+        String authCode = obj.getString("code");
+
+        try {
+
+          String CLIENT_SECRET_FILE = "./src/main/java/umm3601/server_files/client_secret_file.json";
+
+
+          GoogleClientSecrets clientSecrets =
+            GoogleClientSecrets.load(
+              JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
+
+
+          GoogleTokenResponse tokenResponse =
+            new GoogleAuthorizationCodeTokenRequest(
+              new NetHttpTransport(),
+              JacksonFactory.getDefaultInstance(),
+              "https://oauth2.googleapis.com/token",
+              clientSecrets.getDetails().getClientId(),
+
+              // Replace clientSecret with the localhost one if testing
+              clientSecrets.getDetails().getClientSecret(),
+              authCode,
+              "http://localhost:9000")
+              //Not sure if we have a redirectUri
+
+              // Specify the same redirect URI that you use with your web
+              // app. If you don't have a web version of your app, you can
+              // specify an empty string.
+              .execute();
+
+
+          // Get profile info from ID token
+          GoogleIdToken idToken = tokenResponse.parseIdToken();
+          GoogleIdToken.Payload payload = idToken.getPayload();
+          String userId = payload.getSubject();     // Use this value as a key to identify a user.
+          String email = payload.getEmail();
+          boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+          String name = (String) payload.get("name");
+          String pictureUrl = (String) payload.get("picture");
+          String locale = (String) payload.get("locale");
+          String familyName = (String) payload.get("family_name");
+          String givenName = (String) payload.get("given_name");
+
+          // Debugging Code
+          System.out.println(userId);
+          System.out.println(email);
+          System.out.println(name);
+          System.out.println(locale);
+
+          return "";
+
+        } catch (Exception e) {
+          System.out.println(e);
+        }
+        return "";
+      });
+
 
 
     // An example of throwing an unhandled exception so you can see how the
