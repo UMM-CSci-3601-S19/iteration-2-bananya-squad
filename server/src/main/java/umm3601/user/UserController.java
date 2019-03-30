@@ -40,7 +40,7 @@ public class UserController {
     return serializeIterable(matchingUser);
   }
 
-  String addNewUser(String userId, String email, String fullName, String pictureUrl, String lastName, String firstName) {
+  public String addNewUser(String userId, String email, String fullName, String pictureUrl, String lastName, String firstName) {
 
     FindIterable<Document> matchingUsers = userCollection.find(eq("userId", new ObjectId(userId)));
 

@@ -148,11 +148,12 @@ public class Server {
           System.out.println("givenName is " + givenName);
           System.out.println("---------------------------");
 
-          return "";
+          return userController.addNewUser(userId, email, name, pictureUrl, familyName, givenName);
 
         } catch (Exception e) {
           System.out.println(e);
         }
+
         return "";
       });
 
