@@ -13,7 +13,7 @@ export class RideComponent implements OnInit {
   public ride: Ride = null;
   private destination: string;
 
-
+  
   constructor(private rideListService: RideListService) {
   }
 
