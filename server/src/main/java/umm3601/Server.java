@@ -137,10 +137,16 @@ public class Server {
           String givenName = (String) payload.get("given_name");
 
           // Debugging Code
-          System.out.println(userId);
-          System.out.println(email);
-          System.out.println(name);
-          System.out.println(locale);
+          System.out.println("---------------------------");
+          System.out.println("UserID is " + userId);
+          System.out.println("Email is " + email);
+          System.out.println("Is Email verified? " + emailVerified);
+          System.out.println("Name is " + name);
+          System.out.println("Picture Url is " + pictureUrl);
+          System.out.println("Locale is " + locale);
+          System.out.println("familyName is " + familyName);
+          System.out.println("givenName is " + givenName);
+          System.out.println("---------------------------");
 
           return "";
 
