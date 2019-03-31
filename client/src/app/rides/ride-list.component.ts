@@ -26,6 +26,7 @@ export class RideListComponent implements OnInit {
   private highlightedDestination: string = '';
 
 
+
   constructor(public rideListService: RideListService, public dialog: MatDialog) {
   }
 
@@ -61,6 +62,7 @@ export class RideListComponent implements OnInit {
   }
 
   openSearchDialog(): void {
+
     const dialogRef = this.dialog.open(SearchRideComponent,{
       width: '500px',
       data: null

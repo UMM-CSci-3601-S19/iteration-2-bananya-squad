@@ -83,6 +83,8 @@ export class RideListService {
     return this.http.post<string>(this.rideUrl + '/new', newRide, httpOptions);
   }
 
+
+
   editRide(editedRide: Ride): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -107,15 +109,5 @@ export class RideListService {
     return this.http.post<string>(this.rideUrl + '/remove', deleteDoc, httpOptions);
   }
 
-  searchRide(destination: String): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      responseType: 'text' as 'json'
-    };
-    let searchDoc: string = "{ \"_id\": \""+ destination +"\"}";
 
-    return this.http.post<string>(this.rideUrl + '/filter', searchDoc, httpOptions);
-  }
 }
