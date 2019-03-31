@@ -19,6 +19,7 @@ import {SearchRideComponent} from "./search-ride.component";
 export class RideListComponent implements OnInit {
 
   public rides: Ride[];
+  public filteredRides: Ride[];
   public searchedRides: Ride[];
 
   public rideDestination: string;
@@ -78,7 +79,7 @@ export class RideListComponent implements OnInit {
         this.rideListService.getRides(searchRide.destination).subscribe(
           result => {
             this.searchedRides = result;
-            //console.log("The result is " + JSON.stringify(result));
+            console.log("The result is " + JSON.stringify(result));
             this.refreshRides(searchRide.destination);
           },
           err => {
@@ -151,6 +152,27 @@ export class RideListComponent implements OnInit {
     });
   }
 
+
+ /* public filterRides(searchDestination: string): Ride[] {
+
+    this.filteredRides = this.rides;
+    var today = new Date();
+    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    if (searchDestination != null) {
+      searchDestination = searchDestination.toLocaleLowerCase();
+
+      this.filteredRides = this.filteredRides.filter(ride => {
+        return !searchDestination || ride.destination.toLowerCase().indexOf(searchDestination) !== -1;
+      });
+    }
+
+
+    return this.filteredRides;
+  }
+ */
 
   refreshRides(searchResult?: string): Observable<Ride[]> {
      const rides: Observable<Ride[]> = this.rideListService.getRides(searchResult);
