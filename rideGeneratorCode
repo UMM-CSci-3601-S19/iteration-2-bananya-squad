@@ -1,5 +1,7 @@
 Code for Generating random rides:
 
+https://next.json-generator.com/
+
 [
   '{{repeat(100)}}',
   {
@@ -26,7 +28,7 @@ min     (optional)	    Date	new Date(1970, 0, 1)	    Minimum date in the range.
 max     (optional)	    Date	new Date()	              Maximum date in the range.
 
 ----------------------------------------------------------------------------------
-.split(argument)
+.split[argument]
 
 Searches string for argument where string will be split. Passing an empty string splits the string at space.
 

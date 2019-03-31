@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   // This signs in the user and opens the window for signing in
   signIn() {
     this.googleAuth = gapi.auth2.getAuthInstance();
-    console.log(this.googleAuth);
+    console.log(" This is google Auth " + this.googleAuth);
     this.googleAuth.grantOfflineAccess().then((resp) => {
       localStorage.setItem('isSignedIn', 'true');
       this.sendAuthCode(resp.code);
@@ -57,14 +57,15 @@ export class AppComponent implements OnInit {
       .subscribe(onSuccess => {
         console.log("Code sent to server");
         console.log(onSuccess["_id"]);
-        console.log(onSuccess["_id"]["$oid"]);
-        console.log(onSuccess["FirstName"]);
-        console.log(onSuccess["LastName"]);
-        localStorage.setItem("userID", onSuccess["_id"]["$oid"]);
-        localStorage.setItem("userFirstName", onSuccess["FirstName"]);
-        localStorage.setItem("userLastName", onSuccess["LastName"]);
-        localStorage.setItem("fontSelected", onSuccess["FontSetting"]);
-        localStorage.setItem("styleSelected", onSuccess["StyleSetting"]);
+        console.log(onSuccess["email"]);
+        console.log(onSuccess["fullName"]);
+        console.log(onSuccess["lastName"]);
+        console.log(onSuccess["firstName"]);
+        localStorage.setItem("_id", onSuccess["_id"]);
+        localStorage.setItem("email", onSuccess["email"]);
+        localStorage.setItem("userFullName", onSuccess["fullName"]);
+        localStorage.setItem("userLastName", onSuccess["lastName"]);
+        localStorage.setItem("userFirstName", onSuccess["firstName"]);
       }, onFail => {
         console.log("ERROR: Code couldn't be sent to the server");
       });

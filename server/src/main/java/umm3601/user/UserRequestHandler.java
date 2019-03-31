@@ -1,8 +1,9 @@
 package umm3601.user;
 
-import org.bson.Document;
+
 import spark.Request;
 import spark.Response;
+import org.bson.Document;
 
 public class UserRequestHandler {
 
