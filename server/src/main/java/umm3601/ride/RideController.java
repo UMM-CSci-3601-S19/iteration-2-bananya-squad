@@ -59,14 +59,14 @@ public class RideController {
       contentRegQuery.append("$options", "i");
       filterDoc = filterDoc.append("destination", contentRegQuery);
     }
-    /*if (queryParams.containsKey("origin")) {
+    if (queryParams.containsKey("origin")) {
       String targetContent = (queryParams.get("origin")[0]);
       Document contentRegQuery = new Document();
       contentRegQuery.append("$regex", targetContent);
       contentRegQuery.append("$options", "i");
       filterDoc = filterDoc.append("origin", contentRegQuery);
     }
-    if (queryParams.containsKey("roundTrip")) {
+    /*if (queryParams.containsKey("roundTrip")) {
       String targetContent = (queryParams.get("roundTrip")[0]);
       Document contentRegQuery = new Document();
       contentRegQuery.append("$regex", targetContent);

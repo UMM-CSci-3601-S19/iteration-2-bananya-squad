@@ -76,11 +76,12 @@ export class RideListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(searchRide => {
       if (searchRide != null) {
         console.log('The destination passed in is ' + searchRide.destination);
-        this.rideListService.getRides(searchRide.destination).subscribe(
+        console.log('The origin passed in is ' + searchRide.origin);
+        this.rideListService.getRides(searchRide.destination,searchRide.origin).subscribe(
           result => {
             this.searchedRides = result;
             console.log("The result is " + JSON.stringify(result));
-            this.refreshRides(searchRide.destination);
+            this.refreshRides(searchRide.destination,searchRide.origin);
             localStorage.setItem("searched", 'true');
           },
           err => {
@@ -162,7 +163,11 @@ export class RideListComponent implements OnInit {
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date+' '+time;
 
-    if (searchDestination != null) {
+    if (searchDestination != null) {getCurrentDate(): string {
+    var today = new Date();
+    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
+    return date;
+  }
       searchDestination = searchDestination.toLocaleLowerCase();
 
       this.filteredRides = this.filteredRides.filter(ride => {
@@ -175,15 +180,9 @@ export class RideListComponent implements OnInit {
   }
  */
 
-  getCurrentDate(): string {
-    var today = new Date();
-    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
-    return date;
-  }
-
-  refreshRides(searchResult?: string): Observable<Ride[]> {
+  refreshRides(searchDestination?: string,searchOrigin?: string): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
-  if (searchResult == null) {
+  if (searchDestination == null && searchOrigin == null) {
       const rides: Observable<Ride[]> = this.rideListService.getRides();
       rides.subscribe(
         rides => {
@@ -195,7 +194,7 @@ export class RideListComponent implements OnInit {
       return rides;
     }
     else {
-    const rides: Observable<Ride[]> = this.rideListService.getRides(searchResult);
+    const rides: Observable<Ride[]> = this.rideListService.getRides(searchDestination,searchOrigin);
     rides.subscribe(
       rides => {
         this.rides = rides;
