@@ -43,6 +43,8 @@ public class RideController {
 
     Document filterDoc = new Document();
 
+    System.err.println(" I got to request Controller");
+
    /* if (queryParams.containsKey("driver")) {
       String targetContent = (queryParams.get("driver")[0]);
       Document contentRegQuery = new Document();

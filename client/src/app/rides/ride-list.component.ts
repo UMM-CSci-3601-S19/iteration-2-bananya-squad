@@ -19,7 +19,7 @@ import {SearchRideComponent} from "./search-ride.component";
 export class RideListComponent implements OnInit {
 
   public rides: Ride[];
-  public filteredRides: Ride[];
+  public searchedRides: Ride[];
 
   public rideDestination: string;
 
@@ -31,6 +31,7 @@ export class RideListComponent implements OnInit {
   }
 
   isHighlighted(ride: Ride): boolean {
+
     return ride.destination === this.highlightedDestination;
   }
 
@@ -63,22 +64,27 @@ export class RideListComponent implements OnInit {
 
   openSearchDialog(): void {
 
-    const dialogRef = this.dialog.open(SearchRideComponent,{
-      width: '500px',
-      data: null
-    });
-    dialogRef.afterClosed().subscribe(newRide => {
-      if (newRide != null) {
+    const searchRide: Ride = {driver: '', destination: '', origin: '', roundTrip: false, driving: false,
+      departureDate: '', departureTime: '', notes: ''};
 
-        this.rideListService.addNewRide(newRide).subscribe(
+    const dialogRef = this.dialog.open(SearchRideComponent, {
+      width: '500px',
+      data: {ride: searchRide}
+    });
+
+    dialogRef.afterClosed().subscribe(searchRide => {
+      if (searchRide != null) {
+        console.log('The destination passed in is ' + searchRide.destination);
+        this.rideListService.getRides(searchRide.destination).subscribe(
           result => {
-            this.highlightedDestination = result;
-            this.refreshRides();
+            this.searchedRides = result;
+            //console.log("The result is " + JSON.stringify(result));
+            this.refreshRides(searchRide.destination);
           },
           err => {
             // This should probably be turned into some sort of meaningful response.
-            console.log('There was an error adding the ride.');
-            console.log('The newRide or dialogResult was ' + JSON.stringify(newRide));
+            console.log('There was an error searching the ride.');
+            console.log('The searchRide or dialogResult was ' + JSON.stringify(searchRide));
             console.log('The error was ' + JSON.stringify(err));
           });
       }
@@ -109,7 +115,6 @@ export class RideListComponent implements OnInit {
         this.rideListService.editRide(currentRide).subscribe(
           result => {
             this.highlightedDestination = result;
-            console.log("The result is " + result);
             this.refreshRides();
           },
           err => {
@@ -146,40 +151,19 @@ export class RideListComponent implements OnInit {
     });
   }
 
-  public filterRides(searchDestination: string): Ride[] {
 
-    this.filteredRides = this.rides;
-    /*var today = new Date();
-    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date+' '+time;*/
+  refreshRides(searchResult?: string): Observable<Ride[]> {
+     const rides: Observable<Ride[]> = this.rideListService.getRides(searchResult);
+     rides.subscribe(
+       rides => {
+         this.rides = rides;
+       },
+       err => {
+         console.log(err);
+       });
+     return rides;
+   }
 
-    if (searchDestination != null) {
-      searchDestination = searchDestination.toLocaleLowerCase();
-
-      this.filteredRides = this.filteredRides.filter(ride => {
-        return !searchDestination || ride.destination.toLowerCase().indexOf(searchDestination) !== -1;
-      });
-    }
-
-
-    return this.filteredRides;
-  }
-
-
-  refreshRides(): Observable<Ride[]> {
-
-    const rides: Observable<Ride[]> = this.rideListService.getRides();
-    rides.subscribe(
-      rides => {
-        this.rides = rides;
-        this.filterRides(this.rideDestination);
-      },
-      err => {
-        console.log(err);
-      });
-    return rides;
-  }
 
 
   ngOnInit(): void {

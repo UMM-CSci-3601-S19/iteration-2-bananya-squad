@@ -12,7 +12,7 @@
 
         <mat-accordion *ngIf="rides; else ridesError">
           <mat-expansion-panel #elem class="rides" [id]="ride.destination"
-                               *ngFor="let ride of this.filterRides(rideDestination)">
+                               *ngFor="let ride of rides">
             <mat-expansion-panel-header>
               <mat-panel-title>{{ride.origin}} &nbsp; <mat-icon class="arrow">forward</mat-icon> &nbsp; {{ride.destination}}</mat-panel-title>
 
