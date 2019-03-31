@@ -14,6 +14,9 @@ declare var gapi: any;
 export class AppComponent implements OnInit {
 
   googleAuth;
+  userFullName: string;
+  userFirstName: string;
+  userEmail: string;
 
   constructor(private http: HttpClient, public appService: AppService) {
   }
@@ -66,13 +69,16 @@ export class AppComponent implements OnInit {
         localStorage.setItem("userFullName", onSuccess["fullName"]);
         localStorage.setItem("userLastName", onSuccess["lastName"]);
         localStorage.setItem("userFirstName", onSuccess["firstName"]);
+
+        this.userFullName = localStorage.getItem("userFullName");
+        this.userFirstName= localStorage.getItem("userFirstName");
+
       }, onFail => {
         console.log("ERROR: Code couldn't be sent to the server");
       });
   }
 
-  userFullName: string = localStorage.getItem("userFullName");
-  userEmail: string = localStorage.getItem("email");
+
 
 
   handleClientLoad() {
