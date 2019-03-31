@@ -1,6 +1,5 @@
 package umm3601;
 
-
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import spark.Request;
