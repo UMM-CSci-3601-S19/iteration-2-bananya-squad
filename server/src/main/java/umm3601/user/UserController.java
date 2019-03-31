@@ -4,16 +4,16 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.MongoException;
+import com.mongodb.util.JSON;
 import org.bson.types.ObjectId;
 import org.bson.Document;
 
-import java.util.Iterator;
+
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 
-import static com.mongodb.client.model.Filters.eq;
 
 public class UserController {
 
@@ -42,16 +42,16 @@ public class UserController {
 
   public String addNewUser(String userId, String email, String fullName, String pictureUrl, String lastName, String firstName) {
 
-    FindIterable<Document> matchingUsers = userCollection.find(eq("userId", new ObjectId(userId)));
+    Document filterDoc = new Document();
 
-    Iterator<Document> iterator = matchingUsers.iterator();
+    Document contentRegQuery = new Document();
+    contentRegQuery.append("$regex", userId);
+    contentRegQuery.append("$options", "i");
+    filterDoc = filterDoc.append("userId", contentRegQuery);
 
-    if (iterator.hasNext()) {
+    FindIterable<Document> matchingUsers = userCollection.find(filterDoc);
 
-      Document userInfo1 = iterator.next();
-      return userInfo1.toJson();
-
-    } else {
+    if(JSON.serialize(matchingUsers).equals("[ ]")){
       ObjectId id = new ObjectId();
 
       Document newUser = new Document();
@@ -65,39 +65,38 @@ public class UserController {
 
       try {
         userCollection.insertOne(newUser);
-        System.err.println("Successfully added new user [_id=" + id + " userId " + userId + " email " + email + " fullName " + fullName + " pictureUrl "
-        + pictureUrl + " lastName " + lastName + " firstName " + firstName);
+        System.err.println("Successfully added new user [_id=" + id + ", userId=" + userId + " email=" + email + " fullName=" + fullName + " pictureUrl " + pictureUrl + " lastName " + lastName
+          + " firstName " + firstName + "]");
+        // return JSON.serialize(newUser);
+        Document userInfo = new Document();
+        userInfo.append("_id", matchingUsers.first().get("_id"));
+        userInfo.append("email", matchingUsers.first().get("email"));
+        userInfo.append("fullName", matchingUsers.first().get("fullName"));
+        userInfo.append("pictureUrl", matchingUsers.first().get("pictureUrl"));
+        userInfo.append("lastName", matchingUsers.first().get("lastName"));
+        userInfo.append("firstName", matchingUsers.first().get("firstName"));
 
-        Document userInfo2 = new Document();
-        userInfo2.append("userId", matchingUsers.first().get("userId"));
-        userInfo2.append("email", matchingUsers.first().get("email"));
-        userInfo2.append("fullName", matchingUsers.first().get("fullName"));
-        userInfo2.append("pictureUrl", matchingUsers.first().get("pictureUrl"));
-        userInfo2.append("lastName", matchingUsers.first().get("lastName"));
-        userInfo2.append("firstName", matchingUsers.first().get("firstName"));
+        return JSON.serialize(userInfo);
 
-        return userInfo2.toJson();
-
-      } catch(MongoException e) {
-        e.printStackTrace();
+      } catch(MongoException me) {
+        me.printStackTrace();
         return null;
       }
-    }
-  }
 
-  /*String getRide(String id) {
-    FindIterable<Document> jsonRides = rideCollection.find(eq("_id", new ObjectId(id)));
-
-    Iterator<Document> iterator = jsonRides.iterator();
-    if (iterator.hasNext()) {
-      Document ride = iterator.next();
-      return ride.toJson();
     } else {
-      // We didn't find the desired ride
-      return null;
-    }
-  }*/
 
+      Document userInfo = new Document();
+      userInfo.append("_id", matchingUsers.first().get("_id"));
+      userInfo.append("email", matchingUsers.first().get("email"));
+      userInfo.append("fullName", matchingUsers.first().get("fullName"));
+      userInfo.append("pictureUrl", matchingUsers.first().get("pictureUrl"));
+      userInfo.append("lastName", matchingUsers.first().get("lastName"));
+      userInfo.append("firstName", matchingUsers.first().get("firstName"));
+
+      return JSON.serialize(userInfo);
+    }
+
+  }
 
 
   private String serializeIterable(Iterable<Document> documents) {
