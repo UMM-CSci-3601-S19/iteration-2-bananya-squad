@@ -46,9 +46,11 @@
           (click)="openSearchDialog()">
     <mat-icon class="md-24" aria-label="New Ride">search</mat-icon>
   </button>
+  <div *ngIf="!rideListService.hasSearched()">
   <button mat-fab id="addRide" class="mat-fab-bottom-right" matTooltip="New Ride" matTooltipPosition="left"
           (click)="openDialog()">
     <mat-icon class="md-24" aria-label="New Ride">add</mat-icon>
   </button>
+  </div>
 </div>
 
