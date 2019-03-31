@@ -17,13 +17,13 @@ export class RideListService {
     console.log("searched Destination to getRides is " + searchedDestination);
     console.log("searched Origin to getRides is " + searchedOrigin);
 
-    console.log("Ride Url before filter By Destination" + this.rideUrl);
+    console.log("Ride Url before filter By Destination " + this.rideUrl);
     this.filterByDestination(searchedDestination);
-    console.log("Ride Url after filter By Destination" + this.rideUrl);
+    console.log("Ride Url after filter By Destination " + this.rideUrl);
 
-    console.log("Ride Url before filter By Origin" + this.rideUrl);
+    console.log("Ride Url before filter By Origin " + this.rideUrl);
     this.filterByOrigin(searchedOrigin);
-    console.log("Ride Url after filter By Origin" + this.rideUrl);
+    console.log("Ride Url after filter By Origin " + this.rideUrl);
 
 
     return this.http.get<Ride[]>(this.rideUrl);
