@@ -71,6 +71,10 @@ export class AppComponent implements OnInit {
       });
   }
 
+
+  userEmail: string = localStorage.getItem("email");
+
+
   handleClientLoad() {
     gapi.load('client:auth2', this.initClient);
   }
