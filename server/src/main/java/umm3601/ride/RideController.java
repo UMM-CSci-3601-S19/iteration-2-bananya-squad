@@ -43,13 +43,13 @@ public class RideController {
 
     Document filterDoc = new Document();
 
-    if (queryParams.containsKey("driver")) {
+   /* if (queryParams.containsKey("driver")) {
       String targetContent = (queryParams.get("driver")[0]);
       Document contentRegQuery = new Document();
       contentRegQuery.append("$regex", targetContent);
       contentRegQuery.append("$options", "i");
       filterDoc = filterDoc.append("driver", contentRegQuery);
-    }
+    }*/
     if (queryParams.containsKey("destination")) {
       String targetContent = (queryParams.get("destination")[0]);
       Document contentRegQuery = new Document();
@@ -57,7 +57,7 @@ public class RideController {
       contentRegQuery.append("$options", "i");
       filterDoc = filterDoc.append("destination", contentRegQuery);
     }
-    if (queryParams.containsKey("origin")) {
+    /*if (queryParams.containsKey("origin")) {
       String targetContent = (queryParams.get("origin")[0]);
       Document contentRegQuery = new Document();
       contentRegQuery.append("$regex", targetContent);
@@ -91,7 +91,7 @@ public class RideController {
       contentRegQuery.append("$regex", targetContent);
       contentRegQuery.append("$options", "i");
       filterDoc = filterDoc.append("driving", contentRegQuery);
-    }
+    }*/
 
     //FindIterable comes from mongo, Document comes from Gson
     FindIterable<Document> matchingRides = rideCollection.find(filterDoc);

@@ -14,7 +14,9 @@ export class RideListService {
   }
 
   getRides(rideDestination?: string): Observable<Ride[]> {
+    console.log("Ride Url before filter By Destination" + this.rideUrl);
     this.filterByDestination(rideDestination);
+    console.log("Ride Url after filter By Destination" + this.rideUrl);
     return this.http.get<Ride[]>(this.rideUrl);
   }
 
