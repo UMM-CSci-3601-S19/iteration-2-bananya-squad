@@ -4,12 +4,11 @@
       <mat-card-title id="ride-list-title">Rides</mat-card-title>
       <mat-divider></mat-divider>
       <mat-card-content>
-
-        <mat-form-field>
-          <input matInput id="rideDestination" #input type="text" placeholder="Filter by Destination"
-                 (input)="rideDestination = $event.target.value">
-        </mat-form-field>
-
+        <div *ngIf="rideListService.hasSearched()">
+          <button id="back" (click)="refreshRides()">
+          Go Back
+          </button>
+        </div>
         <mat-accordion *ngIf="rides; else ridesError">
           <mat-expansion-panel #elem class="rides" [id]="ride.destination"
                                *ngFor="let ride of rides">

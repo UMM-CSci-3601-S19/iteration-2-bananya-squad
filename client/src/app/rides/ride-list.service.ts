@@ -112,5 +112,10 @@ export class RideListService {
     return this.http.post<string>(this.rideUrl + '/remove', deleteDoc, httpOptions);
   }
 
+  public hasSearched(): boolean {
+    status = localStorage.getItem('searched');
+    if (status == 'true') { return true;}
+    else {return false;}
+  }
 
 }

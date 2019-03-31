@@ -81,6 +81,7 @@ export class RideListComponent implements OnInit {
             this.searchedRides = result;
             console.log("The result is " + JSON.stringify(result));
             this.refreshRides(searchRide.destination);
+            localStorage.setItem("searched", 'true');
           },
           err => {
             // This should probably be turned into some sort of meaningful response.
@@ -174,16 +175,36 @@ export class RideListComponent implements OnInit {
   }
  */
 
+  getCurrentDate(): string {
+    var today = new Date();
+    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
+    return date;
+  }
+
   refreshRides(searchResult?: string): Observable<Ride[]> {
-     const rides: Observable<Ride[]> = this.rideListService.getRides(searchResult);
-     rides.subscribe(
-       rides => {
-         this.rides = rides;
-       },
-       err => {
-         console.log(err);
-       });
-     return rides;
+    localStorage.setItem("searched", "false");
+  if (searchResult == null) {
+      const rides: Observable<Ride[]> = this.rideListService.getRides();
+      rides.subscribe(
+        rides => {
+          this.rides = rides;
+        },
+        err => {
+          console.log(err);
+        });
+      return rides;
+    }
+    else {
+    const rides: Observable<Ride[]> = this.rideListService.getRides(searchResult);
+    rides.subscribe(
+      rides => {
+        this.rides = rides;
+      },
+      err => {
+        console.log(err);
+      });
+    return rides;
+     }
    }
 
 

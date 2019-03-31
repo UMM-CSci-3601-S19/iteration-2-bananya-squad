@@ -7,7 +7,6 @@
       <mat-card-content id="buttons">
         <div id="signIn" *ngIf="!appService.isSignedIn()" class="g-signin2" (click)="appComponent.signIn()"></div>
         <div *ngIf="appService.isSignedIn()" class="username">
-          {{appComponent.userEmail}}
         </div>
         <div id="signOut" *ngIf="appService.isSignedIn()" (click)="appComponent.signOut()">
           <mat-icon>exit_to_app</mat-icon>

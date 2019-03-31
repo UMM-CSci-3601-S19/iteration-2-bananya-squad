@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
       });
   }
 
-
+  userFullName: string = localStorage.getItem("userFullName");
   userEmail: string = localStorage.getItem("email");
 
 
