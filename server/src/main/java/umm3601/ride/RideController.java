@@ -130,7 +130,7 @@ public class RideController {
       rideCollection.insertOne(newRide);
       ObjectId _id = newRide.getObjectId("_id");
       System.err.println("Successfully added new ride [_id=" + _id + ", driver=" + driver + ", destination=" + destination + ", origin=" + origin + ", roundTrip=" + roundTrip + ", driving="
-        + driving + "departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + ']');
+        + driving + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + ']');
       return _id.toHexString();
     } catch (MongoException me) {
       me.printStackTrace();

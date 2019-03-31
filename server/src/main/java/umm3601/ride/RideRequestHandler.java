@@ -86,8 +86,8 @@ public class RideRequestHandler {
     String origin = newRide.getString("origin");
     Boolean roundTrip = newRide.getBoolean("roundTrip");
     Boolean driving = newRide.getBoolean("driving");
-    String departureDate= newRide.getString("departureDate");
-    String departureTime = newRide.getString("departureTime");
+    String departureDate= parseDate(newRide.getString("departureDate"));
+    String departureTime = parseTime(newRide.getString("departureTime"));
     String notes = newRide.getString("notes");
 
 
@@ -127,21 +127,62 @@ public class RideRequestHandler {
 
 
 
- /* public String getMonth(int month) {
+  /*public String getMonth(int month) {
     return new DateFormatSymbols().getMonths()[month-1];
+  }*/
+
+
+  // This parseDate function presents date like 04-13-2019
+  private String parseDate(String rawDate) {
+
+    if (rawDate != null) {
+
+      //Date from the datepicker is by default in ISO time, like "2019-03-13T05:00:00.000Z". departureDateISO retrieves that.
+      //departureDateYYYYMMDD breaks off the irrelevant end data from the "T" and on. From there, month and day are broken off.
+      String departureDateISO = rawDate;
+      String departureDateYYYYMMDD = departureDateISO.split("T", 2)[0];
+
+      // Gets the Year in the YYYY Format for the departureDateYYYYMD above
+      String departureYear = departureDateYYYYMMDD.split("-", 3)[0];
+      // Gets the Month in the MM Format for the departureDateYYYYMD above
+      String departureMonth = departureDateYYYYMMDD.split("-", 3)[1];
+      // Gets the Day in the DD Format for the departureDateYYYYMD above
+      String departureDay = departureDateYYYYMMDD.split("-", 3)[2].replaceFirst("^0+(?!$)", "");
+
+      if(Integer.parseInt(departureDay)<10){
+        departureDay = "0" + departureDay;
+      }
+
+
+      return departureMonth + "-" + departureDay + "-" + departureYear;
+    } else {
+      return "";
+    }
   }
 
 
-  private String parseDate(String rawDate) {
+
+  // This parseDate2 function presents date like: April 13th 2019
+  /*private String parseDate2(String rawDate) {
 
     if (rawDate != null) {
       //Date from the datepicker is by default in ISO time, like "2019-03-13T05:00:00.000Z". departureDateISO retrieves that.
       //departureDateYYYYMMDD breaks off the irrelevant end data from the "T" and on. From there, month and day are broken off.
       String departureDateISO = rawDate;
+      System.err.println("This is the rawDate" + rawDate);
       String departureDateYYYYMMDD = departureDateISO.split("T", 2)[0];
+      System.err.println("This is the YYYYMMDD " + departureDateYYYYMMDD);
       String departureDateMonthUnformatted = departureDateYYYYMMDD.split("-", 3)[1];
+      System.err.println("This is the Month " + departureDateMonthUnformatted);
       String departureDateDayUnformatted = departureDateYYYYMMDD.split("-", 3)[2]
         .replaceFirst("^0+(?!$)", "");
+      System.err.println("This is the Date Day " + departureDateDayUnformatted);
+
+
+      // Gets the Year in the YYYY Format for the departureDateYYYYMD above
+      String departureYear = departureDateYYYYMMDD.split("-", 3)[0];
+      System.err.println("This is the Departure Year" + departureYear);
+
 
       //    Adds the right ending to dates, like the day 12 to 12th or the day 3 to 3rd
       int departureDateDayInt = Integer.parseInt(departureDateDayUnformatted);
@@ -160,12 +201,13 @@ public class RideRequestHandler {
       int departureDateMonthInt = Integer.parseInt(departureDateMonthUnformatted);
       String departureDateMonth = getMonth(departureDateMonthInt);
 
-      String departureDateFinal = departureDateMonth + " " + departureDateDay;
+      String departureDateFinal = departureDateMonth + " " + departureDateDay + " " + departureYear;
+
       return departureDateFinal;
     } else {
       return "";
     }
-  }
+  }*/
 
 
   private String parseTime(String rawTime) {
@@ -177,7 +219,7 @@ public class RideRequestHandler {
     } else {
       return "";
     }
-  }*/
+  }
 
 
 }
