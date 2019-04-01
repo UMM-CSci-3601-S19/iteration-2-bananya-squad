@@ -10,5 +10,4 @@ export interface User {
   lastName: string;
   firstName: string;
   phoneNumber?: string;
-  vehicle?: string;
 }
