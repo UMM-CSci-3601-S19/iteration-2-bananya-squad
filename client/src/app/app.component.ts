@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {AppService} from "./app.service";
 
-declare var gapi: any;
+declare let gapi: any;
 
 @Component({
   selector: 'app-root',
@@ -95,7 +95,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.handleClientLoad();
-    gapi.load('client:auth2', this.initClient);
+    /*gapi.load('client:auth2', this.initClient);*/
   }
 
 }
