@@ -22,6 +22,8 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 import org.json.*;
+import umm3601.vehicles.VehicleController;
+import umm3601.vehicles.VehicleRequestHandler;
 
 
 public class Server {
@@ -37,10 +39,12 @@ public class Server {
 
     RideController rideController = new RideController(Database);
     UserController userController = new UserController(Database);
+    VehicleController vehicleController = new VehicleController(Database);
 
 
     RideRequestHandler rideRequestHandler = new RideRequestHandler(rideController);
     UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
+    VehicleRequestHandler vehicleRequestHandler = new VehicleRequestHandler(vehicleController);
 
     //Configure Spark
     port(serverPort);
@@ -86,6 +90,8 @@ public class Server {
     post("api/rides/remove", rideRequestHandler::deleteRide);
 
     get("api/user", userRequestHandler::getUsers);
+
+    post("api/vehicles/new", vehicleRequestHandler::addNewVehicle);
 
 
 

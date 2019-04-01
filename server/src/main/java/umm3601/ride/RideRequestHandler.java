@@ -91,9 +91,9 @@ public class RideRequestHandler {
     String notes = newRide.getString("notes");
 
 
-    System.err.println("Adding new ride [driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving + " departureDate=" +
-      departureDate + " departureTime=" + departureTime + " notes=" + notes + ']');
-    return rideController.addNewRide(driver, destination, origin, roundTrip, driving,departureDate, departureTime, notes);
+    System.err.println("Adding new ride [driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
+      + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + ']');
+    return rideController.addNewRide(driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes);
   }
 
   public Boolean updateRide(Request req, Response res) {
@@ -107,12 +107,14 @@ public class RideRequestHandler {
     String origin = editRide.getString("origin");
     Boolean roundTrip = editRide.getBoolean("roundTrip");
     Boolean driving = editRide.getBoolean("driving");
+    String departureDate = editRide.getString("departureDate");
     String departureTime = editRide.getString("departureTime");
     String notes = editRide.getString("notes");
 
 
-    System.err.println("Editing ride [id=" + id + " driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving + " departureTime=" + departureTime + " notes=" + notes + ']');
-    return rideController.updateRide(id, driver, destination, origin, roundTrip, driving,departureTime, notes);
+    System.err.println("Editing ride [id=" + id + " driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
+      + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + ']');
+    return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes);
   }
 
   public Boolean deleteRide(Request req, Response res){

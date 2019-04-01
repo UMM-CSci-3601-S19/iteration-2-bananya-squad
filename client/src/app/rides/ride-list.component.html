@@ -9,6 +9,7 @@
           Go Back
           </button>
         </div>
+        <br>
         <mat-accordion *ngIf="rides; else ridesError">
           <mat-expansion-panel #elem class="rides" [id]="ride.destination"
                                *ngFor="let ride of rides">
@@ -24,7 +25,8 @@
             <mat-panel-description>Driving: {{ride.driving}}</mat-panel-description>
             <mat-panel-description>Notes: {{ride.notes}}</mat-panel-description>
             <div>
-              <button id="editRide" mat-raised-button (click)="openEditDialog(ride._id, ride.driver, ride.destination, ride.origin, ride.roundTrip, ride.driving,ride.departureTime, ride.notes)">Edit Ride</button>
+              <button id="editRide" mat-raised-button (click)="openEditDialog(ride._id, ride.driver, ride.destination, ride.origin, ride.roundTrip, ride.driving,
+              ride.departureDate, ride.departureTime, ride.notes)">Edit Ride</button>
             </div>
 
           </mat-expansion-panel>

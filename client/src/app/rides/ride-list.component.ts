@@ -94,7 +94,7 @@ export class RideListComponent implements OnInit {
     });
   }
 
-  openEditDialog(currentId: object,currentDriver: string, currentDestination: string, currentOrigin: string, currentRoundTrip: boolean, currentDriving: boolean,currentDepartureDate: string, currentDepartureTime: string, currentNotes: string): void {
+  openEditDialog(currentId: object,currentDriver: string, currentDestination: string, currentOrigin: string, currentRoundTrip: boolean, currentDriving: boolean, currentDepartureDate: string, currentDepartureTime: string, currentNotes: string): void {
     const currentRide: Ride = {
       _id: currentId,
       driver: currentDriver,
@@ -111,6 +111,7 @@ export class RideListComponent implements OnInit {
       width: '500px',
       data: {ride: currentRide}
     });
+
 
     dialogRef.afterClosed().subscribe(currentRide => {
       if (currentRide != null) {
