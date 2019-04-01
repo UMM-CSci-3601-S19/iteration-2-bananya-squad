@@ -9,6 +9,7 @@
           Go Back
           </button>
         </div>
+        <br>
         <mat-accordion *ngIf="rides; else ridesError">
           <mat-expansion-panel #elem class="rides" [id]="ride.destination"
                                *ngFor="let ride of rides">
