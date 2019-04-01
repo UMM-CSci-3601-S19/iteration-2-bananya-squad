@@ -17,17 +17,25 @@
               <mat-panel-title>{{ride.origin}} &nbsp; <mat-icon class="arrow">forward</mat-icon> &nbsp; {{ride.destination}}</mat-panel-title>
 
             </mat-expansion-panel-header>
-            <mat-panel-description>Name: {{ride.driver}}</mat-panel-description>
+            <mat-panel-description class="topDisplay" id="settings">Name: {{ride.driver}}</mat-panel-description>
             <mat-panel-description>Round Trip: {{ride.roundTrip}}</mat-panel-description>
             <mat-panel-description>Departure Date: {{ride.departureDate}}</mat-panel-description>
             <mat-panel-description>Departure Time: {{ride.departureTime}}</mat-panel-description>
             <mat-panel-description>Pickup at: {{ride.origin}}</mat-panel-description>
             <mat-panel-description>Driving: {{ride.driving}}</mat-panel-description>
             <mat-panel-description>Notes: {{ride.notes}}</mat-panel-description>
-            <div>
-              <button id="editRide" mat-raised-button (click)="openEditDialog(ride._id, ride.driver, ride.destination, ride.origin, ride.roundTrip, ride.driving,
+            <mat-form-field id="gear">
+              <mat-icon>settings</mat-icon>
+              <mat-select class="settings-dropdown" trigger="settingsTrigger" #settingsSelect>
+                <mat-option class="options-dropdown">
+                  <button id="editRide" mat-button (click)="openEditDialog(ride._id, ride.driver, ride.destination, ride.origin, ride.roundTrip, ride.driving,
               ride.departureDate, ride.departureTime, ride.notes)">Edit Ride</button>
-            </div>
+                </mat-option>
+                <mat-option class="options-dropdown">
+                  <button id="deleteRide" mat-button (click)="openDeleteDialog(ride._id)" >Delete Ride</button>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
           </mat-expansion-panel>
         </mat-accordion>
