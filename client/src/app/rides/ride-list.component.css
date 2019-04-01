@@ -24,18 +24,15 @@
 }
 
 #editRide{
-  background-color: white;
-  color: navy;
+
 }
 
 #editRide:hover {
-  background-color: #5C5D91;
-  color: white;
+ 
 }
 
 #deleteRide{
-  background-color: darkred;
-  color: white;
+
 }
 
 #deleteRide:hover {
@@ -69,4 +66,32 @@
 .mat-fab-bottom-right{
   position: fixed;
   margin-right: 10px;
+}
+
+.settings-dropdown {
+  position: absolute;
+  margin-top: 33px;
+  padding: 4px 8px;
+}
+.settings-dropdown /deep/.mat-select-arrow-wrapper {
+  visibility: hidden;
+}
+
+#gear/deep/ .mat-form-field-underline{
+  display: none;
+}
+
+#gear{
+  align-items: right;
+  align-content: right;
+  margin-bottom: 0%;
+  padding-bottom: 0%;
+}
+
+.mat-input-infix mat-form-field-infix{
+  align-content: right;
+}
+
+.options-dropdown{
+
 }

@@ -7,6 +7,7 @@ import {AppComponent} from "../app.component";
 
 @Component({
   templateUrl: 'user-list.component.html',
+  styleUrls: ['./user-list.component.css'],
 })
 
 
