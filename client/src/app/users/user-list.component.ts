@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {User} from "./user";
 import {UserListService} from "./user-list.service";
+import {AppComponent} from "../app.component";
 
 
 @Component({
@@ -14,7 +15,7 @@ export class UserListComponent implements OnInit {
   public users: User[];
 
 
-  constructor(public userListService: UserListService) {}
+  constructor(public userListService: UserListService, public appComponent: AppComponent) {}
 
 
   refreshUsers(): Observable<User[]> {

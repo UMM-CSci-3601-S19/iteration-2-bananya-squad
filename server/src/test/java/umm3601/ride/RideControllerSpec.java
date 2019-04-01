@@ -171,7 +171,7 @@ public class RideControllerSpec {
   public void updateRide(){
     Map<String, String[]> emptyMap = new HashMap<>();
     //Test good update
-    Boolean resp = rideController.updateRide(knownId.toString(), "Christian", "Milwaukee", "Arizona", false, false,"March 28", "Lets Go!");
+    Boolean resp = rideController.updateRide(knownId.toString(), "Christian", "Milwaukee", "Arizona", false, false,"March 28","7:49 AM", "Lets Go!");
     assertTrue("Successful update should return true",resp);
     String result = rideController.getRides(emptyMap);
     BsonArray docs = parseJsonArray(result);
@@ -190,10 +190,10 @@ public class RideControllerSpec {
     assertEquals("Origin should match", "Arizona", singleResult.get("origin"));
     assertEquals("Round Trip should match", false, singleResult.get("roundTrip"));
     assertEquals("Driving should match", false, singleResult.get("driving"));
-    assertEquals("Departure Time should match", "March 28", singleResult.get("departureTime"));
+    assertEquals("Departure Date should match", "March 28", singleResult.get("departureDate"));
     assertEquals("Notes should match", "Lets Go!", singleResult.get("notes"));
     //Test bad update
-    Boolean badResp = rideController.updateRide(new ObjectId().toString(), "Christian2", "Milwaukee", "Arizona", false, true,"March 28", "Lets Go!");
+    Boolean badResp = rideController.updateRide(new ObjectId().toString(), "Christian2", "Milwaukee", "Arizona", false, true,"March 28", "7:49 AM", "Lets Go!");
     assertFalse("Unsuccessful update should return false", badResp);
     assertEquals("Should have 4 riders after failed update", 4, docs.size());
     assertEquals("Drivers should match after failed update", expectedDrivers, drivers);

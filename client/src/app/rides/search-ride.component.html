@@ -4,11 +4,22 @@
     <mat-dialog-content layout="column">
       <mat-form-field flex>
         <input matInput #input id="destinationField" placeholder="Destination" [(ngModel)]="data.ride.destination" formControlName="destination"
-               required>
+               [maxLength]="36">
         <mat-error *ngFor="let validation of search_ride_validation_messages.destination">
           <mat-error class="error-message" id="destination-error"
                      *ngIf="searchRideForm.get('destination').hasError(validation.type) &&
                      (searchRideForm.get('destination').dirty || searchRideForm.get('destination').touched)">
+            {{validation.message}}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field flex>
+        <input matInput #input id="originField" placeholder="Origin" [(ngModel)]="data.ride.origin" formControlName="origin"
+               [maxLength]="36">
+        <mat-error *ngFor="let validation of search_ride_validation_messages.origin">
+          <mat-error class="error-message" id="origin-error"
+                     *ngIf="searchRideForm.get('origin').hasError(validation.type) &&
+                     (searchRideForm.get('origin').dirty || searchRideForm.get('origin').touched)">
             {{validation.message}}
           </mat-error>
         </mat-error>
