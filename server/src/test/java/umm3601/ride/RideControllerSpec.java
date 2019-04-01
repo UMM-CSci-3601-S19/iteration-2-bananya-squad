@@ -190,7 +190,7 @@ public class RideControllerSpec {
     assertEquals("Origin should match", "Arizona", singleResult.get("origin"));
     assertEquals("Round Trip should match", false, singleResult.get("roundTrip"));
     assertEquals("Driving should match", false, singleResult.get("driving"));
-    assertEquals("Departure Time should match", "March 28", singleResult.get("departureTime"));
+    assertEquals("Departure Date should match", "March 28", singleResult.get("departureDate"));
     assertEquals("Notes should match", "Lets Go!", singleResult.get("notes"));
     //Test bad update
     Boolean badResp = rideController.updateRide(new ObjectId().toString(), "Christian2", "Milwaukee", "Arizona", false, true,"March 28", "7:49 AM", "Lets Go!");
