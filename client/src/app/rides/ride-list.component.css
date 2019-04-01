@@ -7,41 +7,6 @@
   padding-right: 14px;
 }
 
-
-#addNewRide {
-  margin-left: 45%;
-  border-radius: 300px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background-color: #DE9A14;
-  color: white;
-}
-
-
-#addNewRide:hover {
-  background-color: darkgreen;
-  color: white;
-}
-
-#editRide{
-
-}
-
-#editRide:hover {
- 
-}
-
-#deleteRide{
-
-}
-
-#deleteRide:hover {
-  background-color: red;
-  color: white;
-  transform: scale(1.2);
-  font-weight: bold;
-}
-
 .arrow{
   color: #DE9A14;
 
@@ -55,7 +20,10 @@
 .fab{
   position: fixed;
   right: 10px;
+}options-dropdown{
+
 }
+
 
 #searchRide{
   background-color: #DE9A14;
@@ -81,17 +49,6 @@
   display: none;
 }
 
-#gear{
-  align-items: right;
-  align-content: right;
-  margin-bottom: 0%;
-  padding-bottom: 0%;
-}
-
 .mat-input-infix mat-form-field-infix{
   align-content: right;
-}
-
-.options-dropdown{
-
 }

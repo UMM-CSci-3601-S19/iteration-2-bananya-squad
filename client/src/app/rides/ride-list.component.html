@@ -27,13 +27,9 @@
             <mat-form-field id="gear">
               <mat-icon>settings</mat-icon>
               <mat-select class="settings-dropdown" trigger="settingsTrigger" #settingsSelect>
-                <mat-option class="options-dropdown">
-                  <button id="editRide" mat-button (click)="openEditDialog(ride._id, ride.driver, ride.destination, ride.origin, ride.roundTrip, ride.driving,
-              ride.departureDate, ride.departureTime, ride.notes)">Edit Ride</button>
-                </mat-option>
-                <mat-option class="options-dropdown">
-                  <button id="deleteRide" mat-button (click)="openDeleteDialog(ride._id)" >Delete Ride</button>
-                </mat-option>
+                <mat-option id="editRide" class="options-dropdown" (click) = "openEditDialog(ride._id, ride.driver, ride.destination,
+                ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes)">Edit Ride</mat-option>
+                <mat-option id="deleteRide" class="options-dropdown" (click)="openDeleteDialog(ride._id)">Delete Ride</mat-option>
               </mat-select>
             </mat-form-field>
 
