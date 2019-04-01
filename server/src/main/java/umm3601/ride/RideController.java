@@ -43,13 +43,15 @@ public class RideController {
 
     Document filterDoc = new Document();
 
-    if (queryParams.containsKey("driver")) {
+    System.err.println(" I got to request Controller");
+
+   /* if (queryParams.containsKey("driver")) {
       String targetContent = (queryParams.get("driver")[0]);
       Document contentRegQuery = new Document();
       contentRegQuery.append("$regex", targetContent);
       contentRegQuery.append("$options", "i");
       filterDoc = filterDoc.append("driver", contentRegQuery);
-    }
+    }*/
     if (queryParams.containsKey("destination")) {
       String targetContent = (queryParams.get("destination")[0]);
       Document contentRegQuery = new Document();
@@ -64,7 +66,7 @@ public class RideController {
       contentRegQuery.append("$options", "i");
       filterDoc = filterDoc.append("origin", contentRegQuery);
     }
-    if (queryParams.containsKey("roundTrip")) {
+    /*if (queryParams.containsKey("roundTrip")) {
       String targetContent = (queryParams.get("roundTrip")[0]);
       Document contentRegQuery = new Document();
       contentRegQuery.append("$regex", targetContent);
@@ -91,7 +93,7 @@ public class RideController {
       contentRegQuery.append("$regex", targetContent);
       contentRegQuery.append("$options", "i");
       filterDoc = filterDoc.append("driving", contentRegQuery);
-    }
+    }*/
 
     //FindIterable comes from mongo, Document comes from Gson
     FindIterable<Document> matchingRides = rideCollection.find(filterDoc);
@@ -128,7 +130,7 @@ public class RideController {
       rideCollection.insertOne(newRide);
       ObjectId _id = newRide.getObjectId("_id");
       System.err.println("Successfully added new ride [_id=" + _id + ", driver=" + driver + ", destination=" + destination + ", origin=" + origin + ", roundTrip=" + roundTrip + ", driving="
-        + driving + "departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + ']');
+        + driving + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + ']');
       return _id.toHexString();
     } catch (MongoException me) {
       me.printStackTrace();

@@ -1,12 +1,20 @@
 [
   {
-    'repeat(20)': {
-      _id: {
-        "oid": '{{objectId()}}',
+    'repeat(100)': {
+      userId: "'{{integer([100000000000000000000], [999999999999999999999])}}'",
+      email: '{{company()}}{{integer(0,99)}}@{{random("gmail.com", "morris.umn.edu")}}',
+      fullName: '{{firstName()}} {{surname()}}',
+      pictureUrl: 'https://picsum.photos/200/300/?random',
+      lastName()
+      {
+
+        return `${this.fullName.split(' ')[1]}`;
       },
-      name: '{{firstName()}} {{surname()}}',
-      email: '{{company()}}{{integer(0,99)}}@{{random("gmail.com", "hotmail.com", "yahoo.com", "morris.umn.edu")}}',
-      phoneNumber: '{{phone()}}'
-    },
+      firstName()
+      {
+
+        return `${this.fullName.split(' ')[0]}`;
+      },
+    }
   }
 ]

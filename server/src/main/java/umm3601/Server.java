@@ -80,7 +80,7 @@ public class Server {
     /////////////////////////////////////////////
 
     get("api/rides", rideRequestHandler::getRides);
-//  get("api/rides/:destination", rideRequestHandler::getRideJSON);
+    //    get("api/rides/:destination", rideRequestHandler::getRideJSON);
     post("api/rides/new", rideRequestHandler::addNewRide);
     post("api/rides/update", rideRequestHandler::updateRide);
     post("api/rides/remove", rideRequestHandler::deleteRide);
