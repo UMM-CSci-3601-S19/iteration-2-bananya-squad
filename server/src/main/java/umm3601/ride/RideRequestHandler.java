@@ -75,8 +75,8 @@ public class RideRequestHandler {
     String origin = editRide.getString("origin");
     Boolean roundTrip = editRide.getBoolean("roundTrip");
     Boolean driving = editRide.getBoolean("driving");
-    String departureDate = editRide.getString("departureDate");
-    String departureTime = editRide.getString("departureTime");
+    String departureDate = parseDate(editRide.getString("departureDate"));
+    String departureTime = parseTime(editRide.getString("departureTime"));
     String notes = editRide.getString("notes");
 
 

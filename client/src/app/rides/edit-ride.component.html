@@ -13,7 +13,7 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field flex>
-        <input matInput #input id="departureTimeField" placeholder="Departure Time" [(ngModel)]="data.ride.departureTime" formControlName="departureTime"
+        <input type="time" matInput #input id="departureTimeField" placeholder="Departure Time" [(ngModel)]="data.ride.departureTime" formControlName="departureTime"
                required>
         <mat-error *ngFor="let validation of edit_ride_validation_messages.departureTime">
           <mat-error class="error-message" id="departureTime-error"
@@ -43,8 +43,10 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field flex>
-        <input matInput #input id="departureDateField" placeholder="Departure Time" [(ngModel)]="data.ride.departureDate" formControlName="departureDate"
-               required>
+        <input id="departureDateField" matInput [matDatepicker]="picker" placeholder="Departure Date" [(ngModel)]="data.ride.departureDate" formControlName="departureDate"
+               required [maxLength]="0">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngFor="let validation of edit_ride_validation_messages.departureDate">
           <mat-error class="error-message" id="departureDate-error"
                      *ngIf="editRideForm.get('departureDate').hasError(validation.type) && (editRideForm.get('departureDate').dirty || editRideForm.get('departureDate').touched)">
@@ -77,7 +79,6 @@
       </button>
 
       <button mat-raised-button id="exitWithoutAddingButton" [mat-dialog-close]="null" type="button">Cancel</button>
-      <button id="deleteRide" mat-raised-button (click)="openDeleteDialog(ride._id)" color="warn" >Delete Ride</button>
     </mat-dialog-actions>
   </form>
 </div>

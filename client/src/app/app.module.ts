@@ -26,6 +26,7 @@ import {CustomModule} from './custom.module';
 
 
 import {AppService} from "./app.service"
+import {MatButtonModule, MatOptionModule, MatSelectModule} from "@angular/material";
 
 
 
@@ -37,7 +38,10 @@ import {AppService} from "./app.service"
     Routing,
     CustomModule,
     MatCheckboxModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   declarations: [
     AppComponent,
