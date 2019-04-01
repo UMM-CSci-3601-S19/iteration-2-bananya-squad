@@ -15,4 +15,17 @@ export class VehicleListService {
     return this.http.get<Vehicle[]>(this.vehicleUrl);
   }
 
+
+  addNewVehicle(newVehicle: Vehicle): Observable<string> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      responseType: 'text' as 'json'
+    };
+    return this.http.post<string>(this.vehicleUrl + '/new', newVehicle, httpOptions);
+  }
+
+
+
 }

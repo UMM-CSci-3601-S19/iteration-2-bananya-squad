@@ -1,0 +1,25 @@
+<div class="add-vehicle">
+  <form [formGroup]="addVehicleForm">
+    <h2 mat-dialog-title>New Vehicle</h2>
+    <mat-dialog-content layout="column">
+      <mat-form-field flex>
+        <input matInput #input id="yearField" placeholder="Year" [(ngModel)]="data.vehicle.year" formControlName="year"
+               required>
+        <mat-error *ngFor="let validation of add_vehicle_validation_messages.year">
+          <mat-error class="error-message" id="year-error"
+                     *ngIf="addVehicleForm.get('year').hasError(validation.type) && (addVehicleForm.get('year').dirty || addVehicleForm.get('year').touched)">
+            {{validation.message}}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+
+    </mat-dialog-content>
+    <mat-dialog-actions layout="row">
+      <button mat-raised-button id="confirmAddVehicleButton" [mat-dialog-close]="data.vehicle" type="button" color="primary"
+              [disabled]="!addVehicleForm.valid">Add Vehicle
+      </button>
+
+      <button mat-raised-button id="exitWithoutAddingButton" [mat-dialog-close]="null" type="button">Cancel</button>
+    </mat-dialog-actions>
+  </form>
+</div>
