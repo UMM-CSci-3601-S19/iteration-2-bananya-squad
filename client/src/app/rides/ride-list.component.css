@@ -7,44 +7,6 @@
   padding-right: 14px;
 }
 
-
-#addNewRide {
-  margin-left: 45%;
-  border-radius: 300px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background-color: #DE9A14;
-  color: white;
-}
-
-
-#addNewRide:hover {
-  background-color: darkgreen;
-  color: white;
-}
-
-#editRide{
-  background-color: white;
-  color: navy;
-}
-
-#editRide:hover {
-  background-color: #5C5D91;
-  color: white;
-}
-
-#deleteRide{
-  background-color: darkred;
-  color: white;
-}
-
-#deleteRide:hover {
-  background-color: red;
-  color: white;
-  transform: scale(1.2);
-  font-weight: bold;
-}
-
 .arrow{
   color: #DE9A14;
 
@@ -58,7 +20,10 @@
 .fab{
   position: fixed;
   right: 10px;
+}options-dropdown{
+
 }
+
 
 #searchRide{
   background-color: #DE9A14;
@@ -69,4 +34,21 @@
 .mat-fab-bottom-right{
   position: fixed;
   margin-right: 10px;
+}
+
+.settings-dropdown {
+  position: absolute;
+  margin-top: 33px;
+  padding: 4px 8px;
+}
+.settings-dropdown /deep/.mat-select-arrow-wrapper {
+  visibility: hidden;
+}
+
+#gear/deep/ .mat-form-field-underline{
+  display: none;
+}
+
+.mat-input-infix mat-form-field-infix{
+  align-content: right;
 }

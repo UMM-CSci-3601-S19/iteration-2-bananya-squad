@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {AppService} from "./app.service";
 
-declare var gapi: any;
+declare let gapi: any;
 
 @Component({
   selector: 'app-root',
@@ -70,15 +70,19 @@ export class AppComponent implements OnInit {
         localStorage.setItem("userLastName", onSuccess["lastName"]);
         localStorage.setItem("userFirstName", onSuccess["firstName"]);
 
-        this.userFullName = localStorage.getItem("userFullName");
-        this.userFirstName= localStorage.getItem("userFirstName");
-
       }, onFail => {
         console.log("ERROR: Code couldn't be sent to the server");
       });
   }
 
 
+  getUsername () {
+    this.userFullName = localStorage.getItem("userFullName");
+    /*if (this.userFullName.length > 18) {
+      this.userFullName = this.userFullName.slice(0, 17) + "...";
+    }*/
+    return this.userFullName;
+  }
 
 
   handleClientLoad() {
@@ -95,7 +99,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.handleClientLoad();
-    gapi.load('client:auth2', this.initClient);
+    this.getUsername();
+    /*gapi.load('client:auth2', this.initClient);*/
   }
 
 }
