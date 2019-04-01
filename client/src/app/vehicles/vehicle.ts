@@ -1,6 +1,6 @@
 export interface Vehicle{
   ownerId: string;
-  year: string;
+  year: number;
   model: string;
   type: string;
   color: string;
