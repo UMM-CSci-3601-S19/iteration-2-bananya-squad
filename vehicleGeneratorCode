@@ -1,0 +1,14 @@
+[
+  '{{repeat(20)}}',
+  {
+    ownerId: '',
+    year: '{{date(new Date(1950), new Date(), "YYYY")}}',
+    model: "{{random('Honda', 'Ford', 'Jeep', 'Lamborghini', 'Mitsubishi', 'Toyota', 'Mercedes-Benz', 'Saturn', 'Suzuki', 'Volkswagon', 'Tesla', 'Kia', 'Chrysler', 'Chevrolet', 'Cadillac', 'Dodge', 'Ferrari',)}}",
+    type:"{{random('Sedan', 'Coupe', 'Convertible', 'Hatchback', 'Wagon', 'Truck', 'SUV', 'Minivan', 'Van',)}}",
+    color: "{{random('blue', 'red', 'green', 'yellow', 'orange', 'purple', 'pink', 'white', 'brown', 'black',)}}",
+    condition: "{{random('Perfect', 'Great', 'Good', 'Worn', 'Somewhat Poor', 'Poor',)}}",
+    engine: "{{random('Gas', 'Flex Fuel', 'Diesel', 'Hybrid', 'Electric', 'Natural Gas',)}}",
+    weight: '{{integer([3000], [5000])}}',
+    ledLights: '{{bool()}}'
+  }
+]
