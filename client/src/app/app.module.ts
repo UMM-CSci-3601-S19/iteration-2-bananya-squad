@@ -19,6 +19,10 @@ import {SearchRideComponent} from "./rides/search-ride.component";
 import {UserListComponent} from "./users/user-list.component";
 import {UserListService} from "./users/user-list.service";
 
+import {VehicleListComponent} from "./vehicles/vehicle-list.component";
+import {VehicleListService} from "./vehicles/vehicle-list.service";
+import {AddVehicleComponent} from "./vehicles/add-vehicle.component";
+
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
@@ -52,11 +56,14 @@ import {MatButtonModule, MatOptionModule, MatSelectModule} from "@angular/materi
     EditRideComponent,
     DeleteRideComponent,
     UserListComponent,
-    SearchRideComponent
+    SearchRideComponent,
+    VehicleListComponent,
+    AddVehicleComponent
   ],
   providers: [
     RideListService,
     UserListService,
+    VehicleListService,
     AppService,
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
@@ -64,7 +71,8 @@ import {MatButtonModule, MatOptionModule, MatSelectModule} from "@angular/materi
     AddRideComponent,
     EditRideComponent,
     DeleteRideComponent,
-    SearchRideComponent
+    SearchRideComponent,
+    AddVehicleComponent
   ],
   bootstrap: [AppComponent]
 })
