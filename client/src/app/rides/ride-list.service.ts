@@ -13,8 +13,19 @@ export class RideListService {
 
   }
 
-  getRides(rideDestination?: string): Observable<Ride[]> {
-    this.filterByDestination(rideDestination);
+  getRides(searchedDestination?: string, searchedOrigin?: string): Observable<Ride[]> {
+    console.log("searched Destination to getRides is " + searchedDestination);
+    console.log("searched Origin to getRides is " + searchedOrigin);
+
+    console.log("Ride Url before filter By Destination " + this.rideUrl);
+    this.filterByDestination(searchedDestination);
+    console.log("Ride Url after filter By Destination " + this.rideUrl);
+
+    console.log("Ride Url before filter By Origin " + this.rideUrl);
+    this.filterByOrigin(searchedOrigin);
+    console.log("Ride Url after filter By Origin " + this.rideUrl);
+
+
     return this.http.get<Ride[]>(this.rideUrl);
   }
 
@@ -42,6 +53,32 @@ export class RideListService {
       // there was nothing in the box to put onto the URL... reset
       if (this.parameterPresent('destination=')) {
         let start = this.rideUrl.indexOf('destination=');
+        const end = this.rideUrl.indexOf('&', start);
+        if (this.rideUrl.substring(start - 1, start) === '?') {
+          start = start - 1;
+        }
+        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+      }
+    }
+  }
+
+  filterByOrigin(rideOrigin?: string): void {
+    if (!(rideOrigin == null || rideOrigin === '')) {
+      if (this.parameterPresent('origin=')) {
+        // there was a previous search by origin that we need to clear
+        this.removeParameter('origin=');
+      }
+      if (this.rideUrl.indexOf('?') !== -1) {
+        // there was already some information passed in this url
+        this.rideUrl += 'origin=' + rideOrigin + '&';
+      } else {
+        // this was the first bit of information to pass in the url
+        this.rideUrl += '?origin=' + rideOrigin + '&';
+      }
+    } else {
+      // there was nothing in the box to put onto the URL... reset
+      if (this.parameterPresent('origin=')) {
+        let start = this.rideUrl.indexOf('origin=');
         const end = this.rideUrl.indexOf('&', start);
         if (this.rideUrl.substring(start - 1, start) === '?') {
           start = start - 1;
@@ -83,6 +120,8 @@ export class RideListService {
     return this.http.post<string>(this.rideUrl + '/new', newRide, httpOptions);
   }
 
+
+
   editRide(editedRide: Ride): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -107,15 +146,10 @@ export class RideListService {
     return this.http.post<string>(this.rideUrl + '/remove', deleteDoc, httpOptions);
   }
 
-  searchRide(destination: String): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      responseType: 'text' as 'json'
-    };
-    let searchDoc: string = "{ \"_id\": \""+ destination +"\"}";
-
-    return this.http.post<string>(this.rideUrl + '/filter', searchDoc, httpOptions);
+  public hasSearched(): boolean {
+    status = localStorage.getItem('searched');
+    if (status == 'true') { return true;}
+    else {return false;}
   }
+
 }

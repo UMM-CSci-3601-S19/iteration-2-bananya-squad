@@ -4,15 +4,15 @@
       <mat-card-title id="ride-list-title">Rides</mat-card-title>
       <mat-divider></mat-divider>
       <mat-card-content>
-
-        <mat-form-field>
-          <input matInput id="rideDestination" #input type="text" placeholder="Filter by Destination"
-                 (input)="rideDestination = $event.target.value">
-        </mat-form-field>
-
+        <div *ngIf="rideListService.hasSearched()">
+          <button id="back" (click)="refreshRides()">
+          Go Back
+          </button>
+        </div>
+        <br>
         <mat-accordion *ngIf="rides; else ridesError">
           <mat-expansion-panel #elem class="rides" [id]="ride.destination"
-                               *ngFor="let ride of this.filterRides(rideDestination)">
+                               *ngFor="let ride of rides">
             <mat-expansion-panel-header>
               <mat-panel-title>{{ride.origin}} &nbsp; <mat-icon class="arrow">forward</mat-icon> &nbsp; {{ride.destination}}</mat-panel-title>
 
@@ -25,7 +25,8 @@
             <mat-panel-description>Driving: {{ride.driving}}</mat-panel-description>
             <mat-panel-description>Notes: {{ride.notes}}</mat-panel-description>
             <div>
-              <button id="editRide" mat-raised-button (click)="openEditDialog(ride._id, ride.driver, ride.destination, ride.origin, ride.roundTrip, ride.driving,ride.departureTime, ride.notes)">Edit Ride</button>
+              <button id="editRide" mat-raised-button (click)="openEditDialog(ride._id, ride.driver, ride.destination, ride.origin, ride.roundTrip, ride.driving,
+              ride.departureDate, ride.departureTime, ride.notes)">Edit Ride</button>
             </div>
 
           </mat-expansion-panel>
@@ -47,9 +48,11 @@
           (click)="openSearchDialog()">
     <mat-icon class="md-24" aria-label="New Ride">search</mat-icon>
   </button>
+  <div *ngIf="!rideListService.hasSearched()">
   <button mat-fab id="addRide" class="mat-fab-bottom-right" matTooltip="New Ride" matTooltipPosition="left"
           (click)="openDialog()">
     <mat-icon class="md-24" aria-label="New Ride">add</mat-icon>
   </button>
+  </div>
 </div>
 
