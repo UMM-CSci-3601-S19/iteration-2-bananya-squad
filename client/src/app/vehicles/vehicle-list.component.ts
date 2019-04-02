@@ -17,7 +17,8 @@ export class VehicleListComponent implements OnInit {
   ownerId = localStorage.getItem("oid").toString();
 
 
-  constructor(public vehicleListService: VehicleListService, public dialog: MatDialog) {
+  constructor(public vehicleListService: VehicleListService,
+              public dialog: MatDialog) {
 
   }
 
@@ -43,7 +44,7 @@ export class VehicleListComponent implements OnInit {
         this.vehicleListService.addNewVehicle(newVehicle).subscribe(
           result => {
             this.highlightedVehicle = result;
-            this.refreshVehicles();
+            // this.refreshVehicles();
           },
           err => {
             console.log('There was an error adding the vehicle.');
@@ -55,7 +56,7 @@ export class VehicleListComponent implements OnInit {
   }
 
 
-  refreshVehicles(): Observable<Vehicle[]> {
+ /* refreshVehicles(): Observable<Vehicle[]> {
     const vehicles: Observable<Vehicle[]> = this.vehicleListService.getVehicles(this.ownerId);
     vehicles.subscribe(
       vehicles => {
@@ -65,10 +66,10 @@ export class VehicleListComponent implements OnInit {
         console.log(err);
       });
     return vehicles;
-  }
+  }*/
 
 
   ngOnInit(): void {
-    this.refreshVehicles();
+    // this.refreshVehicles();
   }
 }

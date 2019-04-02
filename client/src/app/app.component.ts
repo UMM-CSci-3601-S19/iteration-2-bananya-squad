@@ -18,7 +18,9 @@ export class AppComponent implements OnInit {
   userFirstName: string;
   userEmail: string;
 
-  constructor(private http: HttpClient, public appService: AppService) {
+
+  constructor(private http: HttpClient, public appService: AppService,) {
+
   }
 
 
