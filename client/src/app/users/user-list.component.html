@@ -1,9 +1,21 @@
-<mat-card>
-  <mat-card-title>Profile:</mat-card-title>
-  <mat-card-content>Info: {{appComponent.userFullName}}</mat-card-content>
-  <mat-card-content>
-    <button class="vehicle" mat-fab="primary">
-      <mat-icon>add</mat-icon>
-    </button>
-  </mat-card-content>
-</mat-card>
+<div layout-gt-sm="row">
+  <div flex-gt-sm="80" flex-offset-gt-sm="10">
+
+
+    <mat-card>
+      <mat-card-title id="Profile_Page">Profile:</mat-card-title>
+      <mat-card-content>Info: {{appComponent.userFullName}}</mat-card-content>
+    </mat-card>
+
+
+
+
+  </div>
+
+
+  <button id="addVehicle" class="vehicle" matTooltip="Add Vehicle"  matTooltipPosition="left" mat-fab="primary"
+          (click)="vehicleListComponent.openAddVehicleDialog()">
+    <mat-icon class="md-24" aria-label="New Vehicle">add</mat-icon>
+  </button>
+
+</div>

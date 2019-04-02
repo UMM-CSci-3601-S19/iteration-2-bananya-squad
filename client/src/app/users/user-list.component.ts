@@ -3,11 +3,13 @@ import {Observable} from 'rxjs/Observable';
 import {User} from "./user";
 import {UserListService} from "./user-list.service";
 import {AppComponent} from "../app.component";
+import {VehicleListComponent} from "../vehicles/vehicle-list.component";
 
 
 @Component({
+  providers: [VehicleListComponent],
   templateUrl: 'user-list.component.html',
-  styleUrls: ['./user-list.component.css'],
+  styleUrls: ['./user-list.component.css']
 })
 
 
@@ -16,7 +18,9 @@ export class UserListComponent implements OnInit {
   public users: User[];
 
 
-  constructor(public userListService: UserListService, public appComponent: AppComponent) {}
+  constructor(public userListService: UserListService,
+              public appComponent: AppComponent,
+              public vehicleListComponent: VehicleListComponent){}
 
 
   refreshUsers(): Observable<User[]> {
