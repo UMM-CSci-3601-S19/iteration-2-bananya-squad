@@ -19,6 +19,7 @@ export class UserListComponent implements OnInit {
 
   public users: User[];
   public vehicles: Vehicle[];
+  ownerId = localStorage.getItem("oid").toString();
 
   constructor(public userListService: UserListService,
               public appComponent: AppComponent,
@@ -43,7 +44,7 @@ export class UserListComponent implements OnInit {
 
   refreshVehicles(): Observable<Vehicle[]> {
 
-    const vehicles: Observable<Vehicle[]> = this.vehicleListService.getVehicles();
+    const vehicles: Observable<Vehicle[]> = this.vehicleListService.getVehicles(this.ownerId);
     vehicles.subscribe(
       vehicles => {
         this.vehicles = vehicles;
