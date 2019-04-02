@@ -13,18 +13,13 @@ export class RideListService {
 
   }
 
-  getRides(searchedDestination?: string, searchedOrigin?: string): Observable<Ride[]> {
+  getRides(searchedDestination: string, searchedOrigin: string): Observable<Ride[]> {
     console.log("searched Destination to getRides is " + searchedDestination);
     console.log("searched Origin to getRides is " + searchedOrigin);
 
-    console.log("Ride Url before filter By Destination " + this.rideUrl);
-    this.filterByDestination(searchedDestination);
-    console.log("Ride Url after filter By Destination " + this.rideUrl);
-
-    console.log("Ride Url before filter By Origin " + this.rideUrl);
-    this.filterByOrigin(searchedOrigin);
-    console.log("Ride Url after filter By Origin " + this.rideUrl);
-
+    console.log("Ride Url before filter By PARAMETERS " + this.rideUrl);
+    this.filterByParameters(searchedDestination,searchedOrigin);
+    console.log("Ride Url after filter By PARAMETERS " + this.rideUrl);
 
     return this.http.get<Ride[]>(this.rideUrl);
   }
@@ -36,7 +31,9 @@ export class RideListService {
   }
 
 
-  filterByDestination(rideDestination?: string): void {
+  filterByParameters(rideDestination: string, rideOrigin: string): void {
+
+    // Filtering by Parameters
     if (!(rideDestination == null || rideDestination === '')) {
       if (this.parameterPresent('destination=')) {
         // there was a previous search by destination that we need to clear
@@ -60,9 +57,9 @@ export class RideListService {
         this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
       }
     }
-  }
 
-  filterByOrigin(rideOrigin?: string): void {
+
+    // Filtering by origin
     if (!(rideOrigin == null || rideOrigin === '')) {
       if (this.parameterPresent('origin=')) {
         // there was a previous search by origin that we need to clear
@@ -86,6 +83,7 @@ export class RideListService {
         this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
       }
     }
+
   }
 
   private parameterPresent(searchParam: string) {

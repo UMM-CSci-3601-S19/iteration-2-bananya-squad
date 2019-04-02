@@ -65,7 +65,7 @@ public class VehicleController {
 
       ObjectId _id = newVehicle.getObjectId("_id");
 
-      System.err.println("Successfully added new vehicle [_id=" + _id + ']' + ", model=" + model + ", color=" + color
+      System.err.println("Successfully added new vehicle [_id=" + _id + ']' + ", ownerId=" + ownerId +  ", model=" + model + ", color=" + color
         + ", engine" + engine + ", mpg=" + mpg + ", ecoFriendly=" + ecoFriendly + ".");
       return _id.toHexString();
 

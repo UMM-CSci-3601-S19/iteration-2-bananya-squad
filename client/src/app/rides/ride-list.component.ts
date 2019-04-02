@@ -19,7 +19,6 @@ import {SearchRideComponent} from "./search-ride.component";
 export class RideListComponent implements OnInit {
 
   public rides: Ride[];
-  public filteredRides: Ride[];
   public searchedRides: Ride[];
 
   public rideDestination: string;
@@ -128,7 +127,6 @@ export class RideListComponent implements OnInit {
     });
   }
 
-
   openDeleteDialog(currentId: object): void {
     console.log("openDeleteDialog");
     const dialogRef = this.dialog.open(DeleteRideComponent, {
@@ -182,7 +180,7 @@ export class RideListComponent implements OnInit {
   refreshRides(searchDestination?: string,searchOrigin?: string): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
   if (searchDestination == null && searchOrigin == null) {
-      const rides: Observable<Ride[]> = this.rideListService.getRides();
+      const rides: Observable<Ride[]> = this.rideListService.getRides('','');
       rides.subscribe(
         rides => {
           this.rides = rides;
