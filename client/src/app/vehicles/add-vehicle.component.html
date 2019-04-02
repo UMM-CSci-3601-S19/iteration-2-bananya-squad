@@ -2,16 +2,53 @@
   <form [formGroup]="addVehicleForm">
     <h2 mat-dialog-title>New Vehicle</h2>
     <mat-dialog-content layout="column">
+
       <mat-form-field flex>
-        <input matInput #input id="yearField" placeholder="Year" [(ngModel)]="data.vehicle.year" formControlName="year"
+        <input matInput #input id="modelField" placeholder="Model" [(ngModel)]="data.vehicle.model" formControlName="model"
                required>
-        <mat-error *ngFor="let validation of add_vehicle_validation_messages.year">
-          <mat-error class="error-message" id="year-error"
-                     *ngIf="addVehicleForm.get('year').hasError(validation.type) && (addVehicleForm.get('year').dirty || addVehicleForm.get('year').touched)">
+        <mat-error *ngFor="let validation of add_vehicle_validation_messages.model">
+          <mat-error class="error-message" id="model-error"
+                     *ngIf="addVehicleForm.get('model').hasError(validation.type) && (addVehicleForm.get('model').dirty || addVehicleForm.get('model').touched)">
             {{validation.message}}
           </mat-error>
         </mat-error>
       </mat-form-field>
+
+      <mat-form-field flex>
+        <input matInput #input id="colorField" placeholder="Color" [(ngModel)]="data.vehicle.color" formControlName="color"
+               required>
+        <mat-error *ngFor="let validation of add_vehicle_validation_messages.color">
+          <mat-error class="error-message" id="color-error"
+                     *ngIf="addVehicleForm.get('color').hasError(validation.type) && (addVehicleForm.get('color').dirty || addVehicleForm.get('color').touched)">
+            {{validation.message}}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Select an option </mat-label>
+        <mat-select [(value)] = "data.vehicle.engine">
+        <mat-option value="gas" class="options-dropdown">Gas</mat-option>
+        <mat-option value="flexFuel" class="options-dropdown">Flex Fuel</mat-option>
+        <mat-option value="diesel" class="options-dropdown">Diesel</mat-option>
+        <mat-option value="hybrid" class="options-dropdown">Hybrid</mat-option>
+        <mat-option value="electric" class="options-dropdown">Electric</mat-option>
+        <mat-option value="naturalGas" class="options-dropdown">Natural Gas</mat-option>
+      </mat-select>
+      </mat-form-field>
+
+      <mat-form-field flex>
+        <input matInput #input id="mpgField" placeholder="MPG" [(ngModel)]="data.vehicle.mpg" formControlName="mpg"
+               required>
+        <mat-error *ngFor="let validation of add_vehicle_validation_messages.mpg">
+          <mat-error class="error-message" id="mpg-error"
+                     *ngIf="addVehicleForm.get('mpg').hasError(validation.type) && (addVehicleForm.get('mpg').dirty || addVehicleForm.get('mpg').touched)">
+            {{validation.message}}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-checkbox id="ecoCheckBox" name ="ecoStatus" ngDefaultControl [(ngModel)]="data.vehicle.ecoFriendly" [ngModelOptions]="{standalone: true}" >Eco Friendly</mat-checkbox>
 
     </mat-dialog-content>
     <mat-dialog-actions layout="row">

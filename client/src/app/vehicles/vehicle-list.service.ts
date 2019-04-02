@@ -6,7 +6,7 @@ import {Vehicle} from "./vehicle";
 
 @Injectable()
 export class VehicleListService {
-  readonly baseUrl: string = environment.API_URL + 'vehicle';
+  readonly baseUrl: string = environment.API_URL + 'vehicles';
   private vehicleUrl: string = this.baseUrl;
 
   constructor(private http: HttpClient) {}
@@ -23,6 +23,7 @@ export class VehicleListService {
       }),
       responseType: 'text' as 'json'
     };
+
     return this.http.post<string>(this.vehicleUrl + '/new', newVehicle, httpOptions);
   }
 

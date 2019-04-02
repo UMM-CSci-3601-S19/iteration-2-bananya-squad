@@ -14,7 +14,7 @@ export class VehicleListComponent implements OnInit {
 
   public vehicles: Vehicle[];
   private highlightedVehicle: string = '';
-  ownerId = localStorage.getItem("_id");
+  ownerId = localStorage.getItem("oid").toString();
 
 
   constructor(public vehicleListService: VehicleListService, public dialog: MatDialog) {
@@ -25,15 +25,11 @@ export class VehicleListComponent implements OnInit {
   openAddVehicleDialog(): void {
     const newVehicle: Vehicle = {
       ownerId: this.ownerId,
-      year: 0,
       model: '',
-      type: '',
       color: '',
-      condition: '',
       engine: '',
-      weight: 0,
-      mpg: 0,
-      ledLights: false
+      mpg: '',
+      ecoFriendly: false
     };
 
     const dialogRef = this.dialog.open(AddVehicleComponent, {
