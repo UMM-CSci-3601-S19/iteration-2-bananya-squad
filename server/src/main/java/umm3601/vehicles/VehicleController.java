@@ -34,7 +34,7 @@ public class VehicleController {
       Document contentRegQuery = new Document();
       contentRegQuery.append("$regex", targetContent);
       contentRegQuery.append("$options", "i");
-      filterDoc = filterDoc.append("name", contentRegQuery);
+      filterDoc = filterDoc.append("ownerId", contentRegQuery);
     }
 
     FindIterable<Document> matchingVehicle = vehicleCollection.find(filterDoc);
