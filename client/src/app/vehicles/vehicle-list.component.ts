@@ -56,8 +56,7 @@ export class VehicleListComponent implements OnInit {
 
 
   refreshVehicles(): Observable<Vehicle[]> {
-
-    const vehicles: Observable<Vehicle[]> = this.vehicleListService.getVehicles();
+    const vehicles: Observable<Vehicle[]> = this.vehicleListService.getVehicles(this.ownerId);
     vehicles.subscribe(
       vehicles => {
         this.vehicles = vehicles;
