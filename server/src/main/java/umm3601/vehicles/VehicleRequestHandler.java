@@ -18,26 +18,27 @@ public class VehicleRequestHandler{
     this.vehicleController = vehicleController;
   }
 
+  public String getVehicles(Request req, Response res) {
+    res.type("application/json");
+    return vehicleController.getVehicles(req.queryMap().toMap());
+  }
+
+
 
   public String addNewVehicle(Request req, Response res) {
     res.type("application/json");
-
     Document newVehicle = Document.parse(req.body());
-
     String ownerId = newVehicle.getString("ownerId");
-    Integer year = newVehicle.getInteger("year");
     String model = newVehicle.getString("model");
     String color = newVehicle.getString("color");
-    String condition = newVehicle.getString("condition");
     String engine= newVehicle.getString("engine");
-    Integer weight = newVehicle.getInteger("weight");
-    Integer mpg = newVehicle.getInteger("mpg");
-    Boolean ledLights = newVehicle.getBoolean("ledLights");
+    String mpg = newVehicle.getString("mpg");
+    Boolean ecoFriendly = newVehicle.getBoolean("ecoFriendly");
 
-    System.err.println("Adding new ride [ownerId=" + ownerId + " year=" + year + " model=" + model + " color=" + color + " condition=" + condition
-      + " engine=" + engine + " weight=" + weight + " mpg=" + mpg + " ledLights=" + ledLights + ']');
+    System.err.println("Adding new vehicle [ownerId=" + ownerId + " model=" + model + " color=" + color
+      + " engine=" + engine + " mpg=" + mpg + " ecoFriendly=" + ecoFriendly + ']');
 
-    return vehicleController.addNewVehicle(ownerId, year, model, color, condition, engine, weight, mpg, ledLights);
+    return vehicleController.addNewVehicle(ownerId, model, color, engine, mpg, ecoFriendly);
   }
 
 }

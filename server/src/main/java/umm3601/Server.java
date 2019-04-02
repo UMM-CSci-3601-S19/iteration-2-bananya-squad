@@ -91,7 +91,8 @@ public class Server {
 
     get("api/user", userRequestHandler::getUsers);
 
-    post("api/vehicle/new", vehicleRequestHandler::addNewVehicle);
+    get("api/vehicles", vehicleRequestHandler::getVehicles);
+    post("api/vehicles/new", vehicleRequestHandler::addNewVehicle);
 
 
 

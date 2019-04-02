@@ -4,6 +4,8 @@ import {User} from "./user";
 import {UserListService} from "./user-list.service";
 import {AppComponent} from "../app.component";
 import {VehicleListComponent} from "../vehicles/vehicle-list.component";
+import {Vehicle} from "../vehicles/vehicle";
+import {VehicleListService} from "../vehicles/vehicle-list.service";
 
 
 @Component({
@@ -16,11 +18,14 @@ import {VehicleListComponent} from "../vehicles/vehicle-list.component";
 export class UserListComponent implements OnInit {
 
   public users: User[];
-
+  public vehicles: Vehicle[];
+  ownerId = localStorage.getItem("oid").toString();
 
   constructor(public userListService: UserListService,
               public appComponent: AppComponent,
-              public vehicleListComponent: VehicleListComponent){}
+              public vehicleListComponent: VehicleListComponent,
+              public vehicleListService: VehicleListService) {}
+
 
 
   refreshUsers(): Observable<User[]> {
@@ -37,7 +42,22 @@ export class UserListComponent implements OnInit {
   }
 
 
+  refreshVehicles(): Observable<Vehicle[]> {
+
+    const vehicles: Observable<Vehicle[]> = this.vehicleListService.getVehicles(this.ownerId);
+    vehicles.subscribe(
+      vehicles => {
+        this.vehicles = vehicles;
+      },
+      err => {
+        console.log(err);
+      });
+    return vehicles;
+  }
+
+
   ngOnInit(): void {
     this.refreshUsers();
+    this.refreshVehicles();
   }
 }

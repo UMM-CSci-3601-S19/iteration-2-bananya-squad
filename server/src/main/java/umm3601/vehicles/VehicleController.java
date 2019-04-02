@@ -25,7 +25,7 @@ public class VehicleController {
   }
 
 
-  /*String getVehicles(Map<String, String[]> queryParams){
+  String getVehicles(Map<String, String[]> queryParams){
 
     Document filterDoc = new Document();
 
@@ -34,13 +34,13 @@ public class VehicleController {
       Document contentRegQuery = new Document();
       contentRegQuery.append("$regex", targetContent);
       contentRegQuery.append("$options", "i");
-      filterDoc = filterDoc.append("name", contentRegQuery);
+      filterDoc = filterDoc.append("ownerId", contentRegQuery);
     }
 
     FindIterable<Document> matchingVehicle = vehicleCollection.find(filterDoc);
 
     return serializeIterable(matchingVehicle);
-  }*/
+  }
 
   private String serializeIterable(Iterable<Document> documents) {
     return StreamSupport.stream(documents.spliterator(), false)
@@ -48,19 +48,16 @@ public class VehicleController {
       .collect(Collectors.joining(", ", "[", "]"));
   }
 
-  String addNewVehicle(String ownerId, Integer year, String model, String color, String condition,
-                       String engine, Integer weight, Integer mpg, Boolean ledLights) {
+  String addNewVehicle(String ownerId, String model, String color,
+                       String engine, String mpg, Boolean ecoFriendly) {
 
     Document newVehicle = new Document();
     newVehicle.append("ownerId", ownerId);
-    newVehicle.append("year", year);
     newVehicle.append("model", model);
     newVehicle.append("color", color);
-    newVehicle.append("condition", condition);
     newVehicle.append("engine", engine);
-    newVehicle.append("weight", weight);
     newVehicle.append("mpg", mpg);
-    newVehicle.append("ledLights", ledLights);
+    newVehicle.append("ecoFriendly", ecoFriendly);
 
 
     try {
@@ -68,8 +65,8 @@ public class VehicleController {
 
       ObjectId _id = newVehicle.getObjectId("_id");
 
-      System.err.println("Successfully added new vehicle [_id=" + _id + ']' + ", year=" + year + ", model=" + model + ", color=" + color + ", condition=" +
-      condition + ", engine" + engine + ", mpg=" + mpg + ", ledLights=" + ledLights + ".");
+      System.err.println("Successfully added new vehicle [_id=" + _id + ']' + ", model=" + model + ", color=" + color
+        + ", engine" + engine + ", mpg=" + mpg + ", ecoFriendly=" + ecoFriendly + ".");
       return _id.toHexString();
 
     } catch (MongoException me) {

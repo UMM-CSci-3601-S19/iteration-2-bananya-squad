@@ -18,7 +18,9 @@ export class AppComponent implements OnInit {
   userFirstName: string;
   userEmail: string;
 
-  constructor(private http: HttpClient, public appService: AppService) {
+
+  constructor(private http: HttpClient, public appService: AppService,) {
+
   }
 
 
@@ -60,11 +62,13 @@ export class AppComponent implements OnInit {
       .subscribe(onSuccess => {
         console.log("Code sent to server");
         console.log(onSuccess["_id"]);
+        console.log(onSuccess["_id"]["$oid"]);
         console.log(onSuccess["email"]);
         console.log(onSuccess["fullName"]);
         console.log(onSuccess["lastName"]);
         console.log(onSuccess["firstName"]);
         localStorage.setItem("_id", onSuccess["_id"]);
+        localStorage.setItem("oid", onSuccess["_id"]["$oid"]);
         localStorage.setItem("email", onSuccess["email"]);
         localStorage.setItem("userFullName", onSuccess["fullName"]);
         localStorage.setItem("userLastName", onSuccess["lastName"]);
