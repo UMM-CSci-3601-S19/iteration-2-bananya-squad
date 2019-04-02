@@ -4,9 +4,7 @@
       <mat-card-title id="Profile_Page">Profile</mat-card-title>
       <mat-card-content>
         Info: {{appComponent.userFullName}}
-      </mat-card-content>
-    </mat-card>
-        <!--<br>
+        <mat-divider></mat-divider>
         <mat-accordion *ngIf="vehicles; else vehiclesError">
           <mat-expansion-panel #elem class="vehicles" [id]="vehicle.model" *ngFor="let vehicle of vehicles">
 
@@ -32,7 +30,7 @@
         </ng-template>
 
       </mat-card-content>
-    </mat-card>-->
+    </mat-card>
 
 
   <button id="addVehicle" class="vehicle" matTooltip="Add Vehicle"  matTooltipPosition="left" mat-fab="primary"
