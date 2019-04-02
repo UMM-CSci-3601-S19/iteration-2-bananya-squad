@@ -22,7 +22,6 @@ export class UserListComponent implements OnInit {
               public appComponent: AppComponent,
               public vehicleListComponent: VehicleListComponent){}
 
-
   refreshUsers(): Observable<User[]> {
 
     const users: Observable<User[]> = this.userListService.getUsers();

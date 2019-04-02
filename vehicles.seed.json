@@ -1,222 +1,98 @@
 [
   {
-    "ownerId": "556305803996218700000",
-    "year": 1976,
-    "model": "Tesla",
-    "type": "Coupe",
+    "ownerId": "128701757713094440000",
+    "model": "Ford",
     "color": "blue",
-    "condition": "Worn",
-    "engine": "Flex Fuel",
-    "weight": 3202,
-    "ledLights": false
-  },
-  {
-    "ownerId": "986464973189378300000",
-    "year": 2008,
-    "model": "Kia",
-    "type": "Coupe",
-    "color": "white",
-    "condition": "Perfect",
-    "engine": "Hybrid",
-    "weight": 4006,
-    "ledLights": true
-  },
-  {
-    "ownerId": "381780521492549200000",
-    "year": 2012,
-    "model": "Saturn",
-    "type": "Convertible",
-    "color": "white",
-    "condition": "Somewhat Poor",
     "engine": "Diesel",
-    "weight": 3716,
-    "ledLights": true
+    "mpg": 56,
+    "ecoFriendly": true
+  },
+  {
+    "ownerId": "122363766967681190000",
+    "model": "Suzuki",
+    "color": "orange",
+    "engine": "Flex Fuel",
+    "mpg": 59,
+    "ecoFriendly": false
   },
   {
     "ownerId": "815968223157119000000",
-    "year": 1973,
-    "model": "Lamborghini",
-    "type": "Hatchback",
-    "color": "pink",
-    "condition": "Good",
-    "engine": "Gas",
-    "weight": 3397,
-    "ledLights": true
-  },
-  {
-    "ownerId": "557014618826456040000",
-    "year": 1994,
-    "model": "Volkswagon",
-    "type": "SUV",
-    "color": "white",
-    "condition": "Great",
-    "engine": "Natural Gas",
-    "weight": 3499,
-    "ledLights": false
-  },
-  {
-    "ownerId": "435703640528156360000",
-    "year": 1978,
-    "model": "Dodge",
-    "type": "Hatchback",
-    "color": "red",
-    "condition": "Perfect",
-    "engine": "Hybrid",
-    "weight": 3695,
-    "ledLights": false
-  },
-  {
-    "ownerId": "233320456063320000000",
-    "year": 1997,
-    "model": "Dodge",
-    "type": "Convertible",
-    "color": "green",
-    "condition": "Poor",
+    "model": "Honda",
+    "color": "brown",
     "engine": "Flex Fuel",
-    "weight": 4587,
-    "ledLights": false
+    "mpg": 86,
+    "ecoFriendly": false
   },
   {
-    "ownerId": "143497503444270660000",
-    "year": 2017,
-    "model": "Chrysler",
-    "type": "SUV",
-    "color": "white",
-    "condition": "Poor",
-    "engine": "Flex Fuel",
-    "weight": 3991,
-    "ledLights": true
-  },
-  {
-    "ownerId": "479154259636283800000",
-    "year": 1974,
-    "model": "Suzuki",
-    "type": "Minivan",
-    "color": "red",
-    "condition": "Good",
-    "engine": "Gas",
-    "weight": 4916,
-    "ledLights": false
-  },
-  {
-    "ownerId": "479154259636283800000",
-    "year": 2012,
-    "model": "Lamborghini",
-    "type": "Coupe",
-    "color": "red",
-    "condition": "Poor",
+    "ownerId": "731330300985650700000",
+    "model": "Toyota",
+    "color": "blue",
     "engine": "Hybrid",
-    "weight": 3424,
-    "ledLights": true
+    "mpg": 53,
+    "ecoFriendly": true
   },
   {
-    "ownerId": "691816289833314400000",
-    "year": 1979,
+    "ownerId": "721329185750116200000",
     "model": "Ferrari",
-    "type": "Sedan",
     "color": "yellow",
-    "condition": "Good",
+    "engine": "Diesel",
+    "mpg": 37,
+    "ecoFriendly": false
+  },
+  {
+    "ownerId": "548283518048829000000",
+    "model": "Volkswagon",
+    "color": "brown",
     "engine": "Flex Fuel",
-    "weight": 3055,
-    "ledLights": false
+    "mpg": 150,
+    "ecoFriendly": false
+  },
+  {
+    "ownerId": "369189317786253000000",
+    "model": "Suzuki",
+    "color": "yellow",
+    "engine": "Electric",
+    "mpg": 114,
+    "ecoFriendly": true
   },
   {
     "ownerId": "492893819506645500000",
-    "year": 2013,
-    "model": "Ferrari",
-    "type": "Coupe",
-    "color": "orange",
-    "condition": "Worn",
-    "engine": "Gas",
-    "weight": 4792,
-    "ledLights": true
-  },
-  {
-    "ownerId": "311305251730685100000",
-    "year": 1975,
-    "model": "Volkswagon",
-    "type": "Van",
-    "color": "pink",
-    "condition": "Perfect",
-    "engine": "Diesel",
-    "weight": 3285,
-    "ledLights": false
-  },
-  {
-    "ownerId": "574872934909239100000",
-    "year": 2018,
-    "model": "Toyota",
-    "type": "Minivan",
-    "color": "black",
-    "condition": "Great",
-    "engine": "Electric",
-    "weight": 4462,
-    "ledLights": true
-  },
-  {
-    "ownerId": "574872934909239100000",
-    "year": 2018,
-    "model": "Honda",
-    "type": "Hatchback",
-    "color": "brown",
-    "condition": "Perfect",
-    "engine": "Hybrid",
-    "weight": 3343,
-    "ledLights": false
-  },
-  {
-    "ownerId": "820018353645465500000",
-    "year": 2013,
-    "model": "Honda",
-    "type": "Truck",
-    "color": "orange",
-    "condition": "Worn",
-    "engine": "Gas",
-    "weight": 4482,
-    "ledLights": false
-  },
-  {
-    "ownerId": "311342437526405400000",
-    "year": 1993,
-    "model": "Suzuki",
-    "type": "Van",
-    "color": "pink",
-    "condition": "Poor",
-    "engine": "Electric",
-    "weight": 4874,
-    "ledLights": true
-  },
-  {
-    "ownerId": "166934992992254070000",
-    "year": 2008,
-    "model": "Dodge",
-    "type": "Sedan",
-    "color": "yellow",
-    "condition": "Worn",
-    "engine": "Diesel",
-    "weight": 3692,
-    "ledLights": true
-  },
-  {
-    "ownerId": "169737891020178850000",
-    "year": 1992,
-    "model": "Mercedes-Benz",
-    "type": "SUV",
-    "color": "white",
-    "condition": "Poor",
-    "engine": "Electric",
-    "weight": 4733,
-    "ledLights": false
-  },
-  {
-    "ownerId": "526077879463078300000",
-    "year": 1996,
     "model": "Chevrolet",
-    "type": "Van",
-    "color": "yellow",
-    "condition": "Great",
-    "engine": "Electric",
-    "weight": 4632,
-    "ledLights": true
+    "color": "brown",
+    "engine": "Flex Fuel",
+    "mpg": 139,
+    "ecoFriendly": true
+  },
+  {
+    "ownerId": "574872934909239100000",
+    "model": "Tesla",
+    "color": "black",
+    "engine": "Flex Fuel",
+    "mpg": 123,
+    "ecoFriendly": true
+  },
+  {
+    "ownerId": "945573074889004500000",
+    "model": "Lamborghini",
+    "color": "purple",
+    "engine": "Gas",
+    "mpg": 42,
+    "ecoFriendly": true
+  },
+  {
+    "ownerId": "341533181320019600000",
+    "model": "Tesla",
+    "color": "brown",
+    "engine": "Diesel",
+    "mpg": 130,
+    "ecoFriendly": true
+  },
+  {
+    "ownerId": "989337989614668300000",
+    "model": "Volkswagon",
+    "color": "purple",
+    "engine": "Gas",
+    "mpg": 149,
+    "ecoFriendly": false
   }
 ]

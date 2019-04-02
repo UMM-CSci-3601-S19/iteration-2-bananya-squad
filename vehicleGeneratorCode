@@ -1,3 +1,19 @@
+Current code:
+
+[
+  '{{repeat(12)}}',
+  {
+    ownerId: '',
+    model: "{{random('Honda', 'Ford', 'Jeep', 'Lamborghini', 'Mitsubishi', 'Toyota', 'Mercedes-Benz', 'Saturn', 'Suzuki', 'Volkswagon', 'Tesla', 'Kia', 'Chrysler', 'Chevrolet', 'Cadillac', 'Dodge', 'Ferrari',)}}",
+    color: "{{random('blue', 'red', 'green', 'yellow', 'orange', 'purple', 'pink', 'white', 'brown', 'black',)}}",
+    engine: "{{random('Gas', 'Flex Fuel', 'Diesel', 'Hybrid', 'Electric', 'Natural Gas',)}}",
+    mpg: '{{integer([30], [150])}}',
+    ecoFriendly: '{{bool()}}'
+  }
+]
+
+Old code:
+
 [
   '{{repeat(20)}}',
   {
