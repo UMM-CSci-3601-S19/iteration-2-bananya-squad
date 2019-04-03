@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Sorts.*;
+import org.bson.conversions.Bson;
 
 
 
@@ -96,7 +98,8 @@ public class RideController {
     }*/
 
     //FindIterable comes from mongo, Document comes from Gson
-    FindIterable<Document> matchingRides = rideCollection.find(filterDoc);
+    Bson sort = descending("departureDate");
+    FindIterable<Document> matchingRides = rideCollection.find(filterDoc).sort(sort);
 
     return serializeIterable(matchingRides);
   }
