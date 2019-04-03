@@ -145,7 +145,7 @@ public class RideRequestHandler {
       // Agamprett Singh (Jul 3, 2018) @ https://www.quora.com/How-can-I-convert-the-24-hour-time-format-into-the-12-hour-format-in-Java/answer/Agampreet-Singh-4
       // Converts 24 hour time to 12 hour AM/PM time
       return LocalTime.parse(rawTime, DateTimeFormatter.ofPattern("HH:mm"))
-        .format(DateTimeFormatter.ofPattern("hh:mm a"));
+        .format(DateTimeFormatter.ofPattern("h:mm a"));
     } else {
       return "";
     }
