@@ -30,7 +30,6 @@ public class RideRequestHandler {
    */
   public String getRides(Request req, Response res) {
     res.type("application/json");
-    System.err.println(" I got to request Handler");
     return rideController.getRides(req.queryMap().toMap());
   }
 

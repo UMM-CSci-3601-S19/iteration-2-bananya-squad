@@ -13,7 +13,7 @@ describe( 'Ride list service: ', () => {
       origin: '4 Privet Drive',
       roundTrip: true,
       departureDate: '05-16-2007',
-      departureTime: '6:00pm',
+      departureTime: '6:00 PM',
       notes: 'I will be arriving in a flying motorcycle'
     },
     {
@@ -22,7 +22,7 @@ describe( 'Ride list service: ', () => {
       origin: 'Wardrobe',
       roundTrip: true,
       departureDate: '07-13-2020',
-      departureTime: '5:00pm',
+      departureTime: '5:00 PM',
       notes: 'Dress for cold'
     },
     {
@@ -31,7 +31,7 @@ describe( 'Ride list service: ', () => {
       origin: 'The Outside',
       roundTrip: false,
       departureDate: '08-02-2019',
-      departureTime: '7:00pm',
+      departureTime: '7:00 PM',
       notes: 'There is no escaping Morris'
     }
   ];
@@ -147,19 +147,20 @@ describe( 'Ride list service: ', () => {
     req.flush(editedTeacherDestination);
   });
 
-  /*
   it('deleting a ride calls api/rides/remove', () => {
     const deletedTeacherDestination = 'deletedTeacherDestination';
     const deletedRide: Ride = {
+      _id: Object(),
       driver: 'Teacher',
       destination: 'Office',
       origin: 'Lab',
       roundTrip: false,
-      departureTime: 'never',
+      departureTime: '6:00 AM',
+      departureDate: '12-13-2019',
       notes: 'There is no escaping the lab'
     };
 
-    rideListService.deleteRide(deletedRide).subscribe(
+    rideListService.deleteRide(deletedRide._id.toString()).subscribe(
       destination => {
         expect(destination).toBe(deletedTeacherDestination);
       }
@@ -169,6 +170,6 @@ describe( 'Ride list service: ', () => {
     const req = httpTestingController.expectOne(expectedUrl);
     expect(req.request.method).toEqual('POST');
     req.flush(deletedTeacherDestination);
-  });*/
+  });
 
 });

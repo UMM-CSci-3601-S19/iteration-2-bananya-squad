@@ -32,7 +32,6 @@ export class RideListComponent implements OnInit {
   }
 
   isHighlighted(ride: Ride): boolean {
-
     return ride.destination === this.highlightedDestination;
   }
 
@@ -54,7 +53,6 @@ export class RideListComponent implements OnInit {
             this.refreshRides();
           },
           err => {
-            // This should probably be turned into some sort of meaningful response.
             console.log('There was an error adding the ride.');
             console.log('The newRide or dialogResult was ' + JSON.stringify(newRide));
             console.log('The error was ' + JSON.stringify(err));
