@@ -162,8 +162,7 @@ export class RideListComponent implements OnInit {
   refreshRides(searchDestination?: string,searchOrigin?: string, searchDate?: string, searchTime?: string, searchRoundTrip?: boolean): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
   if (searchDestination == null && searchOrigin == null) {
-      const rides: Observable<Ride[]> = this.rideListService.getRides('','','','',
-        null);
+      const rides: Observable<Ride[]> = this.rideListService.getRides('','','','', null);
       rides.subscribe(
         rides => {
           this.rides = rides;
