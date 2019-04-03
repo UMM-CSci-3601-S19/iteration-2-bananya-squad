@@ -7,9 +7,51 @@
   padding-right: 14px;
 }
 
+#rides{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 30px;
+  border: black;
+}
+
+.header{
+  flex-direction: row;
+  height: 30px;
+}
+
+#driver{
+  align-self: left;
+  font-size: 25px;
+  text-align: left;
+  margin: 0px;
+}
+#gear{
+  margin-left: 75%;
+  width: 10%;
+  font-size: 10px;
+}
+
+#icon{
+  text-align: center;
+}
+
+.path{
+  flex-direction: row;
+  font-size: 50px;
+  color: white;
+}
+
 .arrow{
   color: #DE9A14;
+  font-size: 40px;
+}
 
+.true{
+  color: green;
+}
+.false{
+  color: red;
 }
 
 #addRide{
@@ -40,7 +82,7 @@
 
 .settings-dropdown {
   position: absolute;
-  margin-top: 33px;
+  margin-right: 50px;
   padding: 4px 8px;
 }
 .settings-dropdown /deep/.mat-select-arrow-wrapper {
@@ -52,5 +94,5 @@
 }
 
 .mat-input-infix mat-form-field-infix{
-  align-content: right;
+  align-content: left;
 }

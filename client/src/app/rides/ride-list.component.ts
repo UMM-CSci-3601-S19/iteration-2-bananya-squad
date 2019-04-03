@@ -181,6 +181,7 @@ export class RideListComponent implements OnInit {
 
   refreshRides(searchDestination?: string,searchOrigin?: string): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
+    localStorage.setItem("load", "false");
   if (searchDestination == null && searchOrigin == null) {
       const rides: Observable<Ride[]> = this.rideListService.getRides();
       rides.subscribe(
@@ -205,6 +206,10 @@ export class RideListComponent implements OnInit {
      }
    }
 
+/*   changeWaitText(): boolean {
+     setTimeout('', 10000);
+     localStorage.setItem("load", "true")
+   }*/
 
 
   ngOnInit(): void {
