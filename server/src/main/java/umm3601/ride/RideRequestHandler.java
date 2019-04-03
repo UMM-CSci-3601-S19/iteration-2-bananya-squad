@@ -53,14 +53,20 @@ public class RideRequestHandler {
     String origin = newRide.getString("origin");
     Boolean roundTrip = newRide.getBoolean("roundTrip");
     Boolean driving = newRide.getBoolean("driving");
-    String departureDate= parseDate(newRide.getString("departureDate"));
+    String departureDate = parseDate(newRide.getString("departureDate"));
     String departureTime = parseTime(newRide.getString("departureTime"));
     String notes = newRide.getString("notes");
+
+    String sortingDate = newRide.getString("departureDate");
+    String sortingTime = newRide.getString("departureTime");
+
+    String sortDateTime =  parseDateSorting(sortingDate)+parseColon(sortingTime);
 
 
     System.err.println("Adding new ride [driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
       + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + ']');
-    return rideController.addNewRide(driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes);
+    return rideController.addNewRide(driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes,
+      sortDateTime);
   }
 
   public Boolean updateRide(Request req, Response res) {
@@ -78,10 +84,15 @@ public class RideRequestHandler {
     String departureTime = parseTime(editRide.getString("departureTime"));
     String notes = editRide.getString("notes");
 
+    String sortingDate = editRide.getString("departureDate");
+    String sortingTime = editRide.getString("departureTime");
+
+
+    String sortDateTime =  parseDateSorting(sortingDate)+parseColon(sortingTime);
 
     System.err.println("Editing ride [id=" + id + " driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
       + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + ']');
-    return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes);
+    return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes, sortDateTime);
   }
 
   public Boolean deleteRide(Request req, Response res){
@@ -129,56 +140,6 @@ public class RideRequestHandler {
     }
   }
 
-
-
-  // This parseDate2 function presents date like: April 13th 2019
-  /*private String parseDate2(String rawDate) {
-
-    if (rawDate != null) {
-      //Date from the datepicker is by default in ISO time, like "2019-03-13T05:00:00.000Z". departureDateISO retrieves that.
-      //departureDateYYYYMMDD breaks off the irrelevant end data from the "T" and on. From there, month and day are broken off.
-      String departureDateISO = rawDate;
-      System.err.println("This is the rawDate" + rawDate);
-      String departureDateYYYYMMDD = departureDateISO.split("T", 2)[0];
-      System.err.println("This is the YYYYMMDD " + departureDateYYYYMMDD);
-      String departureDateMonthUnformatted = departureDateYYYYMMDD.split("-", 3)[1];
-      System.err.println("This is the Month " + departureDateMonthUnformatted);
-      String departureDateDayUnformatted = departureDateYYYYMMDD.split("-", 3)[2]
-        .replaceFirst("^0+(?!$)", "");
-      System.err.println("This is the Date Day " + departureDateDayUnformatted);
-
-
-      // Gets the Year in the YYYY Format for the departureDateYYYYMD above
-      String departureYear = departureDateYYYYMMDD.split("-", 3)[0];
-      System.err.println("This is the Departure Year" + departureYear);
-
-
-      //    Adds the right ending to dates, like the day 12 to 12th or the day 3 to 3rd
-      int departureDateDayInt = Integer.parseInt(departureDateDayUnformatted);
-
-      if (departureDateDayInt == 1 || departureDateDayInt == 21 || departureDateDayInt == 31) {
-        departureDateDay = departureDateDayUnformatted.concat("st");
-      } else if (departureDateDayInt == 2 || departureDateDayInt == 22) {
-        departureDateDay = departureDateDayUnformatted.concat("nd");
-      } else if (departureDateDayInt == 3 || departureDateDayInt == 23) {
-        departureDateDay = departureDateDayUnformatted.concat("rd");
-      } else {
-        departureDateDay = departureDateDayUnformatted.concat("th");
-      }
-
-      //    turns the month number into a month name
-      int departureDateMonthInt = Integer.parseInt(departureDateMonthUnformatted);
-      String departureDateMonth = getMonth(departureDateMonthInt);
-
-      String departureDateFinal = departureDateMonth + " " + departureDateDay + " " + departureYear;
-
-      return departureDateFinal;
-    } else {
-      return "";
-    }
-  }*/
-
-
   private String parseTime(String rawTime) {
     if (rawTime != null) {
       // Agamprett Singh (Jul 3, 2018) @ https://www.quora.com/How-can-I-convert-the-24-hour-time-format-into-the-12-hour-format-in-Java/answer/Agampreet-Singh-4
@@ -189,6 +150,44 @@ public class RideRequestHandler {
       return "";
     }
   }
+
+
+  // This parseDate function presents date like 04-13-2019
+  private String parseDateSorting(String rawDate) {
+
+    if (rawDate != null) {
+
+      //Date from the datepicker is by default in ISO time, like "2019-03-13T05:00:00.000Z". departureDateISO retrieves that.
+      //departureDateYYYYMMDD breaks off the irrelevant end data from the "T" and on. From there, month and day are broken off.
+      String departureDateISO = rawDate;
+      String departureDateYYYYMMDD = departureDateISO.split("T", 2)[0];
+
+      // Gets the Year in the YYYY Format for the departureDateYYYYMD above
+      String departureYear = departureDateYYYYMMDD.split("-", 3)[0];
+      // Gets the Month in the MM Format for the departureDateYYYYMD above
+      String departureMonth = departureDateYYYYMMDD.split("-", 3)[1];
+      // Gets the Day in the DD Format for the departureDateYYYMD above
+      String departureDay = departureDateYYYYMMDD.split("-", 3)[2].replaceFirst("^0+(?!$)", "");
+
+      if(Integer.parseInt(departureDay)<10){
+        departureDay = "0" + departureDay;
+      }
+
+      return departureYear+departureMonth+departureDay;
+    } else {
+      return "";
+    }
+  }
+
+  private String parseColon(String rawTime){
+    if (rawTime != null) {
+      String formatTime = rawTime.replace(":","");
+     return formatTime;
+    } else {
+      return "";
+    }
+  }
+
 
 
 }

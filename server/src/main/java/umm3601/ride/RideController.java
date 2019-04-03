@@ -97,9 +97,9 @@ public class RideController {
       filterDoc = filterDoc.append("driving", contentRegQuery);
     }*/
 
-    //FindIterable comes from mongo, Document comes from Gson
-    Bson sort = descending("departureDate");
-    FindIterable<Document> matchingRides = rideCollection.find(filterDoc).sort(sort);
+
+    Bson sortDateTime = ascending("sortDateTime");
+    FindIterable<Document> matchingRides = rideCollection.find(filterDoc).sort(sortDateTime);
 
     return serializeIterable(matchingRides);
   }
@@ -116,7 +116,8 @@ public class RideController {
       .collect(Collectors.joining(", ", "[", "]"));
   }
 
-  String addNewRide(String driver, String destination, String origin, Boolean roundTrip, Boolean driving, String departureDate, String departureTime, String notes) {
+  String addNewRide(String driver, String destination, String origin, Boolean roundTrip, Boolean driving, String departureDate,
+                    String departureTime, String notes, String sortDateTime) {
 
     Document newRide = new Document();
     newRide.append("driver", driver);
@@ -127,13 +128,15 @@ public class RideController {
     newRide.append("departureDate", departureDate);
     newRide.append("departureTime", departureTime);
     newRide.append("notes", notes);
+    newRide.append("sortDateTime",sortDateTime);
 
 
     try {
       rideCollection.insertOne(newRide);
       ObjectId _id = newRide.getObjectId("_id");
       System.err.println("Successfully added new ride [_id=" + _id + ", driver=" + driver + ", destination=" + destination + ", origin=" + origin + ", roundTrip=" + roundTrip + ", driving="
-        + driving + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + ']');
+        + driving + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes +
+        " sortDateTime=" + sortDateTime + ']');
       return _id.toHexString();
     } catch (MongoException me) {
       me.printStackTrace();
@@ -154,7 +157,8 @@ public class RideController {
     }
   }
 
-  Boolean updateRide(String id, String driver, String destination, String origin, Boolean roundTrip, Boolean driving, String departureDate, String departureTime, String notes){
+  Boolean updateRide(String id, String driver, String destination, String origin, Boolean roundTrip, Boolean driving,
+    String departureDate, String departureTime, String notes, String sortDateTime){
     ObjectId objId = new ObjectId(id);
     Document filter = new Document("_id", objId);
     Document updateFields = new Document();
@@ -166,6 +170,8 @@ public class RideController {
     updateFields.append("departureDate", departureDate);
     updateFields.append("departureTime", departureTime);
     updateFields.append("notes", notes);
+    updateFields.append("sortDateTime", sortDateTime);
+
     Document updateDoc = new Document("$set", updateFields);
     try{
       UpdateResult out = rideCollection.updateOne(filter, updateDoc);
