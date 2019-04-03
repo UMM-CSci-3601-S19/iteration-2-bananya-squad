@@ -43,7 +43,7 @@ export class UserListComponent implements OnInit {
 
 
   refreshVehicles(): Observable<Vehicle[]> {
-
+    console.log("The ownerId is" + this.ownerId);
     const vehicles: Observable<Vehicle[]> = this.vehicleListService.getVehicles(this.ownerId);
     vehicles.subscribe(
       vehicles => {

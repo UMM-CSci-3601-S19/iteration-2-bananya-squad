@@ -3,17 +3,6 @@
     <h2 mat-dialog-title>Search</h2>
     <mat-dialog-content layout="column">
       <mat-form-field flex>
-        <input matInput #input id="destinationField" placeholder="Destination" [(ngModel)]="data.ride.destination" formControlName="destination"
-               [maxLength]="36">
-        <mat-error *ngFor="let validation of search_ride_validation_messages.destination">
-          <mat-error class="error-message" id="destination-error"
-                     *ngIf="searchRideForm.get('destination').hasError(validation.type) &&
-                     (searchRideForm.get('destination').dirty || searchRideForm.get('destination').touched)">
-            {{validation.message}}
-          </mat-error>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field flex>
         <input matInput #input id="originField" placeholder="Origin" [(ngModel)]="data.ride.origin" formControlName="origin"
                [maxLength]="36">
         <mat-error *ngFor="let validation of search_ride_validation_messages.origin">
@@ -24,6 +13,19 @@
           </mat-error>
         </mat-error>
       </mat-form-field>
+
+      <mat-form-field flex>
+        <input matInput #input id="destinationField" placeholder="Destination" [(ngModel)]="data.ride.destination" formControlName="destination"
+               [maxLength]="36">
+        <mat-error *ngFor="let validation of search_ride_validation_messages.destination">
+          <mat-error class="error-message" id="destination-error"
+                     *ngIf="searchRideForm.get('destination').hasError(validation.type) &&
+                     (searchRideForm.get('destination').dirty || searchRideForm.get('destination').touched)">
+            {{validation.message}}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+
     </mat-dialog-content>
 
     <mat-dialog-actions layout="row">
