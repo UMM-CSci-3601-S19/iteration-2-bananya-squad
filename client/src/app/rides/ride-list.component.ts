@@ -26,14 +26,17 @@ export class RideListComponent implements OnInit {
   private highlightedDestination: string = '';
 
 
-
   constructor(public rideListService: RideListService, public dialog: MatDialog) {
   }
 
-  isHighlighted(ride: Ride): boolean {
-    return ride.destination === this.highlightedDestination;
+  // To use to delete past rides
+  getCurrentTime(): string{
+    let today = new Date();
+    let date = today.getMonth() + '-' + (today.getDate() + 1) + '-' + today.getFullYear();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let blah = date + " " + time;
+    return blah;
   }
-
 
   openDialog(): void {
     const newRide: Ride = {driver: '', destination: '', origin: '', roundTrip: false, driving: false,
@@ -151,32 +154,6 @@ export class RideListComponent implements OnInit {
     });
   }
 
-
- /* public filterRides(searchDestination: string): Ride[] {
-
-    this.filteredRides = this.rides;
-    var today = new Date();
-    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date+' '+time;
-
-    if (searchDestination != null) {getCurrentDate(): string {
-    var today = new Date();
-    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
-    return date;
-  }
-      searchDestination = searchDestination.toLocaleLowerCase();
-
-      this.filteredRides = this.filteredRides.filter(ride => {
-        return !searchDestination || ride.destination.toLowerCase().indexOf(searchDestination) !== -1;
-      });
-    }
-
-
-    return this.filteredRides;
-  }
- */
-
   refreshRides(searchDestination?: string,searchOrigin?: string): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
   if (searchDestination == null && searchOrigin == null) {
@@ -202,8 +179,6 @@ export class RideListComponent implements OnInit {
     return rides;
      }
    }
-
-
 
   ngOnInit(): void {
     this.refreshRides();
