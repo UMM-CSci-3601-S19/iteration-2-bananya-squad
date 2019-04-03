@@ -21,7 +21,7 @@ export class AddRideComponent implements OnInit {
     'destination': [
       {type: 'required', message: 'Destination is required'},
       {type: 'minlength', message: 'Destination must be at least 2 characters long'},
-      {type: 'maxlength', message: 'Destination cannot be more than 100 characters long'},
+      {type: 'maxlength', message: 'Destination cannot be more than 50 characters long'},
       {type: 'pattern', message: 'Destination must contain only numbers, letters, dashes, underscores, and dots'}
     ],
     'driver': [
@@ -33,7 +33,7 @@ export class AddRideComponent implements OnInit {
     'origin': [
       {type: 'required', message: 'Origin is required'},
       {type: 'minlength', message: 'Origin must be at least 2 characters long'},
-      {type: 'maxlength', message: 'Origin cannot be more than 100 characters long'},
+      {type: 'maxlength', message: 'Origin cannot be more than 50 characters long'},
       {type: 'pattern', message: 'Origin must contain only numbers, letters, dashes, underscores, and dots'}
     ],
     'departureDate': [
@@ -43,9 +43,8 @@ export class AddRideComponent implements OnInit {
       {type: 'required', message: 'Departure Time is required'},
     ],
     'notes': [
-      {type: 'required', message: 'Notes is required'},
       {type: 'minlength', message: 'Notes must be at least 2 characters long'},
-      {type: 'maxlength', message: 'Notes cannot be more than 150 characters long'},
+      {type: 'maxlength', message: 'Notes cannot be more than 50 characters long'},
       {type: 'pattern', message: 'notes must contain only english and certain symbols'}
     ]
   };
@@ -56,7 +55,7 @@ export class AddRideComponent implements OnInit {
 
         Validators.pattern('^[ a-zA-Z0-9.]+$'),
         Validators.minLength(2),
-        Validators.maxLength(100),
+        Validators.maxLength(50),
         Validators.required
       ])),
       driver: new FormControl('driver', Validators.compose([
@@ -67,7 +66,7 @@ export class AddRideComponent implements OnInit {
       ])),
       origin: new FormControl('origin', Validators.compose([
         Validators.minLength(2),
-        Validators.maxLength(100),
+        Validators.maxLength(50),
         Validators.required,
         Validators.pattern('^[ a-zA-Z0-9.]+$')
       ])),
@@ -79,8 +78,7 @@ export class AddRideComponent implements OnInit {
       ])),
       notes: new FormControl('notes', Validators.compose([
         Validators.minLength(2),
-        Validators.maxLength(150),
-        Validators.required,
+        Validators.maxLength(50),
         Validators.pattern('^[?\'"></!@#$%^&*()_+= a-zA-Z0-9:._-]+$')
       ]))
 

@@ -24,7 +24,7 @@
       </mat-form-field>
       <mat-form-field flex>
         <input matInput #input id="driverField" placeholder="Name" [(ngModel)]="data.ride.driver" formControlName="driver"
-               required>
+               required [maxLength]="50">
         <mat-error *ngFor="let validation of add_ride_validation_messages.driver">
           <mat-error class="error-message" id="driver-error"
                      *ngIf="addRideForm.get('driver').hasError(validation.type) && (addRideForm.get('driver').dirty || addRideForm.get('driver').touched)">
@@ -34,7 +34,7 @@
       </mat-form-field>
       <mat-form-field flex>
         <input matInput #input id="originField" placeholder="Origin" [(ngModel)]="data.ride.origin" formControlName="origin"
-               required>
+               required [maxLength]="50">
         <mat-error *ngFor="let validation of add_ride_validation_messages.origin">
           <mat-error class="error-message" id="origin-error"
                      *ngIf="addRideForm.get('origin').hasError(validation.type) && (addRideForm.get('origin').dirty || addRideForm.get('origin').touched)">
@@ -55,8 +55,7 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field flex>
-        <input matInput #input id="notesField" placeholder="Notes" [(ngModel)]="data.ride.notes" formControlName="notes"
-               required>
+        <input matInput #input id="notesField" placeholder="Notes" [(ngModel)]="data.ride.notes" formControlName="notes" [maxLength]="50">
         <mat-error *ngFor="let validation of add_ride_validation_messages.notes">
           <mat-error class="error-message" id="notes-error"
                      *ngIf="addRideForm.get('notes').hasError(validation.type) && (addRideForm.get('notes').dirty || addRideForm.get('notes').touched)">

@@ -1,18 +1,17 @@
 package umm3601.ride;
 
 import org.bson.Document;
-import org.bson.types.ObjectId;
 import spark.Request;
 import spark.Response;
 
-import java.text.DateFormatSymbols;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class RideRequestHandler {
 
   private final RideController rideController;
-  private String departureDateDay;
+
 
   public RideRequestHandler(RideController rideController) {
     this.rideController = rideController;
@@ -53,7 +52,9 @@ public class RideRequestHandler {
     String origin = newRide.getString("origin");
     Boolean roundTrip = newRide.getBoolean("roundTrip");
     Boolean driving = newRide.getBoolean("driving");
+    System.err.println(" This is without the parse in adding " + newRide.getString("departureDate"));
     String departureDate = parseDate(newRide.getString("departureDate"));
+    System.err.println(" This is with the parse in adding " + departureDate);
     String departureTime = parseTime(newRide.getString("departureTime"));
     String notes = newRide.getString("notes");
 
@@ -81,12 +82,13 @@ public class RideRequestHandler {
     Boolean roundTrip = editRide.getBoolean("roundTrip");
     Boolean driving = editRide.getBoolean("driving");
     String departureDate = parseDate(editRide.getString("departureDate"));
+    System.err.println(" This is with the parse in editing " + departureDate);
     String departureTime = parseTime(editRide.getString("departureTime"));
     String notes = editRide.getString("notes");
 
     String sortingDate = editRide.getString("departureDate");
     String sortingTime = editRide.getString("departureTime");
-
+    System.err.println(" This is without the parse in editing " + sortingDate);
 
     String sortDateTime =  parseDateSorting(sortingDate)+parseColon(sortingTime);
 
