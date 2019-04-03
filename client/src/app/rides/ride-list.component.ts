@@ -65,7 +65,7 @@ export class RideListComponent implements OnInit {
 
   openSearchDialog(): void {
 
-    const searchRide: Ride = {driver: '', destination: '', origin: '', roundTrip: false, driving: false,
+    const searchRide: Ride = {driver: '', destination: '', origin: '', roundTrip: null, driving: false,
       departureDate: '', departureTime: '', notes: ''};
 
     const dialogRef = this.dialog.open(SearchRideComponent, {
@@ -77,7 +77,12 @@ export class RideListComponent implements OnInit {
       if (searchRide != null) {
         console.log('The destination passed in is ' + searchRide.destination);
         console.log('The origin passed in is ' + searchRide.origin);
-        this.rideListService.getRides(searchRide.destination,searchRide.origin).subscribe(
+        console.log('The departureDate passed in is ' + searchRide.departureDate);
+        console.log('The departureTime passed in is ' + searchRide.departureTime);
+        console.log('The roundTrip passed in is ' + searchRide.roundTrip);
+
+        this.rideListService.getRides(searchRide.destination,searchRide.origin,searchRide.departureDate,
+          searchRide.departureTime,searchRide.roundTrip).subscribe(
           result => {
             this.searchedRides = result;
             console.log("The result is " + JSON.stringify(result));
@@ -154,10 +159,10 @@ export class RideListComponent implements OnInit {
     });
   }
 
-  refreshRides(searchDestination?: string,searchOrigin?: string): Observable<Ride[]> {
+  refreshRides(searchDestination?: string,searchOrigin?: string, searchDate?: string, searchTime?: string, searchRoundTrip?: boolean): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
   if (searchDestination == null && searchOrigin == null) {
-      const rides: Observable<Ride[]> = this.rideListService.getRides('','');
+      const rides: Observable<Ride[]> = this.rideListService.getRides('','','','', null);
       rides.subscribe(
         rides => {
           this.rides = rides;
@@ -168,7 +173,7 @@ export class RideListComponent implements OnInit {
       return rides;
     }
     else {
-    const rides: Observable<Ride[]> = this.rideListService.getRides(searchDestination,searchOrigin);
+    const rides: Observable<Ride[]> = this.rideListService.getRides(searchDestination,searchOrigin,searchDate,searchTime,searchRoundTrip);
     rides.subscribe(
       rides => {
         this.rides = rides;

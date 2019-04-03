@@ -4,11 +4,6 @@
       <mat-card-title id="ride-list-title">Rides</mat-card-title>
       <mat-divider></mat-divider>
       <mat-card-content>
-        <div *ngIf="rideListService.hasSearched()">
-          <button id="back" (click)="refreshRides()">
-          Go Back
-          </button>
-        </div>
         <br>
         <mat-accordion *ngIf="rides; else ridesError">
           <mat-expansion-panel #elem class="rides" [id]="ride.destination"
@@ -48,10 +43,17 @@
       </mat-card-content>
     </mat-card>
   </div>
+  <div *ngIf="rideListService.hasSearched()">
+    <button mat-fab id="back" class="mat-fab-bottom-right" matTooltip="Back" matTooltipPosition="left" (click)="refreshRides()">
+      <mat-icon class="md-24" aria-label="Back">arrow_back_ios</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="!rideListService.hasSearched()">
   <button mat-fab id="searchRide" class="mat-fab-bottom-right" matTooltip="Search Ride" matTooltipPosition="left"
           (click)="openSearchDialog()">
-    <mat-icon class="md-24" aria-label="New Ride">search</mat-icon>
+    <mat-icon class="md-24" aria-label="Search Ride">search</mat-icon>
   </button>
+  </div>
   <div *ngIf="!rideListService.hasSearched()">
   <button mat-fab id="addRide" class="mat-fab-bottom-right" matTooltip="New Ride" matTooltipPosition="left"
           (click)="openDialog()">

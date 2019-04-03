@@ -13,12 +13,17 @@ export class RideListService {
 
   }
 
-  getRides(searchedDestination: string, searchedOrigin: string): Observable<Ride[]> {
+  getRides(searchedDestination: string, searchedOrigin: string, searchedDate: string, searchedTime: string, searchedRoundTrip: boolean): Observable<Ride[]> {
     console.log("searched Destination to getRides is " + searchedDestination);
     console.log("searched Origin to getRides is " + searchedOrigin);
+    console.log("searched date to getRides is " + searchedDate);
+    console.log("searched time to getRides is " + searchedTime);
+    console.log("searched roundTrip to getRides is " + searchedRoundTrip);
 
     console.log("Ride Url before filter By PARAMETERS " + this.rideUrl);
-    this.filterByParameters(searchedDestination,searchedOrigin);
+
+    this.filterByParameters(searchedDestination,searchedOrigin,searchedDate,searchedTime,searchedRoundTrip);
+
     console.log("Ride Url after filter By PARAMETERS " + this.rideUrl);
 
     return this.http.get<Ride[]>(this.rideUrl);
@@ -31,9 +36,63 @@ export class RideListService {
   }
 
 
-  filterByParameters(rideDestination: string, rideOrigin: string): void {
 
-    // Filtering by Parameters
+  addNewRide(newRide: Ride): Observable<string> {
+    console.log("This the format of departure date when adding " + newRide.departureDate);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // We're sending JSON
+        'Content-Type': 'application/json'
+      }),
+      // But we're getting a simple (text) string in response
+      // The server sends the hex version of the new ride back
+      // so we know how to find/access that ride again later.
+      responseType: 'text' as 'json'
+    };
+
+    // Send post request to add a new ride with the ride data as the body with specified headers.
+    return this.http.post<string>(this.rideUrl + '/new', newRide, httpOptions);
+  }
+
+
+
+  editRide(editedRide: Ride): Observable<string> {
+    console.log("This the format of departure date when editing" + editedRide.departureDate);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      responseType: 'text' as 'json'
+    };
+
+    return this.http.post<string>(this.rideUrl + '/update', editedRide, httpOptions);
+  }
+
+
+  deleteRide(deleteId: String): Observable<string> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      responseType: 'text' as 'json'
+    };
+    let deleteDoc: string = "{ \"_id\": \"" + deleteId + "\"}";
+
+    return this.http.post<string>(this.rideUrl + '/remove', deleteDoc, httpOptions);
+  }
+
+
+  // Helper Functions
+
+  public hasSearched(): boolean {
+    status = localStorage.getItem('searched');
+    if (status == 'true') { return true;}
+    else {return false;}
+  }
+
+  filterByParameters(rideDestination: string, rideOrigin: string, rideDate: string, rideTime: string, rideRoundTrip: boolean): void {
+
+    // Filtering by destination
     if (!(rideDestination == null || rideDestination === '')) {
       if (this.parameterPresent('destination=')) {
         // there was a previous search by destination that we need to clear
@@ -84,6 +143,82 @@ export class RideListService {
       }
     }
 
+    // Filtering by departureDate
+    if (!(rideDate == null || rideDate === '')) {
+      if (this.parameterPresent('departureDate=')) {
+        // there was a previous search by destination that we need to clear
+        this.removeParameter('departureDate=');
+      }
+      if (this.rideUrl.indexOf('?') !== -1) {
+        // there was already some information passed in this url
+        this.rideUrl += 'departureDate=' + rideDate + '&';
+      } else {
+        // this was the first bit of information to pass in the url
+        this.rideUrl += '?departureDate=' + rideDate + '&';
+      }
+    } else {
+      // there was nothing in the box to put onto the URL... reset
+      if (this.parameterPresent('departureDate=')) {
+        let start = this.rideUrl.indexOf('departureDate=');
+        const end = this.rideUrl.indexOf('&', start);
+        if (this.rideUrl.substring(start - 1, start) === '?') {
+          start = start - 1;
+        }
+        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+      }
+    }
+
+    // Filtering by departureTime
+    if (!(rideTime == null || rideTime === '')) {
+      if (this.parameterPresent('departureTime=')) {
+        // there was a previous search by destination that we need to clear
+        this.removeParameter('departureTime=');
+      }
+      if (this.rideUrl.indexOf('?') !== -1) {
+        // there was already some information passed in this url
+        this.rideUrl += 'departureTime=' + rideTime + '&';
+      } else {
+        // this was the first bit of information to pass in the url
+        this.rideUrl += '?departureTime=' + rideTime + '&';
+      }
+    } else {
+      // there was nothing in the box to put onto the URL... reset
+      if (this.parameterPresent('departureTime=')) {
+        let start = this.rideUrl.indexOf('departureTime=');
+        const end = this.rideUrl.indexOf('&', start);
+        if (this.rideUrl.substring(start - 1, start) === '?') {
+          start = start - 1;
+        }
+        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+      }
+    }
+
+    // Filtering by roundTrip
+    if (!(rideRoundTrip == null)) {
+      if (this.parameterPresent('roundTrip=')) {
+        // there was a previous search by destination that we need to clear
+        this.removeParameter('roundTrip=');
+      }
+      if (this.rideUrl.indexOf('?') !== -1) {
+        // there was already some information passed in this url
+        this.rideUrl += 'roundTrip=' + rideRoundTrip + '&';
+      } else {
+        // this was the first bit of information to pass in the url
+        this.rideUrl += '?roundTrip=' + rideRoundTrip + '&';
+      }
+    } else {
+      // there was nothing in the box to put onto the URL... reset
+      if (this.parameterPresent('roundTrip=')) {
+        let start = this.rideUrl.indexOf('roundTrip=');
+        const end = this.rideUrl.indexOf('&', start);
+        if (this.rideUrl.substring(start - 1, start) === '?') {
+          start = start - 1;
+        }
+        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+      }
+    }
+
+
   }
 
   private parameterPresent(searchParam: string) {
@@ -102,52 +237,7 @@ export class RideListService {
     this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end);
   }
 
-  addNewRide(newRide: Ride): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        // We're sending JSON
-        'Content-Type': 'application/json'
-      }),
-      // But we're getting a simple (text) string in response
-      // The server sends the hex version of the new ride back
-      // so we know how to find/access that ride again later.
-      responseType: 'text' as 'json'
-    };
-
-    // Send post request to add a new ride with the ride data as the body with specified headers.
-    return this.http.post<string>(this.rideUrl + '/new', newRide, httpOptions);
-  }
 
 
-
-  editRide(editedRide: Ride): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      responseType: 'text' as 'json'
-    };
-
-    return this.http.post<string>(this.rideUrl + '/update', editedRide, httpOptions);
-  }
-
-
-  deleteRide(deleteId: String): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      responseType: 'text' as 'json'
-    };
-    let deleteDoc: string = "{ \"_id\": \"" + deleteId + "\"}";
-
-    return this.http.post<string>(this.rideUrl + '/remove', deleteDoc, httpOptions);
-  }
-
-  public hasSearched(): boolean {
-    status = localStorage.getItem('searched');
-    if (status == 'true') { return true;}
-    else {return false;}
-  }
 
 }
