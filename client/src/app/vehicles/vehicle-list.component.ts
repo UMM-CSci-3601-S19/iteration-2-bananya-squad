@@ -40,7 +40,7 @@ export class VehicleListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(newVehicle => {
       if (newVehicle != null) {
-
+        console.log(" This should be same as google ID " + newVehicle.ownerId);
         this.vehicleListService.addNewVehicle(newVehicle).subscribe(
           result => {
             this.highlightedVehicle = result;
