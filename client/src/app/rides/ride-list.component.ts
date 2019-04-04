@@ -7,6 +7,7 @@ import {EditRideComponent} from "./edit-ride.component";
 import {MatDialog} from "@angular/material";
 import {DeleteRideComponent} from "./delete-ride.component";
 import {SearchRideComponent} from "./search-ride.component";
+import {AppComponent} from "../app.component";
 
 
 @Component({
@@ -26,7 +27,8 @@ export class RideListComponent implements OnInit {
   private highlightedDestination: string = '';
 
 
-  constructor(public rideListService: RideListService, public dialog: MatDialog) {
+
+  constructor(public appComponent: AppComponent, public rideListService: RideListService, public dialog: MatDialog) {
   }
 
   // To use to delete past rides
@@ -38,8 +40,9 @@ export class RideListComponent implements OnInit {
     return blah;
   }
 
+
   openDialog(): void {
-    const newRide: Ride = {driver: '', destination: '', origin: '', roundTrip: false, driving: false,
+    const newRide: Ride = {driver: this.appComponent.userFullName, destination: '', origin: '', roundTrip: false, driving: false,
       departureDate: '', departureTime: '', notes: ''};
     const dialogRef = this.dialog.open(AddRideComponent, {
       width: '500px',
@@ -98,7 +101,7 @@ export class RideListComponent implements OnInit {
       }
     });
   }
-t
+
   openEditDialog(currentId: object,currentDriver: string, currentDestination: string, currentOrigin: string, currentRoundTrip: boolean, currentDriving: boolean, currentDepartureDate: string, currentDepartureTime: string, currentNotes: string): void {
     const currentRide: Ride = {
       _id: currentId,
@@ -136,6 +139,7 @@ t
     });
   }
 
+
   openDeleteDialog(currentId: object): void {
     console.log("openDeleteDialog");
     const dialogRef = this.dialog.open(DeleteRideComponent, {
@@ -160,8 +164,35 @@ t
     });
   }
 
-  refreshRides(searchDestination?: string,searchOrigin?: string, searchDate?: string, searchTime?: string, searchRoundTrip?: boolean): Observable<Ride[]> {
+
+ /* public filterRides(searchDestination: string): Ride[] {
+
+    this.filteredRides = this.rides;
+    var today = new Date();
+    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    if (searchDestination != null) {getCurrentDate(): string {
+    var today = new Date();
+    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
+    return date;
+  }
+      searchDestination = searchDestination.toLocaleLowerCase();
+
+      this.filteredRides = this.filteredRides.filter(ride => {
+        return !searchDestination || ride.destination.toLowerCase().indexOf(searchDestination) !== -1;
+      });
+    }
+
+
+    return this.filteredRides;
+  }
+ */
+
+  refreshRides(searchDestination?: string,searchOrigin?: string,searchDate?: string,searchTime?: string,searchRoundTrip?: boolean): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
+    localStorage.setItem("load", "false");
   if (searchDestination == null && searchOrigin == null) {
       const rides: Observable<Ride[]> = this.rideListService.getRides('','','','', null);
       rides.subscribe(
@@ -185,6 +216,12 @@ t
     return rides;
      }
    }
+
+/*   changeWaitText(): boolean {
+     setTimeout('', 10000);
+     localStorage.setItem("load", "true")
+   }*/
+
 
   ngOnInit(): void {
     this.refreshRides();

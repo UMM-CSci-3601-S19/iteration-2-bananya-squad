@@ -2,3 +2,8 @@
   position: fixed;
   margin-right: 10px;
 }
+
+.userInfo{
+  display: flex;
+  justify-content: space-between;
+}
