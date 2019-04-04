@@ -28,7 +28,7 @@ import umm3601.vehicles.VehicleRequestHandler;
 
 public class Server {
 
-  private static final int serverPort = 92;
+  private static final int serverPort = 4567;
 
   private static final String databaseName = "dev";
 
@@ -121,7 +121,7 @@ public class Server {
               // Replace clientSecret with the localhost one if testing
               clientSecrets.getDetails().getClientSecret(),
               authCode,
-              "http://localhost:9000")
+              "http://68.183.109.92:4567")
               //Not sure if we have a redirectUri
 
               // Specify the same redirect URI that you use with your web
