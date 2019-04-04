@@ -24,12 +24,6 @@ export class AddRideComponent implements OnInit {
       {type: 'maxlength', message: 'Destination cannot be more than 100 characters long'},
       {type: 'pattern', message: 'Destination must contain only numbers, letters, dashes, underscores, and dots'}
     ],
-    'driver': [
-      {type: 'required', message: 'Driver is required'},
-      {type: 'minlength', message: 'Driver must be at least 2 characters long'},
-      {type: 'maxlength', message: 'Driver cannot be more than 50 characters long'},
-      {type: 'pattern', message: 'Driver must contain only numbers and letters'}
-    ],
     'origin': [
       {type: 'required', message: 'Origin is required'},
       {type: 'minlength', message: 'Origin must be at least 2 characters long'},
@@ -58,12 +52,6 @@ export class AddRideComponent implements OnInit {
         Validators.minLength(2),
         Validators.maxLength(100),
         Validators.required
-      ])),
-      driver: new FormControl('driver', Validators.compose([
-        Validators.minLength(2),
-        Validators.maxLength(50),
-        Validators.required,
-        Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?')
       ])),
       origin: new FormControl('origin', Validators.compose([
         Validators.minLength(2),

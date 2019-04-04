@@ -7,6 +7,7 @@ import {EditRideComponent} from "./edit-ride.component";
 import {MatDialog} from "@angular/material";
 import {DeleteRideComponent} from "./delete-ride.component";
 import {SearchRideComponent} from "./search-ride.component";
+import {AppComponent} from "../app.component";
 
 
 @Component({
@@ -28,7 +29,7 @@ export class RideListComponent implements OnInit {
 
 
 
-  constructor(public rideListService: RideListService, public dialog: MatDialog) {
+  constructor(public appComponent: AppComponent, public rideListService: RideListService, public dialog: MatDialog) {
   }
 
   isHighlighted(ride: Ride): boolean {
@@ -37,7 +38,7 @@ export class RideListComponent implements OnInit {
 
 
   openDialog(): void {
-    const newRide: Ride = {driver: '', destination: '', origin: '', roundTrip: false, driving: false,
+    const newRide: Ride = {driver: this.appComponent.userFullName, destination: '', origin: '', roundTrip: false, driving: false,
       departureDate: '', departureTime: '', notes: ''};
     const dialogRef = this.dialog.open(AddRideComponent, {
       width: '500px',

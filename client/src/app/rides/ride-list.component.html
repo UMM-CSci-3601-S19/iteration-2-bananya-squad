@@ -6,47 +6,46 @@
           </button>
         </div>
         <br>
-        <div id="background" *ngIf="rides; else ridesError">
+        <mat-card-content id="background" *ngIf="rides; else ridesError">
           <mat-card id="rides" #elem class="rides" [id]="ride.destination"
                                *ngFor="let ride of rides">
-            <div class="header">
-              <div id="driver">
-                <mat-card-content>{{ride.driver}}</mat-card-content>
-              </div>
-              <div>
-                <mat-form-field id="gear">
-                  <mat-icon id="icon">settings</mat-icon>
-                  <mat-select class="settings-dropdown" trigger="settingsTrigger" #settingsSelect>
-                    <mat-option id="editRide" class="options-dropdown" (click) = "openEditDialog(ride._id, ride.driver, ride.destination,
-                ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes)">Edit Ride</mat-option>
-                    <mat-option id="deleteRide" class="options-dropdown" (click)="openDeleteDialog(ride._id)">Delete Ride</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-            <!--<mat-card-header>
-              <mat-card-title class="topDisplay" id="driver">{{ride.driver}}</mat-card-title>
-              <mat-form-field class="gearField" id="gear">
-                <mat-icon>settings</mat-icon>
-                <mat-select class="settings-dropdown" trigger="settingsTrigger" #settingsSelect>
-                  <mat-option id="editRide" class="options-dropdown" (click) = "openEditDialog(ride._id, ride.driver, ride.destination,
-                ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes)">Edit Ride</mat-option>
-                  <mat-option id="deleteRide" class="options-dropdown" (click)="openDeleteDialog(ride._id)">Delete Ride</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </mat-card-header>-->
-            <div id="path">
-              {{ride.origin}} &nbsp; <mat-icon class="arrow">forward</mat-icon>
-              <!--<mat-icon class="arrow" *ngIf="{{ride.roundTrip}}">swap_horiz</mat-icon> &nbsp;--> {{ride.destination}}
-            </div>
+
+              <button mat-icon-button [matMenuTriggerFor]="menu" class="card-top-right-button">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" >
+                <button mat-menu-item (click)="openEditDialog(ride._id, ride.driver, ride.destination,
+                ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes)" >
+
+                  <span>Edit Ride</span>
+                </button>
+                <button mat-menu-item (click)="openDeleteDialog(ride._id)" >
+
+                  <span>Delete Ride</span>
+                </button>
+              </mat-menu>
+              <mat-card-title flex>
+                <div id="originAndDestinationContainer">
+                  <div class="originDestinationFields">{{ride.origin}}</div>
+                  <div><mat-icon class="arrow">forward</mat-icon></div>
+                  <div class="originDestinationFields">{{ride.destination}}</div>
+                </div>
+              </mat-card-title>
             <mat-divider></mat-divider>
-            <mat-card-content>{{ride.departureDate}} at {{ride.departureTime}}</mat-card-content>
-            <div class=ride.roundTrip>
-              <mat-icon>repeat</mat-icon>
+
+            <mat-card-content class="description">
+              <p>{{ride.driver}}</p>
+            <div class="bottomInfo">
+              <div>{{ride.departureDate}} at {{ride.departureTime}}</div>
+              <div class=ride.roundTrip><mat-icon>repeat</mat-icon></div>
             </div>
-            <mat-card-content>Notes: {{ride.notes}}</mat-card-content>
+            </mat-card-content>
 
+            <mat-divider></mat-divider>
 
+            <mat-card-content class="notes">
+              <div>{{ride.notes}}</div>
+            </mat-card-content>
           </mat-card>
 
         <ng-template #ridesError>
@@ -58,17 +57,14 @@
             Please wait a bit and try again or start the server.
           </mat-error>
         </ng-template>
-  </div>
-  </div>
   <button mat-fab id="searchRide" class="mat-fab-bottom-right" matTooltip="Search Ride" matTooltipPosition="left"
-          (click)="openSearchDialog()">
+          (click)="openSearchDialog()" color="primary">
     <mat-icon class="md-24" aria-label="New Ride">search</mat-icon>
   </button>
   <div *ngIf="!rideListService.hasSearched()">
   <button mat-fab id="addRide" class="mat-fab-bottom-right" matTooltip="New Ride" matTooltipPosition="left"
-          (click)="openDialog()">
+          (click)="openDialog()" color="primary">
     <mat-icon class="md-24" aria-label="New Ride">add</mat-icon>
   </button>
   </div>
-</div>
 

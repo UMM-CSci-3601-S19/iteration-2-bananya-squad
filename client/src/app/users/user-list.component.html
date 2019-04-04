@@ -1,10 +1,18 @@
 <div layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
     <mat-card>
-      <mat-card-title id="Profile_Page">Profile</mat-card-title>
+      <mat-card-title id="Profile_Page">{{appComponent.userFullName}}</mat-card-title>
       <mat-card-content>
         Info: {{appComponent.userFullName}}
         <mat-divider></mat-divider>
+        <p></p>
+        <button mat-icon-button id="addVehicle" class="card-top-right-button"
+                (click)="vehicleListComponent.openAddVehicleDialog()">
+          <mat-icon aria-label="New Vehicle">add</mat-icon>
+        </button>
+
+        <mat-card-title class="vehicleHeader">Vehicles</mat-card-title>
+        <p></p>
         <mat-accordion *ngIf="vehicles; else vehiclesError">
           <mat-expansion-panel #elem class="vehicles" [id]="vehicle.model" *ngFor="let vehicle of vehicles">
 
@@ -32,10 +40,5 @@
       </mat-card-content>
     </mat-card>
   </div>
-
-  <button id="addVehicle" class="vehicle" matTooltip="Add Vehicle"  matTooltipPosition="left" mat-fab="primary"
-          (click)="vehicleListComponent.openAddVehicleDialog()">
-    <mat-icon class="md-24" aria-label="New Vehicle">add</mat-icon>
-  </button>
 
 </div>

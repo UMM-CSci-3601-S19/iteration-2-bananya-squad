@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   googleAuth;
   userFullName: string;
   userFirstName: string;
+  pictureUrl: string;
   userEmail: string;
 
 

@@ -9,16 +9,13 @@
   color: mat-color($accent) !important;
 }
 
-ride-list-component{
-  background-color: #ECF0E7;
-}
-
-.mat-card{
-  background-color: #2962FF;
-  color: white;
-}
-
 .mat-expansion-panel{
   background-color: #ECF0E7;
 }
 
+.card-top-right-button {
+  float: right;
+  //vertical-align: top;
+  margin-top: 10px !important;
+  margin-right: 10px !important;
+}
