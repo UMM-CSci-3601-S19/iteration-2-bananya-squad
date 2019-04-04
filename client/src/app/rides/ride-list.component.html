@@ -53,23 +53,15 @@
             Please wait a bit and try again or start the server.
           </mat-error>
         </ng-template>
-          <div *ngIf="rideListService.hasSearched()">
-            <button mat-fab id="back" class="mat-fab-bottom-right" matTooltip="Back" matTooltipPosition="left" (click)="refreshRides()">
-              <mat-icon aria-label="Back">arrow_back_ios</mat-icon>
-            </button>
-          </div>
-          <div *ngIf="!rideListService.hasSearched()">
-          <ng-template #ridesError>
-            <mat-error>
-              There was a problem loading the rides. Possibly the server is down or perhaps there are network
-              issues.
-            </mat-error>
-            <mat-error>
-              Please wait a bit and try again or start the server.
-            </mat-error>
-          </ng-template>
+
         </mat-card-content>
 
+    <div *ngIf="rideListService.hasSearched()">
+      <button mat-fab id="back" class="mat-fab-bottom-right" matTooltip="Back" matTooltipPosition="left" (click)="refreshRides()">
+        <mat-icon aria-label="Back">arrow_back_ios</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="!rideListService.hasSearched()">
   <button mat-fab id="searchRide" class="mat-fab-bottom-right" matTooltip="Search Ride" matTooltipPosition="left"
           (click)="openSearchDialog()" color="primary">
     <mat-icon class="md-24" aria-label="New Ride">search</mat-icon>
