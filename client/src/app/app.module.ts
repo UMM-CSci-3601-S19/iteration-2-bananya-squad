@@ -30,7 +30,7 @@ import {CustomModule} from './custom.module';
 
 
 import {AppService} from "./app.service"
-import {MatButtonModule, MatOptionModule, MatSelectModule} from "@angular/material";
+import {MatButtonModule, MatOptionModule, MatSelectModule, MatTabsModule} from "@angular/material";
 
 
 
@@ -45,7 +45,8 @@ import {MatButtonModule, MatOptionModule, MatSelectModule} from "@angular/materi
     MatDatepickerModule,
     MatButtonModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatTabsModule
   ],
   declarations: [
     AppComponent,

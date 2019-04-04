@@ -13,31 +13,23 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field flex>
+        <input matInput #input id="originField" placeholder="Origin" [(ngModel)]="data.ride.origin" formControlName="origin"
+               required>
+        <mat-error *ngFor="let validation of edit_ride_validation_messages.origin">
+          <mat-error class="error-message" id="origin-error"
+                     *ngIf="editRideForm.get('origin').hasError(validation.type) && (editRideForm.get('origin').dirty || editRideForm.get('origin').touched)">
+            {{validation.message}}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <p></p>
+      <mat-form-field flex>
         <input type="time" matInput #input id="departureTimeField" placeholder="Departure Time" [(ngModel)]="data.ride.departureTime" formControlName="departureTime"
                required>
         <mat-error *ngFor="let validation of edit_ride_validation_messages.departureTime">
           <mat-error class="error-message" id="departureTime-error"
                      *ngIf="editRideForm.get('departureTime').hasError(validation.type) && (editRideForm.get('departureTime').dirty || editRideForm.get('departureTime').touched)">
-            {{validation.message}}
-          </mat-error>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field flex>
-        <input matInput #input id="driverField" placeholder="Name" [(ngModel)]="data.ride.driver" formControlName="driver"
-               required [maxLength]="50">
-        <mat-error *ngFor="let validation of edit_ride_validation_messages.driver">
-          <mat-error class="error-message" id="driver-error"
-                     *ngIf="editRideForm.get('driver').hasError(validation.type) && (editRideForm.get('driver').dirty || editRideForm.get('driver').touched)">
-            {{validation.message}}
-          </mat-error>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field flex>
-        <input matInput #input id="originField" placeholder="Origin" [(ngModel)]="data.ride.origin" formControlName="origin"
-               required [maxLength]="50">
-        <mat-error *ngFor="let validation of edit_ride_validation_messages.origin">
-          <mat-error class="error-message" id="origin-error"
-                     *ngIf="editRideForm.get('origin').hasError(validation.type) && (editRideForm.get('origin').dirty || editRideForm.get('origin').touched)">
             {{validation.message}}
           </mat-error>
         </mat-error>

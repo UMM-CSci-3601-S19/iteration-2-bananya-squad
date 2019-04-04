@@ -272,4 +272,10 @@ export class RideListService {
     else {return false;}
   }
 
+  public waitLoad(): boolean {
+    status = localStorage.getItem('load');
+    if (status == 'true') { return true;}
+    else {return false;}
+  }
+
 }
