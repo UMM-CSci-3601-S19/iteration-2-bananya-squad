@@ -72,7 +72,7 @@ export class RideListService {
     }
 
     if(this.minute.includes("AM")){
-      if(this.hour<10){
+      if(parseInt(this.hour)<10){
         this.hour = "0" + this.hour;
       }
     }
