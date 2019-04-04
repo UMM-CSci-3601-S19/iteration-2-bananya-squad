@@ -30,7 +30,7 @@ export class RideListComponent implements OnInit {
   }
 
   // To use to delete past rides
-  getCurrentTime(): string{
+  static getCurrentTime(): string{
     let today = new Date();
     let date = today.getMonth() + '-' + (today.getDate() + 1) + '-' + today.getFullYear();
     let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -98,7 +98,7 @@ export class RideListComponent implements OnInit {
       }
     });
   }
-
+t
   openEditDialog(currentId: object,currentDriver: string, currentDestination: string, currentOrigin: string, currentRoundTrip: boolean, currentDriving: boolean, currentDepartureDate: string, currentDepartureTime: string, currentNotes: string): void {
     const currentRide: Ride = {
       _id: currentId,
@@ -125,10 +125,11 @@ export class RideListComponent implements OnInit {
           result => {
             this.highlightedDestination = result;
             this.refreshRides();
+            console.log('The currentRide or dialogResult was ' + JSON.stringify(currentRide));
           },
           err => {
             console.log('There was an error editing the ride.');
-            console.log('The currentRide or dialogResult was ' + JSON.stringify(currentRide));
+            console.log('The currentRide or dialogResult was error ' + JSON.stringify(currentRide));
             console.log('The error was ' + JSON.stringify(err));
           });
       }
