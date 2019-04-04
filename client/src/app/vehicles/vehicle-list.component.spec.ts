@@ -11,7 +11,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 
 
-describe('Vehicle list', () => {
+/*describe('Vehicle list', () => {
 
   let vehicleList: VehicleListComponent;
   let fixture: ComponentFixture<VehicleListComponent>;
@@ -65,7 +65,7 @@ describe('Vehicle list', () => {
     });
   }));
 
-});
+});*/
 
 describe('Adding a vehicle',()=> {
   let vehicleList: VehicleListComponent;
