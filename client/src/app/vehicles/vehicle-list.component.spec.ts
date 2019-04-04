@@ -1,73 +1,142 @@
-/*
-import {ComponentFixture} from "@angular/core/testing";
-import {VehicleListComponent} from "./vehicle-list.component";
-import {Observable} from "rxjs/Observable";
+import {ComponentFixture, TestBed, async} from '@angular/core/testing';
 import {Vehicle} from "./vehicle";
+import {VehicleListComponent} from "./vehicle-list.component";
+import {VehicleListService} from "./vehicle-list.service";
+import {Observable} from "rxjs/Observable";
+import {FormsModule} from '@angular/forms';
+import {CustomModule} from '../custom.module';
+import {MatDialog} from '@angular/material';
+
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/do';
 
 
-
-describe('Ride list', () => {
+describe('Vehicle list', () => {
 
   let vehicleList: VehicleListComponent;
   let fixture: ComponentFixture<VehicleListComponent>;
 
-  let rideListServiceStub: {
-    getVehicle: () => Observable<Vehicle[]>
+  let vehicleListServiceStub: {
+    getVehicles: () => Observable<Vehicle[]>
   };
 
   beforeEach(()=> {
     vehicleListServiceStub = {
-      getVehicle: () => Observable.of([
+      getVehicles: () => Observable.of([
         {
-          ownerId: '',
-          model: 'Ferrari',
-          color: 'Red',
-          engine: 'gas',
-          mpg: '65',
-          ecoFriendly: true
+          ownerId: '731330300985650700000',
+          model: 'Flying Motorcycle',
+          color: 'Maroon',
+          ecoFriendly: true,
+          mpg: '80',
+          engine: 'hybrid'
         },
         {
-          ownerId: '',
-          model: 'Gucci',
-          color: 'Black',
-          engine: 'naturalGas',
-          mpg: '69',
-          ecoFriendly: true
+          ownerId: '128701757713094440000',
+          model: 'Lion',
+          color: 'Tan',
+          ecoFriendly: true,
+          mpg: '160',
+          engine: 'electric'
         },
         {
-          ownerId: '',
-          model: 'Boi',
-          color: 'Blue',
-          engine: 'electric',
-          mpg: '12',
-          ecoFriendly: false
-        },
-        {
-          ownerId: '',
-          model: 'Truck',
-          color: 'Green',
-          engine: 'gas',
-          mpg: '20',
-          ecoFriendly: false
-        },
-        {
-          ownerId: '',
-          model: 'Big Truck',
-          color: 'Dark Green',
-          engine: 'diesel',
+          ownerId: '721329185750116200000',
+          model: 'Shopping Cart',
+          color: 'Unknown',
+          ecoFriendly: false,
           mpg: '10',
-          ecoFriendly: false
-        },
-        {
-          ownerId: '',
-          model: 'Karshs Poop Wifi',
-          color: 'White',
-          engine: 'hybrid',
-          mpg: '1',
-          ecoFriendly: false
+          engine: 'diesel'
         }
       ])
     };
-  })
-})
-*/
+
+    TestBed.configureTestingModule({
+      imports: [CustomModule],
+      declarations: [VehicleListComponent],
+      providers: [{provide: VehicleListService, useValue: vehicleListServiceStub}]
+    });
+  });
+
+  beforeEach(async(() => {
+    TestBed.compileComponents().then(() => {
+      fixture = TestBed.createComponent(VehicleListComponent);
+      vehicleList = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+  }));
+
+});
+
+describe('Adding a vehicle',()=> {
+  let vehicleList: VehicleListComponent;
+  let fixture: ComponentFixture<VehicleListComponent>;
+  const newVehicle: Vehicle = {
+    ownerId: '894569126550116200000',
+    model: 'Apple',
+    color: 'Red',
+    ecoFriendly: false,
+    mpg: '3',
+    engine: 'diesel'
+  };
+
+  const newId = '783458015449005187543';
+
+  let calledVehicle: Vehicle;
+
+  let vehicleListServiceStub: {
+    getVehicles: () => Observable<Vehicle[]>,
+    addNewVehicle: (newVehicle: Vehicle) => Observable<{ '$oid': string}>
+  };
+  let mockMatDialog: {
+    open: (AddVehicleComponent, any) => {
+      afterClosed: () => Observable<Vehicle>
+    };
+  };
+
+  beforeEach(() => {
+    calledVehicle = null;
+    vehicleListServiceStub = {
+      getVehicles: () => Observable.of([]),
+      addNewVehicle: (newVehicle: Vehicle) => {
+        calledVehicle = newVehicle;
+        return Observable.of({
+          '$oid': newId
+        });
+      }
+    };
+    mockMatDialog = {
+      open: () => {
+        return {
+          afterClosed: () => {
+            return Observable.of(newVehicle);
+          }
+        };
+      }
+    };
+
+    TestBed.configureTestingModule({
+      imports: [FormsModule, CustomModule],
+      declarations: [VehicleListComponent],
+      providers: [
+        {provide: VehicleListService, useValue: vehicleListServiceStub},
+        {provide: MatDialog, useValue: mockMatDialog},
+      ]
+    });
+  });
+
+  beforeEach(async(()=> {
+    TestBed.compileComponents().then(()=> {
+      fixture = TestBed.createComponent(VehicleListComponent);
+      vehicleList = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+  }));
+
+  it('calls VehicleListService.addNewVehicle', () => {
+    expect(calledVehicle).toBeNull();
+    vehicleList.openAddVehicleDialog();
+    expect(calledVehicle).toEqual(newVehicle);
+  });
+});
+
+
