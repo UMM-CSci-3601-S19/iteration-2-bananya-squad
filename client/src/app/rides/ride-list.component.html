@@ -11,7 +11,7 @@
                                *ngFor="let ride of rides">
 
               <button mat-icon-button [matMenuTriggerFor]="menu" class="card-top-right-button">
-                <mat-icon>more_vert</mat-icon>
+                <mat-icon class="dots">more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu" >
                 <button mat-menu-item (click)="openEditDialog(ride._id, ride.driver, ride.destination,
