@@ -42,7 +42,7 @@ export class RideListComponent implements OnInit {
 
 
   openDialog(): void {
-    const newRide: Ride = {driver: this.appComponent.userFullName, destination: '', origin: '', roundTrip: false, driving: false,
+    const newRide: Ride = {driver: this.appComponent.getUsername(), destination: '', origin: '', roundTrip: false, driving: false,
       departureDate: '', departureTime: '', notes: ''};
     const dialogRef = this.dialog.open(AddRideComponent, {
       width: '500px',
@@ -105,7 +105,7 @@ export class RideListComponent implements OnInit {
   openEditDialog(currentId: object,currentDriver: string, currentDestination: string, currentOrigin: string, currentRoundTrip: boolean, currentDriving: boolean, currentDepartureDate: string, currentDepartureTime: string, currentNotes: string): void {
     const currentRide: Ride = {
       _id: currentId,
-      driver: currentDriver,
+      driver: this.appComponent.getUsername(),
       destination: currentDestination,
       origin: currentOrigin,
       roundTrip: currentRoundTrip,

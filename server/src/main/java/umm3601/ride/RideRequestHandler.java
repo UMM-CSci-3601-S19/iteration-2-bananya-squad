@@ -52,10 +52,10 @@ public class RideRequestHandler {
     String origin = newRide.getString("origin");
     Boolean roundTrip = newRide.getBoolean("roundTrip");
     Boolean driving = newRide.getBoolean("driving");
-    System.err.println(" This is without the parse in adding " + newRide.getString("departureDate"));
     String departureDate = parseDate(newRide.getString("departureDate"));
-    System.err.println(" This is with the parse in adding " + departureDate);
+    System.err.println(" This is without the parse in adding " + newRide.getString("departureTime"));
     String departureTime = parseTime(newRide.getString("departureTime"));
+    System.err.println(" This is with the parse in adding " + departureTime);
     String notes = newRide.getString("notes");
 
     String sortingDate = newRide.getString("departureDate");
@@ -65,7 +65,7 @@ public class RideRequestHandler {
 
 
     System.err.println("Adding new ride [driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
-      + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + ']');
+      + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + ']');
     return rideController.addNewRide(driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes,
       sortDateTime);
   }
@@ -82,18 +82,19 @@ public class RideRequestHandler {
     Boolean roundTrip = editRide.getBoolean("roundTrip");
     Boolean driving = editRide.getBoolean("driving");
     String departureDate = parseDate(editRide.getString("departureDate"));
-    System.err.println(" This is with the parse in editing " + departureDate);
+
     String departureTime = parseTime(editRide.getString("departureTime"));
     String notes = editRide.getString("notes");
 
     String sortingDate = editRide.getString("departureDate");
+    System.err.println(" This is with the parse in editing " + departureTime);
     String sortingTime = editRide.getString("departureTime");
-    System.err.println(" This is without the parse in editing " + sortingDate);
+    System.err.println(" This is without the parse in editing " + sortingTime);
 
     String sortDateTime =  parseDateSorting(sortingDate)+parseColon(sortingTime);
 
     System.err.println("Editing ride [id=" + id + " driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
-      + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + ']');
+      + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + ']');
     return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes, sortDateTime);
   }
 

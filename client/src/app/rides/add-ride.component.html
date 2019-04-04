@@ -3,21 +3,22 @@
     <h2 mat-dialog-title>New Ride</h2>
     <mat-dialog-content layout="column">
       <mat-form-field flex>
-        <input matInput #input id="destinationField" placeholder="Destination" [(ngModel)]="data.ride.destination" formControlName="destination"
-               required>
-        <mat-error *ngFor="let validation of add_ride_validation_messages.destination">
-          <mat-error class="error-message" id="destination-error"
-                     *ngIf="addRideForm.get('destination').hasError(validation.type) && (addRideForm.get('destination').dirty || addRideForm.get('destination').touched)">
-            {{validation.message}}
-          </mat-error>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field flex>
         <input matInput #input id="originField" placeholder="Origin" [(ngModel)]="data.ride.origin" formControlName="origin"
                required>
         <mat-error *ngFor="let validation of add_ride_validation_messages.origin">
           <mat-error class="error-message" id="origin-error"
                      *ngIf="addRideForm.get('origin').hasError(validation.type) && (addRideForm.get('origin').dirty || addRideForm.get('origin').touched)">
+            {{validation.message}}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-icon class="arrow">forward</mat-icon>
+      <mat-form-field flex>
+        <input matInput #input id="destinationField" placeholder="Destination" [(ngModel)]="data.ride.destination" formControlName="destination"
+               required>
+        <mat-error *ngFor="let validation of add_ride_validation_messages.destination">
+          <mat-error class="error-message" id="destination-error"
+                     *ngIf="addRideForm.get('destination').hasError(validation.type) && (addRideForm.get('destination').dirty || addRideForm.get('destination').touched)">
             {{validation.message}}
           </mat-error>
         </mat-error>

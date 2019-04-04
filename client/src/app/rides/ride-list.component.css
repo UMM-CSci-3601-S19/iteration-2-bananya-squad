@@ -61,5 +61,13 @@
   #originAndDestinationContainer{
     font-size: smaller;
   }
+  .dots{
+    vertical-align: top;
+    float: right;
+  }
+  #settings{
+    max-height: 25px;
+    max-width: 25px;
+  }
 }
 

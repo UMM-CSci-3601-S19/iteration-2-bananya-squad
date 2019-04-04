@@ -1,16 +1,12 @@
 <div layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
-        <div *ngIf="rideListService.hasSearched()">
-          <button id="back" (click)="refreshRides()">
-          Go Back
-          </button>
-        </div>
+
         <br>
         <mat-card-content id="background" *ngIf="rides; else ridesError">
           <mat-card id="rides" #elem class="rides" [id]="ride.destination"
                                *ngFor="let ride of rides">
 
-              <button mat-icon-button [matMenuTriggerFor]="menu" class="card-top-right-button">
+              <button mat-icon-button [matMenuTriggerFor]="menu" id="settings" class="card-top-right-button">
                 <mat-icon class="dots">more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu" >
@@ -47,6 +43,22 @@
               <div>{{ride.notes}}</div>
             </mat-card-content>
           </mat-card>
+
+        <ng-template #ridesError>
+          <mat-error>
+            There was a problem loading the rides. Possibly the server is down or perhaps there are network
+            issues.
+          </mat-error>
+          <mat-error>
+            Please wait a bit and try again or start the server.
+          </mat-error>
+        </ng-template>
+          <div *ngIf="rideListService.hasSearched()">
+            <button mat-fab id="back" class="mat-fab-bottom-right" matTooltip="Back" matTooltipPosition="left" (click)="refreshRides()">
+              <mat-icon aria-label="Back">arrow_back_ios</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="!rideListService.hasSearched()">
           <ng-template #ridesError>
             <mat-error>
               There was a problem loading the rides. Possibly the server is down or perhaps there are network
@@ -62,6 +74,7 @@
           (click)="openSearchDialog()" color="primary">
     <mat-icon class="md-24" aria-label="New Ride">search</mat-icon>
   </button>
+          </div>
   <div *ngIf="!rideListService.hasSearched()">
   <button mat-fab id="addRide" class="mat-fab-bottom-right" matTooltip="New Ride" matTooltipPosition="left"
           (click)="openDialog()" color="primary">

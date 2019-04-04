@@ -267,9 +267,4 @@ export class RideListService {
     this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end);
   }
 
-  public waitLoad(): boolean {
-    status = localStorage.getItem('load');
-    if (status == 'true') { return true;}
-    else {return false;}
-  }
 }
