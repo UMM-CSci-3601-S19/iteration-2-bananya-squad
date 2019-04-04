@@ -1,35 +1,52 @@
 <div layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
-    <mat-card>
-      <mat-card-title id="ride-list-title">Rides</mat-card-title>
-      <mat-divider></mat-divider>
-      <mat-card-content>
+        <div *ngIf="rideListService.hasSearched()">
+          <button id="back" (click)="refreshRides()">
+          Go Back
+          </button>
+        </div>
         <br>
-        <mat-accordion *ngIf="rides; else ridesError">
-          <mat-expansion-panel #elem class="rides" [id]="ride.destination"
+        <mat-card-content id="background" *ngIf="rides; else ridesError">
+          <mat-card id="rides" #elem class="rides" [id]="ride.destination"
                                *ngFor="let ride of rides">
-            <mat-expansion-panel-header>
-              <mat-panel-title>{{ride.origin}} &nbsp; <mat-icon class="arrow">forward</mat-icon> &nbsp; {{ride.destination}}</mat-panel-title>
 
-            </mat-expansion-panel-header>
-            <mat-panel-description class="topDisplay" id="settings">Name: {{ride.driver}}</mat-panel-description>
-            <mat-panel-description>Round Trip: {{ride.roundTrip}}</mat-panel-description>
-            <mat-panel-description>Departure Date: {{ride.departureDate}}</mat-panel-description>
-            <mat-panel-description>Departure Time: {{ride.departureTime}}</mat-panel-description>
-            <mat-panel-description>Pickup at: {{ride.origin}}</mat-panel-description>
-            <mat-panel-description>Driving: {{ride.driving}}</mat-panel-description>
-            <mat-panel-description>Notes: {{ride.notes}}</mat-panel-description>
-            <mat-form-field id="gear">
-              <mat-icon>settings</mat-icon>
-              <mat-select class="settings-dropdown" trigger="settingsTrigger" #settingsSelect>
-                <mat-option id="editRide" class="options-dropdown" (click) = "openEditDialog(ride._id, ride.driver, ride.destination,
-                ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes)">Edit Ride</mat-option>
-                <mat-option id="deleteRide" class="options-dropdown" (click)="openDeleteDialog(ride._id)">Delete Ride</mat-option>
-              </mat-select>
-            </mat-form-field>
+              <button mat-icon-button [matMenuTriggerFor]="menu" class="card-top-right-button">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" >
+                <button mat-menu-item (click)="openEditDialog(ride._id, ride.driver, ride.destination,
+                ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes)" >
 
-          </mat-expansion-panel>
-        </mat-accordion>
+                  <span>Edit Ride</span>
+                </button>
+                <button mat-menu-item (click)="openDeleteDialog(ride._id)" >
+
+                  <span>Delete Ride</span>
+                </button>
+              </mat-menu>
+              <mat-card-title flex>
+                <div id="originAndDestinationContainer">
+                  <div class="originDestinationFields">{{ride.origin}}</div>
+                  <div><mat-icon class="arrow">forward</mat-icon></div>
+                  <div class="originDestinationFields">{{ride.destination}}</div>
+                </div>
+              </mat-card-title>
+            <mat-divider></mat-divider>
+
+            <mat-card-content class="description">
+              <p>{{ride.driver}}</p>
+            <div class="bottomInfo">
+              <div>{{ride.departureDate}} at {{ride.departureTime}}</div>
+              <div class=ride.roundTrip ><mat-icon *ngIf="ride.roundTrip">repeat</mat-icon></div>
+            </div>
+            </mat-card-content>
+
+            <mat-divider></mat-divider>
+
+            <mat-card-content class="notes">
+              <div>{{ride.notes}}</div>
+            </mat-card-content>
+          </mat-card>
 
         <ng-template #ridesError>
           <mat-error>
@@ -40,25 +57,14 @@
             Please wait a bit and try again or start the server.
           </mat-error>
         </ng-template>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div *ngIf="rideListService.hasSearched()">
-    <button mat-fab id="back" class="mat-fab-bottom-right" matTooltip="Back" matTooltipPosition="left" (click)="refreshRides()">
-      <mat-icon class="md-24" aria-label="Back">arrow_back_ios</mat-icon>
-    </button>
-  </div>
-  <div *ngIf="!rideListService.hasSearched()">
   <button mat-fab id="searchRide" class="mat-fab-bottom-right" matTooltip="Search Ride" matTooltipPosition="left"
-          (click)="openSearchDialog()">
-    <mat-icon class="md-24" aria-label="Search Ride">search</mat-icon>
+          (click)="openSearchDialog()" color="primary">
+    <mat-icon class="md-24" aria-label="New Ride">search</mat-icon>
   </button>
-  </div>
   <div *ngIf="!rideListService.hasSearched()">
   <button mat-fab id="addRide" class="mat-fab-bottom-right" matTooltip="New Ride" matTooltipPosition="left"
-          (click)="openDialog()">
+          (click)="openDialog()" color="primary">
     <mat-icon class="md-24" aria-label="New Ride">add</mat-icon>
   </button>
   </div>
-</div>
 

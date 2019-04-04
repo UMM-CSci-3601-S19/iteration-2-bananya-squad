@@ -1,20 +1,20 @@
 <td-layout #layout>
-  <td-navigation-drawer flex sidenavTitle="">
-    <mat-nav-list *ngIf="appService.isSignedIn()" >
+  <td-navigation-drawer class="navBar" flex sidenavTitle="">
+    <mat-nav-list class="navBar">
       <a id="navHome" mat-list-item [routerLink]="['/']" (click)="layout.close()" routerLinkActive="nav-active"
          [routerLinkActiveOptions]="{exact: true}">
-        <mat-icon id="homeNav">home</mat-icon>
+        <mat-icon id="homeNav" color="primary">home</mat-icon>
         Home</a>
       <a id="navProfile" mat-list-item [routerLink]="['/user']" (click)="layout.close()" routerLinkActive="nav-active">
-        <mat-icon id="profileNav">account_circle</mat-icon>
+        <mat-icon id="profileNav" color="primary">account_circle</mat-icon>
         Profile</a>
       <a id="navRides" mat-list-item [routerLink]="['/rides']" (click)="layout.close()" routerLinkActive="nav-active">
-        <mat-icon id="carNav">directions_car</mat-icon>
+        <mat-icon id="carNav" color="primary">directions_car</mat-icon>
         Rides</a>
     </mat-nav-list>
   </td-navigation-drawer>
-  <td-layout-nav toolbarTitle="Menu" navigationRoute="/">
-    <button mat-icon-button td-menu-button tdLayoutToggle>
+  <td-layout-nav navigationRoute="/">
+    <button mat-icon-button td-menu-button tdLayoutToggle *ngIf="appService.isSignedIn()">
       <mat-icon>menu</mat-icon>
     </button>
     <router-outlet></router-outlet>

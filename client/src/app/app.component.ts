@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
   googleAuth;
   userFullName: string;
   userFirstName: string;
+  userLastName: string;
+  pictureUrl: string;
   userEmail: string;
 
 
@@ -67,12 +69,14 @@ export class AppComponent implements OnInit {
         console.log(onSuccess["fullName"]);
         console.log(onSuccess["lastName"]);
         console.log(onSuccess["firstName"]);
+        console.log(onSuccess["pictureUrl"]);
         localStorage.setItem("_id", onSuccess["_id"]);
         localStorage.setItem("oid", onSuccess["_id"]["$oid"]);
         localStorage.setItem("email", onSuccess["email"]);
         localStorage.setItem("userFullName", onSuccess["fullName"]);
         localStorage.setItem("userLastName", onSuccess["lastName"]);
         localStorage.setItem("userFirstName", onSuccess["firstName"]);
+        localStorage.setItem("pictureUrl", onSuccess["pictureUrl"]);
 
       }, onFail => {
         console.log("ERROR: Code couldn't be sent to the server");
@@ -80,12 +84,28 @@ export class AppComponent implements OnInit {
   }
 
 
-  getUsername () {
+  getUserInfo () {
     this.userFullName = localStorage.getItem("userFullName");
-    /*if (this.userFullName.length > 18) {
-      this.userFullName = this.userFullName.slice(0, 17) + "...";
-    }*/
+    this.userFirstName = localStorage.getItem("userFirstName");
+    this.userLastName = localStorage.getItem("userLastName");
+    this.userEmail = localStorage.getItem("email");
+    this.pictureUrl = localStorage.getItem("pictureUrl");
+    return this.userFullName, this.userFirstName, this.userLastName,this.userEmail,this.pictureUrl;
+  }
+
+  getUsername() {
+    this.userFullName = localStorage.getItem("userFullName");
     return this.userFullName;
+  }
+
+  getUserEmail() {
+    this.userEmail = localStorage.getItem("email");
+    return this.userEmail;
+  }
+
+  getUserPic() {
+    this.pictureUrl = localStorage.getItem("pictureUrl");
+    return this.pictureUrl;
   }
 
 
@@ -103,7 +123,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.handleClientLoad();
+    this.getUserInfo();
     this.getUsername();
+    this.getUserEmail();
+    this.getUserPic()
     /*gapi.load('client:auth2', this.initClient);*/
   }
 

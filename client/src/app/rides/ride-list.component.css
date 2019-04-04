@@ -1,20 +1,42 @@
-#title input {
-  width: 16%;
-  min-width: 100px;
+#background{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
 }
 
-#list-title {
-  padding-right: 14px;
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.arrow{
-  color: #DE9A14;
-
+#driver{
+  width: 50%;
+  align-self: left;
+  font-size: 25px;
+  text-align: left;
+  margin: 0px;
 }
 
-#addRide{
-  background-color: #DE9A14;
-  color: white;
+.description{
+  margin: 0px;
+}
+
+#originAndDestinationContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: larger;
+}
+
+.bottomInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.notes{
+  background-color: lightgray;
 }
 
 .fab{
@@ -22,14 +44,7 @@
   right: 10px;
 }
 
-/*options-dropdown{
-
-}*/
-
-
 #searchRide{
-  background-color: #DE9A14;
-  color: white;
   margin-bottom: 75px;
 }
 
@@ -38,19 +53,9 @@
   margin-right: 10px;
 }
 
-.settings-dropdown {
-  position: absolute;
-  margin-top: 33px;
-  padding: 4px 8px;
-}
-.settings-dropdown /deep/.mat-select-arrow-wrapper {
-  visibility: hidden;
+@media only screen and (max-device-width: 500px){
+  #originAndDestinationContainer{
+    font-size: smaller;
+  }
 }
 
-#gear/deep/ .mat-form-field-underline{
-  display: none;
-}
-
-.mat-input-infix mat-form-field-infix{
-  align-content: right;
-}
