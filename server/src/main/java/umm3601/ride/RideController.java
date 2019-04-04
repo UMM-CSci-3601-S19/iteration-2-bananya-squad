@@ -63,7 +63,9 @@ public class RideController {
       Document contentRegQuery = new Document();
       contentRegQuery.append("$regex", targetContent);
       contentRegQuery.append("$options", "i");
+      System.err.println(" this is the content reg  in origin" + contentRegQuery);
       filterDoc = filterDoc.append("origin", contentRegQuery);
+      System.err.println(" this is the filter Doc in origin" + contentRegQuery);
     }
 
     System.err.println(" I got past origin");
@@ -76,7 +78,9 @@ public class RideController {
       Document contentRegQuery = new Document();
       contentRegQuery.append("$regex", targetContent);
       contentRegQuery.append("$options", "i");
+      System.err.println(" this is the content reg " + contentRegQuery);
       filterDoc = filterDoc.append("departureDate", contentRegQuery);
+      System.err.println(" this is the filter Doc in date " + contentRegQuery);
     }
 
     System.err.println(" I got past departureDate");
