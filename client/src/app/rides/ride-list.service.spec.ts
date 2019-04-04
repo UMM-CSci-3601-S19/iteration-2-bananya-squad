@@ -14,7 +14,8 @@ describe( 'Ride list service: ', () => {
       roundTrip: true,
       departureDate: '05-16-2007',
       departureTime: '6:00 PM',
-      notes: 'I will be arriving in a flying motorcycle'
+      notes: 'I will be arriving in a flying motorcycle',
+      sortDateTime: '200705161800'
     },
     {
       driver: 'Lucy',
@@ -23,7 +24,8 @@ describe( 'Ride list service: ', () => {
       roundTrip: true,
       departureDate: '07-13-2020',
       departureTime: '5:00 PM',
-      notes: 'Dress for cold'
+      notes: 'Dress for cold',
+      sortDateTime: '202007131700'
     },
     {
       driver: 'Student',
@@ -32,7 +34,8 @@ describe( 'Ride list service: ', () => {
       roundTrip: false,
       departureDate: '08-02-2019',
       departureTime: '7:00 PM',
-      notes: 'There is no escaping Morris'
+      notes: 'There is no escaping Morris',
+      sortDateTime: '201908021900'
     }
   ];
 
@@ -41,7 +44,6 @@ describe( 'Ride list service: ', () => {
   );
 
   let rideListService: RideListService;
-  //let searchUrl: string;
 
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
@@ -94,8 +96,9 @@ describe( 'Ride list service: ', () => {
       origin: 'Becker',
       roundTrip: false,
       departureDate: '10-16-2124',
-      departureTime: '5:00pm',
-      notes: 'There is no escaping Morris'
+      departureTime: '5:00 PM',
+      notes: 'There is no escaping Morris',
+      sortDateTime: '212410160500'
     };
 
     rideListService.addNewRide(newRide).subscribe(
@@ -123,6 +126,21 @@ describe( 'Ride list service: ', () => {
     req.flush(targetRide);
   });
 
+  it('getRideByRoundTrip() calls api/rides/roundTrip', () => {
+    const targetRide: Ride = testRides[1];
+    const targetRoundTrip: boolean = targetRide.roundTrip;
+    rideListService.getRideByRoundTrip(targetRoundTrip).subscribe(
+      ride => expect(ride).toBe(targetRide)
+    );
+
+    const expectedUrl: string = rideListService.baseUrl + '/' + targetRoundTrip;
+    const req = httpTestingController.expectOne(expectedUrl);
+    expect(req.request.method).toEqual('GET');
+    req.flush(targetRide);
+  });
+
+
+
   it('editing a ride calls api/rides/update', () => {
     const editedTeacherDestination = 'editedTeacherDestination';
     const editedRide: Ride = {
@@ -131,8 +149,9 @@ describe( 'Ride list service: ', () => {
       origin: 'Home',
       roundTrip: false,
       departureDate: '10-16-2124',
-      departureTime: '5:00pm',
-      notes: 'There is no escaping Morris'
+      departureTime: '5:00 PM',
+      notes: 'There is no escaping Morris',
+      sortDateTime: '212410160500'
     };
 
     rideListService.editRide(editedRide).subscribe(
