@@ -37,6 +37,10 @@ export class RideListService {
     return this.http.get<Ride>(this.rideUrl + '/' + destination);
   }
 
+  getRideByRoundTrip(roundTrip: boolean): Observable<Ride> {
+    return this.http.get<Ride>(this.rideUrl + '/' + roundTrip.toString());
+  }
+
 
 
   addNewRide(newRide: Ride): Observable<string> {

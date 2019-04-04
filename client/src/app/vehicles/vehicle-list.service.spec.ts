@@ -37,6 +37,10 @@ describe( 'Vehicle list service: ', () => {
     vehicle.model.toLowerCase().indexOf('shopping') !== -1
   );
 
+  const flyingVehicle: Vehicle[] = testVehicles.filter(vehicle =>
+    vehicle.model.toLowerCase().indexOf('flying') !== -1
+  );
+
   let vehicleListService: VehicleListService;
 
   let httpClient: HttpClient;
@@ -83,9 +87,9 @@ describe( 'Vehicle list service: ', () => {
 
 
   it('adding a vehicle calls api/vehicle/new', () => {
-    const teacherModel = 'teacherModel';
+    const slowModel = 'slowModel';
     const newVehicle: Vehicle = {
-      ownerId: 'Teacher',
+      ownerId: '894569126550116200000',
       model: 'Apple',
       color: 'Red',
       ecoFriendly: false,
@@ -95,13 +99,35 @@ describe( 'Vehicle list service: ', () => {
 
     vehicleListService.addNewVehicle(newVehicle).subscribe(
       model => {
-        expect(model).toBe(teacherModel);
+        expect(model).toBe(slowModel);
       }
     );
 
     const expectedUrl: string = vehicleListService.baseUrl + '/new';
     const req = httpTestingController.expectOne(expectedUrl);
     expect(req.request.method).toEqual('POST');
-    req.flush(teacherModel);
+    req.flush(slowModel);
   });
+
+
+  it("removeParameter removes the Param if a previous search by ownerId needs to be cleared", () =>{
+    vehicleListService.getVehicles('721329185750116200000').subscribe(
+      vehicles => expect(vehicles).toEqual(shoppingVehicle)
+    );
+
+    let req = httpTestingController.expectOne(vehicleListService.baseUrl + '?ownerId=721329185750116200000&');
+    expect(req.request.method).toEqual('GET');
+    req.flush(shoppingVehicle);
+
+    vehicleListService.getVehicles('731330300985650700000').subscribe(
+      vehicles => expect(vehicles).toEqual(flyingVehicle)
+    );
+
+    req = httpTestingController.expectOne(vehicleListService.baseUrl + '?ownerId=731330300985650700000&');
+    expect(req.request.method).toEqual('GET');
+
+
+    req.flush(flyingVehicle);
+  });
+
 });
