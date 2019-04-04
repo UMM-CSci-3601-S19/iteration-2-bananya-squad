@@ -28,7 +28,7 @@ import umm3601.vehicles.VehicleRequestHandler;
 
 public class Server {
 
-  private static final int serverPort = 80;
+  private static final int serverPort = 92;
 
   private static final String databaseName = "dev";
 
