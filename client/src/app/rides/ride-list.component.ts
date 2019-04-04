@@ -26,17 +26,14 @@ export class RideListComponent implements OnInit {
   private highlightedDestination: string = '';
 
 
+
   constructor(public rideListService: RideListService, public dialog: MatDialog) {
   }
 
-  // To use to delete past rides
-  getCurrentTime(): string{
-    let today = new Date();
-    let date = today.getMonth() + '-' + (today.getDate() + 1) + '-' + today.getFullYear();
-    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    let blah = date + " " + time;
-    return blah;
+  isHighlighted(ride: Ride): boolean {
+    return ride.destination === this.highlightedDestination;
   }
+
 
   openDialog(): void {
     const newRide: Ride = {driver: '', destination: '', origin: '', roundTrip: false, driving: false,
@@ -135,6 +132,7 @@ export class RideListComponent implements OnInit {
     });
   }
 
+
   openDeleteDialog(currentId: object): void {
     console.log("openDeleteDialog");
     const dialogRef = this.dialog.open(DeleteRideComponent, {
@@ -161,6 +159,7 @@ export class RideListComponent implements OnInit {
 
   refreshRides(searchDestination?: string,searchOrigin?: string, searchDate?: string, searchTime?: string, searchRoundTrip?: boolean): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
+    localStorage.setItem("load", "false");
   if (searchDestination == null && searchOrigin == null) {
       const rides: Observable<Ride[]> = this.rideListService.getRides('','','','',
         null);
@@ -185,6 +184,8 @@ export class RideListComponent implements OnInit {
     return rides;
      }
    }
+
+
 
   ngOnInit(): void {
     this.refreshRides();

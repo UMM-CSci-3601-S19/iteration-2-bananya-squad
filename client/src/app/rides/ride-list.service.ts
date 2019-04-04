@@ -240,4 +240,10 @@ export class RideListService {
 
 
 
+  public waitLoad(): boolean {
+    status = localStorage.getItem('load');
+    if (status == 'true') { return true;}
+    else {return false;}
+  }
+
 }
