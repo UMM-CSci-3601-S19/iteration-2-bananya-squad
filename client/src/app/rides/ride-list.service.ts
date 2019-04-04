@@ -8,6 +8,8 @@ import {Ride} from "./ride";
 export class RideListService {
   readonly baseUrl: string = environment.API_URL + 'rides';
   private rideUrl: string = this.baseUrl;
+  public hour: string;
+  public minute: string;
 
   constructor(private http: HttpClient) {
 
@@ -57,7 +59,31 @@ export class RideListService {
 
 
   editRide(editedRide: Ride): Observable<string> {
-    console.log("This the format of departure date when editing" + editedRide.departureDate);
+    console.log("The edited Time NON FORMAT and passed was " + editedRide.departureTime);
+
+    this.hour = editedRide.departureTime.split(":",2)[0];
+    this.minute = editedRide.departureTime.split(":",2)[1];
+
+    console.log("The hour is " + this.hour );
+    console.log("The minute is " + this.minute);
+
+    if(this.minute.includes("PM")){
+      this.hour = (parseInt(this.hour) + 12).toString();
+    }
+
+    if(this.minute.includes("AM")){
+      if(parseInt(this.hour)<10){
+        this.hour = "0" + this.hour;
+      }
+    }
+
+    this.minute = this.minute.replace(" PM","");
+    this.minute = this.minute.replace(" AM","");
+
+    editedRide.departureTime = this.hour + ":" + this.minute;
+
+    console.log("The edited Time formatted and passed was " + editedRide.departureTime);
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

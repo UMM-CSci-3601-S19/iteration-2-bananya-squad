@@ -26,14 +26,17 @@ export class RideListComponent implements OnInit {
   private highlightedDestination: string = '';
 
 
-
   constructor(public rideListService: RideListService, public dialog: MatDialog) {
   }
 
-  isHighlighted(ride: Ride): boolean {
-    return ride.destination === this.highlightedDestination;
+  // To use to delete past rides
+  static getCurrentTime(): string{
+    let today = new Date();
+    let date = today.getMonth() + '-' + (today.getDate() + 1) + '-' + today.getFullYear();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let blah = date + " " + time;
+    return blah;
   }
-
 
   openDialog(): void {
     const newRide: Ride = {driver: '', destination: '', origin: '', roundTrip: false, driving: false,
@@ -122,16 +125,16 @@ export class RideListComponent implements OnInit {
           result => {
             this.highlightedDestination = result;
             this.refreshRides();
+            console.log('The currentRide or dialogResult was ' + JSON.stringify(currentRide));
           },
           err => {
             console.log('There was an error editing the ride.');
-            console.log('The currentRide or dialogResult was ' + JSON.stringify(currentRide));
+            console.log('The currentRide or dialogResult was error ' + JSON.stringify(currentRide));
             console.log('The error was ' + JSON.stringify(err));
           });
       }
     });
   }
-
 
   openDeleteDialog(currentId: object): void {
     console.log("openDeleteDialog");
@@ -161,8 +164,7 @@ export class RideListComponent implements OnInit {
     localStorage.setItem("searched", "false");
     localStorage.setItem("load", "false");
   if (searchDestination == null && searchOrigin == null) {
-      const rides: Observable<Ride[]> = this.rideListService.getRides('','','','',
-        null);
+      const rides: Observable<Ride[]> = this.rideListService.getRides('','','','', null);
       rides.subscribe(
         rides => {
           this.rides = rides;
@@ -184,8 +186,6 @@ export class RideListComponent implements OnInit {
     return rides;
      }
    }
-
-
 
   ngOnInit(): void {
     this.refreshRides();
