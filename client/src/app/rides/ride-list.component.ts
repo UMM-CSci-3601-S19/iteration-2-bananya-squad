@@ -190,7 +190,7 @@ export class RideListComponent implements OnInit {
   }
  */
 
-  refreshRides(searchDestination?: string,searchOrigin?: string): Observable<Ride[]> {
+  refreshRides(searchDestination?: string,searchOrigin?: string,searchDate?: string,searchTime?: string,searchRoundTrip?: boolean): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
     localStorage.setItem("load", "false");
   if (searchDestination == null && searchOrigin == null) {

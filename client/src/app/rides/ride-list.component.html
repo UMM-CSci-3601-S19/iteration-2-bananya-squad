@@ -37,7 +37,7 @@
               <p>{{ride.driver}}</p>
             <div class="bottomInfo">
               <div>{{ride.departureDate}} at {{ride.departureTime}}</div>
-              <div class=ride.roundTrip><mat-icon>repeat</mat-icon></div>
+              <div class=ride.roundTrip ><mat-icon *ngIf="ride.roundTrip">repeat</mat-icon></div>
             </div>
             </mat-card-content>
 

@@ -1,12 +1,17 @@
 <div layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
     <mat-card>
-      <mat-card-title id="Profile_Page">{{appComponent.userFullName}}</mat-card-title>
-      <mat-card-content>
-        Info: {{appComponent.userFullName}}
+      <mat-card-title id="Profile_Page"> {{appComponent.getUsername()}}</mat-card-title>
+      <div>
+        <mat-card-content class="userInfo">
+          <div>Email: {{appComponent.getUserEmail()}}</div>
+          <div><img src="{{appComponent.getUserPic()}}"></div>
+        </mat-card-content>
+        <p></p>
         <mat-divider></mat-divider>
         <p></p>
-        <button mat-icon-button id="addVehicle" class="card-top-right-button"
+        <mat-card-content>
+        <button mat-icon-button class="card-top-right-button"
                 (click)="vehicleListComponent.openAddVehicleDialog()">
           <mat-icon aria-label="New Vehicle">add</mat-icon>
         </button>
@@ -23,10 +28,11 @@
             <mat-panel-description>Color: {{vehicle.color}}</mat-panel-description>
             <mat-panel-description>Engine: {{vehicle.engine}}</mat-panel-description>
             <mat-panel-description>MPG: {{vehicle.mpg}}</mat-panel-description>
-            <mat-panel-description>Eco-Friendly: {{vehicle.ecoFriendly}}</mat-panel-description>
+            <mat-panel-description *ngIf="vehicle.ecoFriendly">Eco-Friendly: Yes</mat-panel-description>
+            <mat-panel-description *ngIf="!vehicle.ecoFriendly">Eco-Friendly: No</mat-panel-description>
           </mat-expansion-panel>
         </mat-accordion>
-
+        </mat-card-content>
         <ng-template #vehiclesError>
           <mat-error>
             There was a problem loading the vehicles. Possibly the server is down or perhaps there are network
@@ -37,7 +43,7 @@
           </mat-error>
         </ng-template>
 
-      </mat-card-content>
+      </div>
     </mat-card>
   </div>
 

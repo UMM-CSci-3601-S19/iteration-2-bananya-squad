@@ -3,6 +3,7 @@
   margin-right: 10px;
 }
 
-#addVehicle{
-  background-color: #FF6D00;
+.userInfo{
+  display: flex;
+  justify-content: space-between;
 }
