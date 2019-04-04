@@ -1,24 +1,28 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Component} from '@angular/core';
 import {Vehicle} from "./vehicle";
 import {VehicleListService} from "./vehicle-list.service";
 import {MatDialog} from "@angular/material";
 import {AddVehicleComponent} from "./add-vehicle.component";
+import {AppService} from "../app.service";
 
 
 @Component({
   templateUrl: 'vehicle-list.component.html',
 })
 
-export class VehicleListComponent implements OnInit {
+export class VehicleListComponent {
 
   public vehicles: Vehicle[];
   private highlightedVehicle: string = '';
-  ownerId = localStorage.getItem("oid").toString();
-
+  ownerId = "123456789098765432100";
 
   constructor(public vehicleListService: VehicleListService,
+              // public appService: AppService,
               public dialog: MatDialog) {
+
+   /* if(this.appService.isSignedIn()){
+      this.ownerId = localStorage.getItem("oid").toString();
+    }*/
 
   }
 
@@ -55,21 +59,4 @@ export class VehicleListComponent implements OnInit {
     });
   }
 
-
- /* refreshVehicles(): Observable<Vehicle[]> {
-    const vehicles: Observable<Vehicle[]> = this.vehicleListService.getVehicles(this.ownerId);
-    vehicles.subscribe(
-      vehicles => {
-        this.vehicles = vehicles;
-      },
-      err => {
-        console.log(err);
-      });
-    return vehicles;
-  }*/
-
-
-  ngOnInit(): void {
-    // this.refreshVehicles();
-  }
 }

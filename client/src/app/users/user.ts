@@ -1,10 +1,7 @@
 export interface User {
   _id?: object;
   userId: string;
-  email: {
-    type: string,
-    required: true,
-  },
+  email: string,
   fullName: string;
   pictureUrl: string;
   lastName: string;

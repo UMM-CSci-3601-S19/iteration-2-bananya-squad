@@ -1,10 +1,9 @@
 <div layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
+    <h1 id="Mo-Ride"> Mo-Ride </h1>
       <mat-card>
-      <mat-card-title id="hello-world">{{ this.text }}</mat-card-title>
-      <mat-card-subtitle class="sub" *ngIf="!appService.isSignedIn()">Welcome to MoRide, the Morris community car-pooling application! Please Sign In Below.</mat-card-subtitle>
-        <mat-card-subtitle class="sub" *ngIf="appService.isSignedIn()">Welcome {{appComponent.getUsername()}}! To start, go to the navigation bar to the left.</mat-card-subtitle>
-      <mat-divider></mat-divider>
+        <mat-card-title *ngIf="!appService.isSignedIn()">Welcome to MoRide, the Morris community car-pooling application! Please Sign In Below.</mat-card-title>
+        <mat-card-title *ngIf="appService.isSignedIn()">Welcome {{appComponent.getUsername()}}! To start, go to the navigation bar to the left.</mat-card-title>
       <mat-card-content id="buttons">
         <div id="signIn" *ngIf="!appService.isSignedIn()" class="g-signin2" (click)="appComponent.signIn()"></div>
         <div *ngIf="appService.isSignedIn()" class="username">

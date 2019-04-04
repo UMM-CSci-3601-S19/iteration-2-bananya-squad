@@ -22,6 +22,10 @@
   margin: 0px;
 }
 
+.dots{
+  color: white;
+}
+
 #originAndDestinationContainer{
   display: flex;
   flex-direction: row;
@@ -56,6 +60,14 @@
 @media only screen and (max-device-width: 500px){
   #originAndDestinationContainer{
     font-size: smaller;
+  }
+  .dots{
+    vertical-align: top;
+    float: right;
+  }
+  #settings{
+    max-height: 25px;
+    max-width: 25px;
   }
 }
 

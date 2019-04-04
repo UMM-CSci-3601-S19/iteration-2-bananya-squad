@@ -37,6 +37,10 @@ export class RideListService {
     return this.http.get<Ride>(this.rideUrl + '/' + destination);
   }
 
+  getRideByRoundTrip(roundTrip: boolean): Observable<Ride> {
+    return this.http.get<Ride>(this.rideUrl + '/' + roundTrip.toString());
+  }
+
 
 
   addNewRide(newRide: Ride): Observable<string> {
@@ -263,9 +267,4 @@ export class RideListService {
     this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end);
   }
 
-  public waitLoad(): boolean {
-    status = localStorage.getItem('load');
-    if (status == 'true') { return true;}
-    else {return false;}
-  }
 }

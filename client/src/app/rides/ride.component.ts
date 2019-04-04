@@ -12,20 +12,28 @@ export class RideComponent implements OnInit {
 
   public ride: Ride = null;
   private destination: string;
+  private roundTrip: boolean;
 
 
   constructor(private rideListService: RideListService) {
   }
 
   private subscribeToServiceForDestination() {
-    if (this.destination) {
       this.rideListService.getRideByDestination(this.destination).subscribe(
         ride => this.ride = ride,
         err => {
           console.log(err);
         }
       );
-    }
+  }
+
+  private subscribeToServiceForRoundTrip() {
+      this.rideListService.getRideByRoundTrip(this.roundTrip).subscribe(
+        ride => this.ride = ride,
+        err => {
+          console.log(err);
+        }
+      );
   }
 
   setDestination(destination: string) {
@@ -33,8 +41,14 @@ export class RideComponent implements OnInit {
     this.subscribeToServiceForDestination();
   }
 
+  setRoundTrip(roundTrip: boolean) {
+    this.roundTrip = roundTrip;
+    this.subscribeToServiceForRoundTrip();
+  }
+
   ngOnInit(): void {
     this.subscribeToServiceForDestination();
+    this.subscribeToServiceForRoundTrip();
   }
 
 
