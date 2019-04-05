@@ -103,7 +103,7 @@ public class Server {
 
         try {
 
-          String CLIENT_SECRET_FILE = "./src/main/java/umm3601/server_files/csf.json";
+          String CLIENT_SECRET_FILE = "./src/main/java/umm3601/server_files/clientSF.json";
 
 
           GoogleClientSecrets clientSecrets =
