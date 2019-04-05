@@ -72,7 +72,7 @@ gradle-app.setting
 .gradletasknamecache
 
 # Client Secret
-client_secret_file.json
+csf.json
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties

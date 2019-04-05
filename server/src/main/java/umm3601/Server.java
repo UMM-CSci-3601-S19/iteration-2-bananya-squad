@@ -103,7 +103,7 @@ public class Server {
 
         try {
 
-          String CLIENT_SECRET_FILE = "./src/main/java/umm3601/server_files/client_secret_file.json";
+          String CLIENT_SECRET_FILE = "./src/main/java/umm3601/server_files/csf.json";
 
 
           GoogleClientSecrets clientSecrets =
@@ -123,7 +123,7 @@ public class Server {
               authCode,
               "https://morriscarpool.com")
               //Not sure if we have a redirectUri
-              
+
               .execute();
 
 
