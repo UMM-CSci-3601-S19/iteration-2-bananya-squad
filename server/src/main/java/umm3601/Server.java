@@ -28,7 +28,7 @@ import umm3601.vehicles.VehicleRequestHandler;
 
 public class Server {
 
-  private static final int serverPort = 80;
+  private static final int serverPort=80;
 
   private static final String databaseName = "dev";
 
@@ -121,10 +121,7 @@ public class Server {
 
               clientSecrets.getDetails().getClientSecret(),
               authCode,
-              "https://morriscarpool.com")
-              //Not sure if we have a redirectUri
-
-              .execute();
+              "https://morriscarpool.com").execute();
 
 
           // Get profile info from ID token
