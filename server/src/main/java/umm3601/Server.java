@@ -28,7 +28,7 @@ import umm3601.vehicles.VehicleRequestHandler;
 
 public class Server {
 
-  private static final int serverPort = 4567;
+  private static final int serverPort = 80;
 
   private static final String databaseName = "dev";
 
@@ -118,15 +118,12 @@ public class Server {
               "https://oauth2.googleapis.com/token",
               clientSecrets.getDetails().getClientId(),
 
-              // Replace clientSecret with the localhost one if testing
+
               clientSecrets.getDetails().getClientSecret(),
               authCode,
-              "http://68.183.109.92:4567")
+              "https://morriscarpool.com")
               //Not sure if we have a redirectUri
-
-              // Specify the same redirect URI that you use with your web
-              // app. If you don't have a web version of your app, you can
-              // specify an empty string.
+              
               .execute();
 
 
